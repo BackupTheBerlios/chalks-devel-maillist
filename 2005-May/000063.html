@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Chalks status and roadpath
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Chalks%20status%20and%20roadpath&In-Reply-To=%3Cef5e725705051815293889f421%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000062.html">
+   <LINK REL="Next"  HREF="000064.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Chalks status and roadpath</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Chalks%20status%20and%20roadpath&In-Reply-To=%3Cef5e725705051815293889f421%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Chalks status and roadpath">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Thu May 19 00:29:35 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000062.html">[Chalks-devel] Fwd: [Bug 74950][Nor] Changed - The misterious System.Runtime.Remoting &quot;tcp transport error&quot;
+</A></li>
+        <LI>Next message: <A HREF="000064.html">Fwd: [Chalks-devel] windows stacktrace when connecting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#63">[ date ]</a>
+              <a href="thread.html#63">[ thread ]</a>
+              <a href="subject.html#63">[ subject ]</a>
+              <a href="author.html#63">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Well I'm pretty happy the design cleanup and full rewrite of Chalks
+seems to have been a complete success !
+
+Actually I can say that we have reached the same features available in
+the previous alpha version, but this time code is much cleaner and
+structure still being visible. I'm confident that this time we got it
+right. We already had a first successful dummy test session and a
+windows compilation/buggy execution.
+
+It miss some elements before we get to beta. I'm writing this mail
+because I think I should be fine to make the point on what is working,
+what is not working and what are the priorities. Here is the list of
+things to do (in no special order),
+
+a - The concurrentedition has been translated and pass the base test.
+That is good enough for alpha but more  tests have to be write (clever
+ones, that search tricky situations)
+
+b - The network layer has been implemented in his first version. It is
+condemned to evolve to a more efficient use of bandwidth, but the
+remoting implementation is good enough for a proof of concept.
+Actually the network pass all his tests. All the type of messages are
+tested. Maybe some tests at start_collaborating level could be written
+(test authorization, authorization denial ?), but seems to be low
+priority (unless we discover that this area is bug prone...).
+
+c - ConcurrentEditableWidget is implemented and work pretty fine. The
+only feature I would like to add is tooltip over colored text to show
+&quot;who wrote that&quot;.
+
+d- The Gui is implemented but the interface and interactions design
+should be validated/corrected by an usability consultor.
+
+e - For beta it would be fine to implement undo/redo (commonly used by
+persons).
+
+f - There is a minibug not yet resolved about the behaviour of the gui
+when the user press &quot;up arrow&quot; at the command entry. This button
+should go up in the commands history (implemented), but actually it
+also make loose the focus of the widget (focus go to the upper widget,
+the logs text).
+
+g - The preferences dialog is not implemented because I have nothing
+to put in. Hopefully there is no need to have one ;).
+
+h - The connection dialog is not yet ZeroConf enabled.
+
+i - Actually Chalks start immediately sharing the document.  This
+behaviour has be chosen because Chalks is made for collaborating, if
+the user open it is because that document will be shared. A menu have
+to be added to set the password and probably an icon to show that the
+document access is protected by password (stock_lock , stock_lock_open
+) or not (a click on the lock should allow the parent node to change
+the password for future connections). In this way by default the
+document is open, it can be protected before sensitive information is
+added for private documents. When opening a file, the password should
+be asked after the file is open but before the file is shared (to
+avoid, just in time attacks ?).
+
+j - We do not know how to make the &quot;makefile&quot; crossplatform. We would
+like also to extend it to automagically build the distribution
+packages (nis and source tar.gz). Maybe we should choose another, more
+powerful compilation system.
+
+k - the documentation have to be finished (wiki and help dialogs of
+the application)
+
+l - some cool swf videos have to be registered to, explain the usage of chalks
+
+m - quit in the application does not quit (long standing unacceptable
+bug) (only the second attempt close the application)
+
+n - sourceview has to be reinserted in the compilation. Makes more
+complicated the compilation, but enable syntax coloring and line
+numbers. A very important feature for many people (specially for us
+early adopters group)
+
+o - we should contact a Gtk#/Cocoa# community to ask a Mac
+collaborator, to help with compatibility of Chalks on Mac and/or the
+development of a Cocoa gui for Chalks.
+
+The list is not short, but anyway I will try to order it from higher
+priority to less urgency:
+
+1  - The quit bug 
+2  - The &quot;arrow up&quot; command entry bug
+3  - The crossplatform compilation system enhancement
+4  - ZeroConf support
+5  - Interface and interactions design validation
+6  - Preferences dialog (what we want to make customizable)
+7  - Undo/Redo implementation
+8  - Implement password user interface
+9  - Application and wiki documentation
+10- ConcurrentEditableWidget tooltips
+11- SourceView usage
+12- More automated tests for concurrentedition
+13- More automated tests for network layer
+14- MacOs support
+15- Promotional videos
+
+This is a proposal, a suggestion. I just thougth that writing it would
+make easier to see where we are and what have to be done. Also it
+would help to see if I'm forgetting something. I'm forgetting
+something ? Does the priorities does not seems adequate ?
+
+
+rodrigob.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000062.html">[Chalks-devel] Fwd: [Bug 74950][Nor] Changed - The misterious System.Runtime.Remoting &quot;tcp transport error&quot;
+</A></li>
+	<LI>Next message: <A HREF="000064.html">Fwd: [Chalks-devel] windows stacktrace when connecting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#63">[ date ]</a>
+              <a href="thread.html#63">[ thread ]</a>
+              <a href="subject.html#63">[ subject ]</a>
+              <a href="author.html#63">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

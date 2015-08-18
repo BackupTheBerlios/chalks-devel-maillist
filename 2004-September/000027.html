@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: [Chalks-commits] r64 - in trunk: . src
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2004-September/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20%5BChalks-commits%5D%20r64%20-%20in%20trunk%3A%20.%20src&In-Reply-To=%3CI4GC9E%2445B4214ECE49987ADF3AC978AC59FBB3%40terra.com.br%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000026.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: [Chalks-commits] r64 - in trunk: . src</H1>
+    <B>Ricardo Niederberger Cabral</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20%5BChalks-commits%5D%20r64%20-%20in%20trunk%3A%20.%20src&In-Reply-To=%3CI4GC9E%2445B4214ECE49987ADF3AC978AC59FBB3%40terra.com.br%3E"
+       TITLE="[Chalks-devel] Re: [Chalks-commits] r64 - in trunk: . src">ncabral at terra.com.br
+       </A><BR>
+    <I>Wed Sep 22 18:53:38 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000026.html">[Chalks-devel] Re: [Chalks-commits] r64 - in trunk: . src
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#27">[ date ]</a>
+              <a href="thread.html#27">[ thread ]</a>
+              <a href="subject.html#27">[ subject ]</a>
+              <a href="author.html#27">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Ok, I'll correct that when I get home.
+
+&gt;<i> There is an error in this implementation 
+</I>&gt;<i> 
+</I>&gt;<i> &gt; +    for t_perspective in perspectives:
+</I>&gt;<i> &gt; +        if not t_perspective: # skip Null perspective, probably 
+</I>my parent_perspective when I'm not connected to a parent
+&gt;<i> &gt; +            continue
+</I>&gt;<i> &gt; +        t_deferred = t_perspective.callRemote(&quot;collaborate_out&quot;)
+</I>&gt;<i> &gt; +        #t_deferred.addCallback(self.disconnected)
+</I>&gt;<i> &gt; +        t_deferred.addErrback(self.exception)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; +    self.disconnected()
+</I>&gt;<i> 
+</I>&gt;<i> you should use a DeferredList to way the disconnection from all the 
+</I>other nodes
+&gt;<i> <A HREF="http://www.twistedmatrix.com/documents/current/howto/defer#auto19">http://www.twistedmatrix.com/documents/current/howto/defer#auto19</A>
+</I>&gt;<i> 
+</I>&gt;<i> and then attach the &quot;self.disconnected&quot; callback to the deferredlist 
+</I>object.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000026.html">[Chalks-devel] Re: [Chalks-commits] r64 - in trunk: . src
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#27">[ date ]</a>
+              <a href="thread.html#27">[ thread ]</a>
+              <a href="subject.html#27">[ subject ]</a>
+              <a href="author.html#27">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

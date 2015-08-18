@@ -1,0 +1,402 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705051006561cd11a2c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000041.html">
+   <LINK REL="Next"  HREF="000043.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705051006561cd11a2c%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: Chalks">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Tue May 10 15:56:12 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000041.html">[Chalks-devel] Re: Chalks
+</A></li>
+        <LI>Next message: <A HREF="000043.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#42">[ date ]</a>
+              <a href="thread.html#42">[ thread ]</a>
+              <a href="subject.html#42">[ subject ]</a>
+              <a href="author.html#42">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Misc letter, I jump through various topics;
+
+All our code is in an open access svn repository (see our web page)
+
+For the tests your should look at TestConcurrentEdition.n and the
+referred paper. I'm curious to see how your implementation handle that
+case.
+
+&gt;&gt;<i>Convergence is really only an issue for 2 Insert operations on the same
+</I>start point, which is taken care of by introducing a priority based on
+the client id.
+
+Convergence is an issue because the users generate different
+operations over different text versions, it has nothing to do with
+what you describe. Two operations at the same point at the same
+version relates more (if I remember fine) to intention preservation.
+
+I agree that centralized approaches are much simpler, however we did
+not wanted to use this approach for two reasons:
+- this approach overload the bandwidth of the &quot;server&quot; node.
+- if two groups are collaborating, all the delay will be as slow as
+the server node. In decentralized approach nodes in local area
+networks have the delay of local area network and nodes in remote
+locations have the delay of remote locations. I expect that this
+effect will be noticeable.
+- a decentralized approach allow to use one and only one node as &quot;server&quot;
+
+&gt;&gt;<i> Fair enough, but again it just might not get used by people using
+</I>different languages. (kde libs are usually C++ based for example)
+
+the dotnet platform can interest people programming in ML, Java, C#,
+Python, we consider that .Net allow better integration and
+collaboration between &quot;people of different languages&quot;.
+
+Personally I'm language agnostic, I just try to use the correct tool
+available for the required job.
+
+The topic is deployability and compatibility, not a C# versus C++ flame ware.
+
+Finally, 
+let's imagine that we have a common protocol. And now imagine that I
+need to change something, for example, sites identifier are no more 16
+bytes random numbers, but Ip+Port strings.
+Doing such change would not break immediately the compatibility ?
+What would have to be done to have systems inter operate again ?
+
+It will be hard to me to think that specifying a protocol is not
+create double work, double bugs and double pain.
+
+rodrigob.
+
+
+
+
+On 5/10/05, Andreas Ramm &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">psychobrain at gmx.net</A>&gt; wrote:
+&gt;<i> rodrigo benenson wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;On 5/10/05, Andreas Ramm &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">psychobrain at gmx.net</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;rodrigo benenson wrote:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;I did not explained why I do not think it is technically sound to
+</I>&gt;<i> &gt;&gt;&gt;integrate at network level: the core reason I'm thinking about is
+</I>&gt;<i> &gt;&gt;&gt;simply because it depends on the algorithm implemented. And if it
+</I>&gt;<i> &gt;&gt;&gt;depends on the algorithm, then it does not make sense to replicate
+</I>&gt;<i> &gt;&gt;&gt;they implementation, being double bug prone.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;In contrast the relation between the network+concurrenteditable with
+</I>&gt;<i> &gt;&gt;&gt;the concurrenteditionwidget+gui is algorithm independent.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;To me it make more sense to develop a &quot;concurrent edition library&quot;
+</I>&gt;<i> &gt;&gt;&gt;that different applications could use. Then we can discuss which
+</I>&gt;<i> &gt;&gt;&gt;algorithm use and which language implementation.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;Having a concurrent editing library does make sense indeed. That's why
+</I>&gt;<i> &gt;&gt;I'll be including the MateEdit core into KDE for every KDE program to
+</I>&gt;<i> &gt;&gt;use. (I only say KDE because I know that people using different toolkits
+</I>&gt;<i> &gt;&gt;would not touch a kde library)
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;Focusing on network layer will constrain too much future algorithm, or
+</I>&gt;<i> &gt;&gt;&gt;will require to define a too ample network protocol that will dificult
+</I>&gt;<i> &gt;&gt;&gt;to implement anyway (too much, what if cases).
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;Ok let me just show you what I see as necessary for an Insert operation
+</I>&gt;<i> &gt;&gt;and you can tell me what you think needs to be added. Copied verbatim
+</I>&gt;<i> &gt;&gt;from my networking code :)
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;        stream &lt;&lt; m_type &lt;&lt; m_fromCoords[0] &lt;&lt; m_toCoords[0] &lt;&lt; m_sender
+</I>&gt;<i> &gt;&gt;&lt;&lt; m_state.server &lt;&lt; m_state.client;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;            stream &lt;&lt; m_message;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;m_type - describes the operation here INSERT
+</I>&gt;<i> &gt;&gt;m_fromCoords - starting position
+</I>&gt;<i> &gt;&gt;m_toCoords - end position
+</I>&gt;<i> &gt;&gt;m_sender - sender id
+</I>&gt;<i> &gt;&gt;m_state.server - (always 0 on sending and on closer inspection not
+</I>&gt;<i> &gt;&gt;strictly necessary)
+</I>&gt;<i> &gt;&gt;m_state.client - number of messages received from other clients
+</I>&gt;<i> &gt;&gt;m_message - the actual text of the insert
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Messages is the easiest part of the problem. What happens with binary
+</I>&gt;<i> &gt;formats?  Encryption ? Site identifiers ? States are vectors or Hash ?
+</I>&gt;<i> &gt;In Chalks we do not have &quot;a server&quot; ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> What do you need binary formats for? Isn't unicode enough? Or do you
+</I>&gt;<i> mean pictures and things like that?
+</I>&gt;<i> Encryption can be turned on and a check at the start of a session
+</I>&gt;<i> ensures that it is available. Obviously some arrangements will need to
+</I>&gt;<i> be made. For site identifiers I would suggest integers, but anything
+</I>&gt;<i> goes as MateEdit uses a server to assign them. States are vectors, or
+</I>&gt;<i> even more simplisticly integers for MateEdit purposes.
+</I>&gt;<i> 
+</I>&gt;<i> I imagine each MateEdit client could open it's own server simple server
+</I>&gt;<i> if talking in a chalks session. But I would need to look at your
+</I>&gt;<i> implementation in detail to see what's possible. I don't think it is
+</I>&gt;<i> impossible though until I have seen it :)
+</I>&gt;<i> 
+</I>&gt;<i> &gt;I do not think we should focus on detail, but on basic concept. Let's
+</I>&gt;<i> &gt;fix some points:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Do we agree that fixing a protocol necessarily imply fixing a specific
+</I>&gt;<i> &gt;algorithm ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> I am not yet convinced. Fixing a protocol is by no means a thing to be
+</I>&gt;<i> set in stone. It would be more like &quot;At this point in time we think this
+</I>&gt;<i> works best for our purposes&quot;. As for the algorithm fixing by fixing a
+</I>&gt;<i> protocol I don't think that is true, but again I need to look at it in
+</I>&gt;<i> detail.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;&gt;Actually I think that .Net platform is essentially Gui agnostic.
+</I>&gt;<i> &gt;&gt;&gt;However we can think in a language agnostic module interconnection
+</I>&gt;<i> &gt;&gt;&gt;system to ease the integration with even larger range of applications.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;Just as you already found out not everyone likes .Net or even Mono. The
+</I>&gt;<i> &gt;&gt;danger of the whole thing being shut down, due to some dubious patent or
+</I>&gt;<i> &gt;&gt;license is just to big for some people.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Exactly as some persons tried to enforce patents over linux, over
+</I>&gt;<i> &gt;double click, over kind of web pages, etc... License is something we
+</I>&gt;<i> &gt;have to deal with.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Chalks developed is driven over objectives. Up to know .Net platforms
+</I>&gt;<i> &gt;seems to have been the best choice.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> Sure for the moment it seems alright. There is just that little
+</I>&gt;<i> uncertainty that bugs some people.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;&gt;To enforce the point about the algorithm and the network protocol.
+</I>&gt;<i> &gt;&gt;&gt;Supose that I'm implementing an algorithm without garbage collection
+</I>&gt;<i> &gt;&gt;&gt;(as MoonEdit probably does)
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;You probably meant MateEdit ;)
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;then the data to start a session would be:
+</I>&gt;<i> &gt;&gt;&gt;state vector, history buffer, text, delayed_operations. If I implement
+</I>&gt;<i> &gt;&gt;&gt;garbage collection, then additional information is required,
+</I>&gt;<i> &gt;&gt;&gt;minimum_state_vector and state_vector_table. Thus two implementation
+</I>&gt;<i> &gt;&gt;&gt;would anyway be incompatible. Of course we are already enforcing one
+</I>&gt;<i> &gt;&gt;&gt;kind of history buffer (linear in Chalks case) and the data encoded
+</I>&gt;<i> &gt;&gt;&gt;into the operations is also algorithm specific (definition of the
+</I>&gt;<i> &gt;&gt;&gt;state_vector, members for the special cases (relative adressing,
+</I>&gt;<i> &gt;&gt;&gt;splitted operations, lost information)). So this simple example
+</I>&gt;<i> &gt;&gt;&gt;reforce the concept, trying to define a protocol between different
+</I>&gt;<i> &gt;&gt;&gt;algorithms is almost impossible.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;I am not at all familiar with where the problems are with the &quot;garbage
+</I>&gt;<i> &gt;&gt;collection&quot; algorithm you mention.
+</I>&gt;<i> &gt;&gt;In my mind what is needed to start a session is the text and optionally
+</I>&gt;<i> &gt;&gt;a description for each character so a colour and other information can
+</I>&gt;<i> &gt;&gt;be associated. Then you add user data and if you are really keen you can
+</I>&gt;<i> &gt;&gt;retransmit every message that was sent so far to create a history
+</I>&gt;<i> &gt;&gt;buffer, in which case you don't need the text nor the extra character
+</I>&gt;<i> &gt;&gt;information.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;If we are going to fix the algorithm
+</I>&gt;<i> &gt;&gt;&gt;to fix the network protocol, then we are loosing flexibility and
+</I>&gt;<i> &gt;&gt;&gt;evolvability for both the network layer and the concurrent edition
+</I>&gt;<i> &gt;&gt;&gt;layer (that would lead to the apparition of non compatible
+</I>&gt;<i> &gt;&gt;&gt;applications anyway). The logic choice is to define a crossplatform,
+</I>&gt;<i> &gt;&gt;&gt;gui agnostic (as it already is in chalks), concurrent edition library,
+</I>&gt;<i> &gt;&gt;&gt;that integrate both the concurrent edition algorithm and network
+</I>&gt;<i> &gt;&gt;&gt;layer.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;Sure that can be a long term goal, but a) not everyone working on
+</I>&gt;<i> &gt;&gt;collaborative editing will use it and b) this makes the choice
+</I>&gt;<i> &gt;&gt;programming language very important.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;We are not talking about long term goals, we talk about what is
+</I>&gt;<i> &gt;necessary to achieve the interoperability / smooth integration goal.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;&gt;Defining such library is not difficult at all (I can say it is already
+</I>&gt;<i> &gt;&gt;&gt;done).
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;Twice by the sounds of it :)
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Could you show us you design ? Or comment the diagrams sent ? Do we
+</I>&gt;<i> &gt;agree on the overall form ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> I haven't compared your diagrams to my design in detail yet, but the
+</I>&gt;<i> overall thing seems ok. If anything I would cut down on the ability of
+</I>&gt;<i> the gui to call functions in the ce and n layers.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;&gt;The only point we have to solve is the &quot;binary compatibility&quot;.
+</I>&gt;<i> &gt;&gt;&gt;I'm not an expert in the topic, Ricardo any knowledge/opinion on the
+</I>&gt;<i> &gt;&gt;&gt;topic ? Corba, Dcop, DBus have something to do with this ? Can we do
+</I>&gt;<i> &gt;&gt;&gt;binaries libraries from .Net ? Does Kde4.0 includes .Net support ?
+</I>&gt;<i> &gt;&gt;&gt;(because windows has it already for longhorn and gnome defacto too).
+</I>&gt;<i> &gt;&gt;&gt;It is sane to think in implement concurrent edition algorithm in
+</I>&gt;<i> &gt;&gt;&gt;languages like C or C++  ? (I really do not think so)
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;I don't think C or C++ are a problem at all (having just done it myself
+</I>&gt;<i> &gt;&gt;in C++). But I think in order for it to be an all-plattform library
+</I>&gt;<i> &gt;&gt;which gets used by people of all camps it would need to be written in C
+</I>&gt;<i> &gt;&gt;with language bindings for C++, C#, Python, you-name-it .... Not
+</I>&gt;<i> &gt;&gt;something that will it happen overnight.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;From what I can see from a very fast overlook of your code it seems
+</I>&gt;<i> &gt;that you are using a much simplistic approach than ours, that I'm not
+</I>&gt;<i> &gt;sure that ensure the:
+</I>&gt;<i> &gt;- Convergence,
+</I>&gt;<i> &gt;- Causality-preservation,
+</I>&gt;<i> &gt;- Intention-preservation,
+</I>&gt;<i> &gt;- Local operations execution
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;requirements of a concurrent edition system.
+</I>&gt;<i> &gt;(<A HREF="http://citeseer.ist.psu.edu/sun98achieving.html">http://citeseer.ist.psu.edu/sun98achieving.html</A>)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> I didn't like the decentralised approach much, so I went for a server
+</I>&gt;<i> based system instead. The server takes care of ordering messages and
+</I>&gt;<i> local operations are executed first, so that leaves convergence and
+</I>&gt;<i> intention-preservation to worry about. The algorithm I came up with
+</I>&gt;<i> tries to take care of those two things at the same time by carefully
+</I>&gt;<i> defining transformation functions for the different possible cases.
+</I>&gt;<i> Convergence is really only an issue for 2 Insert operations on the same
+</I>&gt;<i> start point, which is taken care of by introducing a priority based on
+</I>&gt;<i> the client id. Intention-preservation is rather trivial for all
+</I>&gt;<i> non-overlapping cases and took quite a bit of work for the overlapping
+</I>&gt;<i> cases, but I feel it is correct now. (Over time I will add more tests to
+</I>&gt;<i> validate that statement, but I am happy for the moment with the ~350
+</I>&gt;<i> checks in place)
+</I>&gt;<i> 
+</I>&gt;<i> &gt;If I'm wrong, could you explain us your method ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Also we do not choice C/C++ because the development of the system
+</I>&gt;<i> &gt;require a lot of debugging of non trivial deep bugs in big distributed
+</I>&gt;<i> &gt;state machines. Using interpreted language helps to fight the beast.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> Fair enough, but again it just might not get used by people using
+</I>&gt;<i> different languages. (kde libs are usually C++ based for example)
+</I>&gt;<i> 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;&gt;Topics to discuss, fun on the path !
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;Lots of fun :)
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;By the way do you use unit tests or how do you check validity of code?
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Yes we use unit tests to check the network layer and the
+</I>&gt;<i> &gt;concurrentedition layer. Unfortunately I do not know how to create
+</I>&gt;<i> &gt;automated tests for Gui layers. But remember that unit tests detect
+</I>&gt;<i> &gt;errors but does not ensure non existence of bugs.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> It would be great if they could though. :) I was just wondering so I can
+</I>&gt;<i> maybe have a look to see if you have any cases I currently don't cover.
+</I>&gt;<i> 
+</I>&gt;<i> Overall I feel this discussion is very constructive. Just to have
+</I>&gt;<i> mentioned it :)
+</I>&gt;<i> 
+</I>&gt;<i> Andreas
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000041.html">[Chalks-devel] Re: Chalks
+</A></li>
+	<LI>Next message: <A HREF="000043.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#42">[ date ]</a>
+              <a href="thread.html#42">[ thread ]</a>
+              <a href="subject.html#42">[ subject ]</a>
+              <a href="author.html#42">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks Gui II
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-June/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks%20Gui%20II&In-Reply-To=%3Cef5e7257050601060356806ebb%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000080.html">
+   <LINK REL="Next"  HREF="000087.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks Gui II</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks%20Gui%20II&In-Reply-To=%3Cef5e7257050601060356806ebb%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: Chalks Gui II">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Wed Jun  1 15:03:55 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000080.html">[Chalks-devel] Re: Chalks Gui II
+</A></li>
+        <LI>Next message: <A HREF="000087.html">[Chalks-devel] Re: Chalks Gui II
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#83">[ date ]</a>
+              <a href="thread.html#83">[ thread ]</a>
+              <a href="subject.html#83">[ subject ]</a>
+              <a href="author.html#83">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Brilliant idea ! I like it too. Now I just have to... implement it....
+(as soon as possible, but I'm a little short of time this week).
+
+rodrigob.
+
+On 6/1/05, Ricardo Niederberger Cabral &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rnc000 at gmail.com</A>&gt; wrote:
+&gt;<i> From the 3 options you proposed, I also prefer option 3. It is by far
+</I>&gt;<i> the most intuitive one.
+</I>&gt;<i> 
+</I>&gt;<i> But I have another proposal which I believe is better than 3:
+</I>&gt;<i> 
+</I>&gt;<i> - Show nothing at startup.
+</I>&gt;<i> - File menu with options:
+</I>&gt;<i>     - Open local file: after prompting for the local file, ask if user
+</I>&gt;<i> wants to automatically share it. If there is no default password, ask
+</I>&gt;<i> to enter one or share file passwordless
+</I>&gt;<i>     - Open remote file
+</I>&gt;<i>     - Save
+</I>&gt;<i>     - Save as
+</I>&gt;<i>     - Share: make sure it's disabled when the file is already being
+</I>&gt;<i> shared or if it's a remote file.
+</I>&gt;<i> 
+</I>&gt;<i> As for the visual feedback about the status of the document, I believe
+</I>&gt;<i> 2 widgets on the status bar would suffice:
+</I>&gt;<i>     | Shared / Not shared | X remote users |
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> On 5/29/05, rodrigo benenson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; still working on purification of Chalks.
+</I>&gt;<i> &gt; I have implemented the &quot;set password&quot; interface and found that there
+</I>&gt;<i> &gt; is a UI design issue. Up to now Kesava has not pronounced itself, so
+</I>&gt;<i> &gt; we will have to solve the issue using your criteria.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The problem is what to do when chalks start with respect to authentication.
+</I>&gt;<i> &gt; Actually when Chalks starts a dialog appears to request a password to
+</I>&gt;<i> &gt; secure the actual document. If the users choice the &quot;use as default&quot;
+</I>&gt;<i> &gt; checkbutton future instances of Chalks will use a default password,
+</I>&gt;<i> &gt; that can be then changed using the menu &quot;File-&gt;Set password&quot;.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The problem is that when the user does not choice the &quot;use a default
+</I>&gt;<i> &gt; password&quot; option there is a &quot;popup dialog&quot; at each execution of
+</I>&gt;<i> &gt; Chalks, even when the user pretends to connect to another node, in
+</I>&gt;<i> &gt; which case setting up a password for his local document is futile.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The objective is to make the software easy to use having the less
+</I>&gt;<i> &gt; number of clicks to get a working session.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; So I see three options:
+</I>&gt;<i> &gt; 1- Let it as it now, not too bad. Most users will use a blank default
+</I>&gt;<i> &gt; password, paranoiacs will pay they price adding one dialog at each
+</I>&gt;<i> &gt; instance.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 2- Use the MoonEdit approach. At the start of a Chalks session the
+</I>&gt;<i> &gt; document is not shared until the user explicitly click &quot;file-&gt;host&quot;.
+</I>&gt;<i> &gt; That event would trigger the password setting.  The user can also
+</I>&gt;<i> &gt; choice the &quot;file-&gt;join&quot; option to connect to a remote document
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 3 - At the start of Chalks a popup appears to force the user to choice
+</I>&gt;<i> &gt; Host or Join. This reduce one click because it does not have to go to
+</I>&gt;<i> &gt; the &quot;file-&gt;&quot; menu. The user could also close the dialog and the
+</I>&gt;<i> &gt; document would be blank and not shared (as option 2).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; What do you think Ricardo ?
+</I>&gt;<i> &gt; Personally I'm more for option3, but I'm not convinced about which is
+</I>&gt;<i> &gt; the best choice. There are also other possibilities (eg: only ask the
+</I>&gt;<i> &gt; password when the first user connects to him) but none seems very
+</I>&gt;<i> &gt; intuitive or efficient.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Also, should we give a visual feedback about the status of the
+</I>&gt;<i> &gt; document (hosting, joined, non connected), how ? (does knowing the
+</I>&gt;<i> &gt; number of users is enough/correct/useful ?)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; rodrigob.
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> --
+</I>&gt;<i> Ricardo Niederberger Cabral
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Chalks-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">Chalks-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="http://lists.berlios.de/mailman/listinfo/chalks-devel">http://lists.berlios.de/mailman/listinfo/chalks-devel</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000080.html">[Chalks-devel] Re: Chalks Gui II
+</A></li>
+	<LI>Next message: <A HREF="000087.html">[Chalks-devel] Re: Chalks Gui II
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#83">[ date ]</a>
+              <a href="thread.html#83">[ thread ]</a>
+              <a href="subject.html#83">[ subject ]</a>
+              <a href="author.html#83">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

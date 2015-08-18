@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705050812595c3cfe1f%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000031.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705050812595c3cfe1f%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: Chalks">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Sun May  8 21:59:07 CEST 2005</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000031.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+it's great that you entered in contact. As you could notice
+(<A HREF="http://chalks.berlios.de/dokuwiki/doku.php?id=dev:design">http://chalks.berlios.de/dokuwiki/doku.php?id=dev:design</A>) we had
+already noticed your project but were not so sure about his status.
+
+&gt;<i> Am I correct in assuming that your project aims to be a gnome version of
+</I>&gt;<i> a concurrent editing widget, which can be used by all gnome applications
+</I>&gt;<i> that chose to use/activate it?
+</I>
+Back in 2003 the project was the first open source concurrent edition
+system (called LeoN) however it was not adapted for mass use
+(developed a plug-in for a weird text editor (Leo)).
+<A HREF="http://ryalias.freezope.org/souvenirs/leon">http://ryalias.freezope.org/souvenirs/leon</A>
+
+Thus in 2004 I started Chalks, a spin out of LeoN, more adapted for
+mass use. However that year this project became lower priority and go
+frozen. At that time I thought 'someone else will do it anyway...'.
+During the second semester of 2004 Ricardo motivated me to continue
+the project and the project advanced considerably. The motto of Chalks
+is &quot;collaborative text editing for everyone&quot; and that was what we
+tried to do.
+
+Both Ricardo and me had busy times at the end of 2004, so we made a
+pause. At the end of the pause I realized that the code had became
+spaghetti. The basics were correct but the shift between LeoN to
+Chalks needed more than just some children classes.
+
+So at the beginning 2005 I revised the design and started a full
+rewrite. The motto is the same, the objective is the same, the
+approach is the same, the developers are the same, the core algorithm
+is the same, and the network layer design is the same. What has
+changed is: a cleaner macroscopic design, a full rewrite of the code,
+and the most essential, I decided to change the technology.
+
+Up to now we developed in Python using TwistedMatrix. It was great for
+developing but had three problems:
+- Hard to release in a clean way
+- Hard to integrate with existing platform
+- Propensity to spaghetti code.
+
+The new platform was choose because :
+- It enforce clean design and code (strong typing, interfaces)
+- Have excellent integration capabilities
+- It can be released without too much pain
+
+Notice that Chalks, in difference from MateEdit has a requirement to
+be multiplatform: windows, linux and mac os at least.
+
+So the chosen platform is the .Net technology (actually developing
+with Mono and Nemerle) and the Gtk toolkit for the Gui.
+
+In the last weeks the new design was implemented and now we are just
+starting the debugging phase.
+
+&gt;<i> If this is the case I propose defining network handshakes and messages
+</I>&gt;<i> so that both our projects can talk to each other and thus enable GNOME
+</I>&gt;<i> and KDE to integrate nicely.
+</I>
+Now, on the technical aspect I agree that it would be great to have
+KDE/Gnome integration. Also I think it is good that open source
+developer with similar/identical objectives collaborate between them.
+
+In particular I was surprised to see how similar is your Gui approach to ours.
+However I do not think that integration at network level is the correct choice.
+
+The actual design (and implementation) of Chalks (that I have to
+finish to describe on the wiki) define four distinctive layers:
+
+Gui
+ConcurrentEditableWidget
+ConcurrentEditable
+Network
+
+as you are in the topic, it is obvious what each layer does. You can
+also take a look at
+<A HREF="http://svn.berlios.de/viewcvs/*checkout*/chalks/trunk/doc/schemas/chalks.dia">http://svn.berlios.de/viewcvs/*checkout*/chalks/trunk/doc/schemas/chalks.dia</A>
+for more details.
+
+The relation between the layers is as thin as possible and as well
+defined as possible.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000031.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

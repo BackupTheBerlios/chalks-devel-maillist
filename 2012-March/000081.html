@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> No subject
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.2.1331727717.29936.chalks-devel%40lists.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000040.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>No subject</H1>
+    <B></B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.2.1331727717.29936.chalks-devel%40lists.berlios.de%3E"
+       TITLE="No subject">
+       </A><BR>
+    <I>Wed Mar 14 13:21:57 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000040.html">No subject
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#81">[ date ]</a>
+              <a href="thread.html#81">[ thread ]</a>
+              <a href="subject.html#81">[ subject ]</a>
+              <a href="author.html#81">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>the most intuitive one.
+
+But I have another proposal which I believe is better than 3:
+
+- Show nothing at startup. 
+- File menu with options: 
+    - Open local file: after prompting for the local file, ask if user
+wants to automatically share it. If there is no default password, ask
+to enter one or share file passwordless
+    - Open remote file
+    - Save
+    - Save as
+    - Share: make sure it's disabled when the file is already being
+shared or if it's a remote file.
+
+As for the visual feedback about the status of the document, I believe
+2 widgets on the status bar would suffice:
+    | Shared / Not shared | X remote users |
+
+
+On 5/29/05, rodrigo benenson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i> still working on purification of Chalks.
+</I>&gt;<i> I have implemented the &quot;set password&quot; interface and found that there
+</I>&gt;<i> is a UI design issue. Up to now Kesava has not pronounced itself, so
+</I>&gt;<i> we will have to solve the issue using your criteria.
+</I>&gt;<i> 
+</I>&gt;<i> The problem is what to do when chalks start with respect to authentication.
+</I>&gt;<i> Actually when Chalks starts a dialog appears to request a password to
+</I>&gt;<i> secure the actual document. If the users choice the &quot;use as default&quot;
+</I>&gt;<i> checkbutton future instances of Chalks will use a default password,
+</I>&gt;<i> that can be then changed using the menu &quot;File-&gt;Set password&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> The problem is that when the user does not choice the &quot;use a default
+</I>&gt;<i> password&quot; option there is a &quot;popup dialog&quot; at each execution of
+</I>&gt;<i> Chalks, even when the user pretends to connect to another node, in
+</I>&gt;<i> which case setting up a password for his local document is futile.
+</I>&gt;<i> 
+</I>&gt;<i> The objective is to make the software easy to use having the less
+</I>&gt;<i> number of clicks to get a working session.
+</I>&gt;<i> 
+</I>&gt;<i> So I see three options:
+</I>&gt;<i> 1- Let it as it now, not too bad. Most users will use a blank default
+</I>&gt;<i> password, paranoiacs will pay they price adding one dialog at each
+</I>&gt;<i> instance.
+</I>&gt;<i> 
+</I>&gt;<i> 2- Use the MoonEdit approach. At the start of a Chalks session the
+</I>&gt;<i> document is not shared until the user explicitly click &quot;file-&gt;host&quot;.
+</I>&gt;<i> That event would trigger the password setting.  The user can also
+</I>&gt;<i> choice the &quot;file-&gt;join&quot; option to connect to a remote document
+</I>&gt;<i> 
+</I>&gt;<i> 3 - At the start of Chalks a popup appears to force the user to choice
+</I>&gt;<i> Host or Join. This reduce one click because it does not have to go to
+</I>&gt;<i> the &quot;file-&gt;&quot; menu. The user could also close the dialog and the
+</I>&gt;<i> document would be blank and not shared (as option 2).
+</I>&gt;<i> 
+</I>&gt;<i> What do you think Ricardo ?
+</I>&gt;<i> Personally I'm more for option3, but I'm not convinced about which is
+</I>&gt;<i> the best choice. There are also other possibilities (eg: only ask the
+</I>&gt;<i> password when the first user connects to him) but none seems very
+</I>&gt;<i> intuitive or efficient.
+</I>&gt;<i> 
+</I>&gt;<i> Also, should we give a visual feedback about the status of the
+</I>&gt;<i> document (hosting, joined, non connected), how ? (does knowing the
+</I>&gt;<i> number of users is enough/correct/useful ?)
+</I>&gt;<i> 
+</I>&gt;<i> rodrigob.
+</I>&gt;<i> 
+</I>
+
+-- 
+Ricardo Niederberger Cabral
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000040.html">No subject
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#81">[ date ]</a>
+              <a href="thread.html#81">[ thread ]</a>
+              <a href="subject.html#81">[ subject ]</a>
+              <a href="author.html#81">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: About the Chat problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2004-September/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20About%20the%20Chat%20problem&In-Reply-To=%3Cef5e725704091414267643ad48%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000017.html">
+   <LINK REL="Next"  HREF="000019.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: About the Chat problem</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20About%20the%20Chat%20problem&In-Reply-To=%3Cef5e725704091414267643ad48%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: About the Chat problem">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Tue Sep 14 23:26:14 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000017.html">[Chalks-devel] About the Chat problem
+</A></li>
+        <LI>Next message: <A HREF="000019.html">[Chalks-devel] Re: About the Chat problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#18">[ date ]</a>
+              <a href="thread.html#18">[ thread ]</a>
+              <a href="subject.html#18">[ subject ]</a>
+              <a href="author.html#18">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Auto answer and auto proposal
+
+&gt;<i> Should ChalksNode be implemented as an Avatar (ohhh that sound smart) ?
+</I>
+Wrong ! A local avatar instance is created each time a client connect
+himself to the local node. But there is only One ChalksNode instance
+per node, so obviously this does not work.
+
+New proposal: Let's do the inverse.
+
+Each time a children connects himself to the local node a ChalksAvatar
+instance is created. The ChalksAvatar allow children-&gt;parent actions.
+
+The parent receive a ChalksNode reference of the children, to do
+parent-&gt;children actions. This is the cause of the asimetry. The
+proposal is: instead of passing to the parent the children ChalksNode
+reference when the childrens connects himself to the parent. The
+children creates a local ChalksAvatar instance that is passed to the
+Parent.
+
+Thus the Parent appears in the children as it was a childrens
+connected to the children (un petit fils) .
+
+Doing this every node access to every node via the unique, symetric,
+and homogenous ChalksAvatar interface.
+
+I think this proposal is the correct approach. If I get some time
+during the week I will try to implement it (to finish with this
+d&#233;sagr&#233;able broken status).
+
+rodrigob.
+
+
+On Tue, 14 Sep 2004 12:28:19 -0400, rodrigo benenson
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+&gt;<i> Ok,
+</I>&gt;<i> I diagnosed the horrible bug of yesterday.
+</I>&gt;<i> 
+</I>&gt;<i> &lt;local&gt; &lt;rodrigob&gt; ping
+</I>&gt;<i> &lt;local&gt; received_from &lt;__main__.ChalksAvatar instance at 0x00E26BC0&gt;
+</I>&gt;<i> &lt;local&gt; perspectives [&lt;twisted.spread.pb.RemoteReference instance at
+</I>&gt;<i> 0x00E26AD0&gt;, None]
+</I>&gt;<i> &lt;local&gt; [x==&lt;__main__.ChalksAvatar instance at 0x00E26BC0&gt; for x in
+</I>&gt;<i> [&lt;twisted.spread.pb.RemoteReference instance at 0x00E26AD0&gt;, None]] ==
+</I>&gt;<i> [False, False]
+</I>&gt;<i> 
+</I>&gt;<i> The problem is that the Viewable calls are made passing as reference
+</I>&gt;<i> the ChalksAvatar object, but actually we are keeping the sites
+</I>&gt;<i> references by the ChalksNode view. Thus when we receive a remote call,
+</I>&gt;<i> we can not know who emitted it just by comparing the emiter reference
+</I>&gt;<i> to the sites references.
+</I>&gt;<i> 
+</I>&gt;<i> The root problem is that I actually do not have a clear idea about how
+</I>&gt;<i> to get a  SIMETRIC access between the nodes.
+</I>&gt;<i> 
+</I>&gt;<i> Childrens in the parent are ChalksAvatars but the Parent in the
+</I>&gt;<i> Children is a ChalksNode remote view.
+</I>&gt;<i> 
+</I>&gt;<i> Do you have an idea about how to do this ? Does the parent should
+</I>&gt;<i> enter into the children realm to have an Avatar too ? Should
+</I>&gt;<i> ChalksNode be implemented as an Avatar (ohhh that sound smart) ?
+</I>&gt;<i> 
+</I>&gt;<i> What do you think (I just have found that last idea, it sound fine) ?
+</I>&gt;<i> 
+</I>&gt;<i> Having solved this issue we should have the Chat working. Having the
+</I>&gt;<i> chat means that we will have solved the basic network layer and we can
+</I>&gt;<i> start focusing us efforts in recomposing the concurrent edition
+</I>&gt;<i> system.
+</I>&gt;<i> 
+</I>&gt;<i> rodrigob.
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000017.html">[Chalks-devel] About the Chat problem
+</A></li>
+	<LI>Next message: <A HREF="000019.html">[Chalks-devel] Re: About the Chat problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#18">[ date ]</a>
+              <a href="thread.html#18">[ thread ]</a>
+              <a href="subject.html#18">[ subject ]</a>
+              <a href="author.html#18">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

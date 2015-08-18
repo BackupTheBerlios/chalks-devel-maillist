@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] windows stacktrace when connecting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20windows%20stacktrace%20when%20connecting&In-Reply-To=%3Cef5e725705051800309f51c20%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000060.html">
+   <LINK REL="Next"  HREF="000062.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] windows stacktrace when connecting</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20windows%20stacktrace%20when%20connecting&In-Reply-To=%3Cef5e725705051800309f51c20%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] windows stacktrace when connecting">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Wed May 18 09:30:11 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000060.html">[Chalks-devel] windows stacktrace when connecting
+</A></li>
+        <LI>Next message: <A HREF="000062.html">[Chalks-devel] Fwd: [Bug 74950][Nor] Changed - The misterious System.Runtime.Remoting &quot;tcp transport error&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This seems to be the answer:
+
+<A HREF="http://www.glacialcomponents.com/ArticleDetail.aspx?articleID=SerializationException">http://www.glacialcomponents.com/ArticleDetail.aspx?articleID=SerializationException</A>
+
+the same
+<A HREF="http://www.gotdotnet.com/team/changeinfo/Backwards1.0to1.1/default.aspx#00000153">http://www.gotdotnet.com/team/changeinfo/Backwards1.0to1.1/default.aspx#00000153</A>
+
+
+rodrigob.
+
+On 5/18/05, Ricardo Niederberger Cabral &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rnc000 at gmail.com</A>&gt; wrote:
+&gt;<i> Any idea why I'm getting a &quot;security restriction&quot; exception on Windows ?
+</I>&gt;<i> I'll try googling it later.
+</I>&gt;<i> 
+</I>&gt;<i> Unhandled Exception: System.Runtime.Serialization.SerializationException: Becaus
+</I>&gt;<i> e of security restrictions, the type System.Runtime.Remoting.ObjRef cannot be ac
+</I>&gt;<i> cessed. ---&gt; System.Security.SecurityException: Request failed.
+</I>&gt;<i>    at System.Security.SecurityRuntime.FrameDescSetHelper(FrameSecurityDescriptor
+</I>&gt;<i>  secDesc, PermissionSet demandSet, PermissionSet&amp; alteredDemandSet)
+</I>&gt;<i>    at System.Runtime.Serialization.FormatterServices.nativeGetSafeUninitializedO
+</I>&gt;<i> bject(RuntimeType type)
+</I>&gt;<i>    at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+</I>&gt;<i> Type type)
+</I>&gt;<i>    --- End of inner exception stack trace ---
+</I>&gt;<i> 
+</I>&gt;<i> Server stack trace:
+</I>&gt;<i>    at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+</I>&gt;<i> Type type)
+</I>&gt;<i>    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ParseObject(Pa
+</I>&gt;<i> rseRecord pr)
+</I>&gt;<i>    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Parse(ParseRec
+</I>&gt;<i> ord pr)
+</I>&gt;<i>    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+</I>&gt;<i> thMapTyped(BinaryObjectWithMapTyped record)
+</I>&gt;<i>    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+</I>&gt;<i> thMapTyped(BinaryHeaderEnum binaryHeaderEnum)
+</I>&gt;<i>    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.Run()
+</I>&gt;<i>    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Deserialize(He
+</I>&gt;<i> aderHandler handler, __BinaryParser serParser, Boolean fCheck, IMethodCallMessag
+</I>&gt;<i> e methodCallMessage)
+</I>&gt;<i>    at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize
+</I>&gt;<i> (Stream serializationStream, HeaderHandler handler, Boolean fCheck, IMethodCallM
+</I>&gt;<i> essage methodCallMessage)
+</I>&gt;<i>    at System.Runtime.Remoting.Channels.CoreChannel.DeserializeBinaryRequestMessa
+</I>&gt;<i> ge(String objectUri, Stream inputStream, Boolean bStrictBinding, TypeFilterLevel
+</I>&gt;<i>  securityLevel)
+</I>&gt;<i>    at System.Runtime.Remoting.Channels.BinaryServerFormatterSink.ProcessMessage(
+</I>&gt;<i> IServerChannelSinkStack sinkStack, IMessage requestMsg, ITransportHeaders reques
+</I>&gt;<i> tHeaders, Stream requestStream, IMessage&amp; responseMsg, ITransportHeaders&amp; respon
+</I>&gt;<i> seHeaders, Stream&amp; responseStream)
+</I>&gt;<i> 
+</I>&gt;<i> Exception rethrown at [0]:
+</I>&gt;<i>    at Chalks.Network.NetworkNode.start_collaborating(String uri)
+</I>&gt;<i>    at Chalks.Gui.ChalksWindow.on_connect_menu_item_activate(Object _o, EventArgs
+</I>&gt;<i>  _args)
+</I>&gt;<i>    at GLib.Signal.voidObjectCallback(IntPtr handle, IntPtr gch)
+</I>&gt;<i>    at Gtk.Application.gtk_main()
+</I>&gt;<i>    at Gtk.Application.Run()
+</I>&gt;<i>    at Chalks.Gui.ChalksWindow..ctor()
+</I>&gt;<i>    at Chalks.Chalks.Main()
+</I>&gt;<i> 
+</I>&gt;<i> C:\prj\chalks\src&gt;
+</I>&gt;<i> 
+</I>&gt;<i> --
+</I>&gt;<i> Ricardo Niederberger Cabral
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Chalks-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">Chalks-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="http://lists.berlios.de/mailman/listinfo/chalks-devel">http://lists.berlios.de/mailman/listinfo/chalks-devel</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000060.html">[Chalks-devel] windows stacktrace when connecting
+</A></li>
+	<LI>Next message: <A HREF="000062.html">[Chalks-devel] Fwd: [Bug 74950][Nor] Changed - The misterious System.Runtime.Remoting &quot;tcp transport error&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

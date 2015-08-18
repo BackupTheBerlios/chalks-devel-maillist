@@ -1,0 +1,910 @@
+From rodrigo.benenson at gmail.com  Wed Jun  1 10:44:59 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 1 Jun 2005 10:44:59 +0200
+Subject: [Chalks-devel] Re: chalks
+In-Reply-To: <429C7D46.50909@gmx.de>
+References: <200505311427.j4VERU5l017353@unicorn.berlios.de>
+	 <ef5e725705053107363fec814a@mail.gmail.com> <429C7D46.50909@gmx.de>
+Message-ID: <ef5e725705060101446c3f01c3@mail.gmail.com>
+
+Chalks related mails are public, no problem for fowarding to other lists.
+
+The Chalks wiki is password protected. It is a wiki because it is
+easier to us to maintain it up-to-data, we do not pretend to use it as
+a bidireccional communication channel, we use mail lists for that. In
+the future there will be a bug tracker and possibly (depending on
+community demand) some forums.
+
+rodrigob.
+
+On 5/31/05, mattis_ <mattis_ at gmx.de> wrote:
+> Yeah!
+> 
+> I'm looking forward to try out Chalks. I am not the tech-guy and no
+> programmer (I'm just a steam-maker). Almost all the others on cw are
+> programmers though. Central head for OneBigSoupish things is Lion, I
+> already passed  your mails further to him. But many others are most
+> interested in Chalks too. Easiest (and fastest) would be to put your two
+> mails on community-wiki. May I do so?
+> 
+> I'll try to dig into the mailing list. I can't write on chalks-wiki.
+> There is no edit button (or I'm blind).
+> 
+> Great you are there!
+> 
+> mattis
+> 
+> rodrigo benenson schrieb:
+> 
+> >Thanks for the feedback, I think we just found our beta testers group ;p.
+> >
+> >Responding to the comments on the wiki, the collaborative algorithm is
+> >already implemented (port of a previous working version in python,
+> >wrote by ourself too).
+> >
+> >However that block is only a little part of the global system, GUI is
+> >tricky and network layer too.
+> >
+> >I think in two months we should have a beta that your community could
+> >start to play with.
+> >
+> >We lack on Interface Design wisdom and Beautiful Graphics (logos,
+> >icons), if anyone is interested please read our mailing list historic
+> >and respond to some of the call for opinions/participation.
+> >
+> >https://lists.berlios.de/pipermail/chalks-devel/
+> >
+> >
+> >rodrigob.
+> >
+> >On 5/31/05, Mattis Manzel <mattis_ at gmx.de> wrote:
+> >
+> >
+> >>Hi Rodrigo,
+> >>
+> >>Just wrote Dr. Niederberger already.
+> >>
+> >>We are very ( in words v e r y ) interested in Chalks.
+> >>
+> >>see down on
+> >>
+> >>http://www.emacswiki.org/cw/MoonEdit
+> >>
+> >>I'm exited :)
+> >>
+> >>Feel most welcome on cw (community-wiki), please.
+> >>
+> >>mattis
+> >>
+> >>
+> >>
+> >
+> >
+> >
+> >
+> 
+> 
+> 
+> 
+> 
+> 
+> ___________________________________________________________
+> Gesendet von Yahoo! Mail - Jetzt mit 1GB Speicher kostenlos - Hier anmelden: http://mail.yahoo.de
+> 
+>
+
+
+From rodrigo.benenson at gmail.com  Wed Jun  1 11:11:03 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 1 Jun 2005 11:11:03 +0200
+Subject: [Chalks-devel] Bounty
+Message-ID: <ef5e72570506010211260f80b1@mail.gmail.com>
+
+Are we good for this bounty ?
+
+http://www.gnome.org/bounties/Features.html#438844197
+
+4500 dolars could worth it...
+
+rodrigob.
+
+
+From rnc000 at gmail.com  Wed Jun  1 14:36:35 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Wed, 1 Jun 2005 09:36:35 -0300
+Subject: [Chalks-devel] Bounty
+In-Reply-To: <ef5e72570506010211260f80b1@mail.gmail.com>
+References: <ef5e72570506010211260f80b1@mail.gmail.com>
+Message-ID: <35f9d9da05060105367aa7944@mail.gmail.com>
+
+you mean the "Search party" feature ?
+
+-- 
+Ricardo Niederberger Cabral
+
+
+On 6/1/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> Are we good for this bounty ?
+> 
+> http://www.gnome.org/bounties/Features.html#438844197
+> 
+> 4500 dolars could worth it...
+
+
+From rodrigo.benenson at gmail.com  Wed Jun  1 14:42:02 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 1 Jun 2005 14:42:02 +0200
+Subject: [Chalks-devel] Bounty
+In-Reply-To: <35f9d9da05060105367aa7944@mail.gmail.com>
+References: <ef5e72570506010211260f80b1@mail.gmail.com>
+	 <35f9d9da05060105367aa7944@mail.gmail.com>
+Message-ID: <ef5e725705060105421f028283@mail.gmail.com>
+
+Was more focused about "Most unprecedented application"
+
+"""
+An innovative application that doesn't exist but that everyone needs?
+Something so cool it just has to be done?
+"""
+
+It is not disruptive or never seen, but everyone want it and no one has it.
+
+Being a Gnome bounty using Gtk + Mono would be a plus for us.
+
+rodrigob.
+
+On 6/1/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> you mean the "Search party" feature ?
+> 
+> --
+> Ricardo Niederberger Cabral
+> 
+> 
+> On 6/1/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> > Are we good for this bounty ?
+> >
+> > http://www.gnome.org/bounties/Features.html#438844197
+> >
+> > 4500 dolars could worth it...
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+
+
+From rnc000 at gmail.com  Wed Jun  1 14:55:31 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Wed, 1 Jun 2005 09:55:31 -0300
+Subject: [Chalks-devel] Re: Chalks Gui II
+In-Reply-To: <ef5e725705052916145da1ed77@mail.gmail.com>
+References: <ef5e725705052916145da1ed77@mail.gmail.com>
+Message-ID: <35f9d9da05060105553159e230@mail.gmail.com>
+
+
+From rnc000 at gmail.com  Wed Jun  1 14:58:24 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Wed, 1 Jun 2005 09:58:24 -0300
+Subject: [Chalks-devel] Bounty
+In-Reply-To: <ef5e725705060105421f028283@mail.gmail.com>
+References: <ef5e72570506010211260f80b1@mail.gmail.com>
+	 <35f9d9da05060105367aa7944@mail.gmail.com>
+	 <ef5e725705060105421f028283@mail.gmail.com>
+Message-ID: <35f9d9da05060105582005c405@mail.gmail.com>
+
+Yeah, we could go for it. We won't have anything to loose just for trying it  :)
+
+On 6/1/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> Was more focused about "Most unprecedented application"
+> 
+> """
+> An innovative application that doesn't exist but that everyone needs?
+> Something so cool it just has to be done?
+> """
+> 
+> It is not disruptive or never seen, but everyone want it and no one has it.
+> 
+> Being a Gnome bounty using Gtk + Mono would be a plus for us.
+> 
+> rodrigob.
+> 
+> On 6/1/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> > you mean the "Search party" feature ?
+> >
+> > --
+> > Ricardo Niederberger Cabral
+> >
+> >
+> > On 6/1/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> > > Are we good for this bounty ?
+> > >
+> > > http://www.gnome.org/bounties/Features.html#438844197
+> > >
+> > > 4500 dolars could worth it...
+> > _______________________________________________
+> > Chalks-devel mailing list
+> > Chalks-devel at lists.berlios.de
+> > http://lists.berlios.de/mailman/listinfo/chalks-devel
+> >
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+> 
+
+
+-- 
+Ricardo Niederberger Cabral
+
+
+From rodrigo.benenson at gmail.com  Wed Jun  1 15:03:55 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 1 Jun 2005 15:03:55 +0200
+Subject: [Chalks-devel] Re: Chalks Gui II
+In-Reply-To: <35f9d9da05060105553159e230@mail.gmail.com>
+References: <ef5e725705052916145da1ed77@mail.gmail.com>
+	 <35f9d9da05060105553159e230@mail.gmail.com>
+Message-ID: <ef5e7257050601060356806ebb@mail.gmail.com>
+
+Brilliant idea ! I like it too. Now I just have to... implement it....
+(as soon as possible, but I'm a little short of time this week).
+
+rodrigob.
+
+On 6/1/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> From the 3 options you proposed, I also prefer option 3. It is by far
+> the most intuitive one.
+> 
+> But I have another proposal which I believe is better than 3:
+> 
+> - Show nothing at startup.
+> - File menu with options:
+>     - Open local file: after prompting for the local file, ask if user
+> wants to automatically share it. If there is no default password, ask
+> to enter one or share file passwordless
+>     - Open remote file
+>     - Save
+>     - Save as
+>     - Share: make sure it's disabled when the file is already being
+> shared or if it's a remote file.
+> 
+> As for the visual feedback about the status of the document, I believe
+> 2 widgets on the status bar would suffice:
+>     | Shared / Not shared | X remote users |
+> 
+> 
+> On 5/29/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> > Hi,
+> > still working on purification of Chalks.
+> > I have implemented the "set password" interface and found that there
+> > is a UI design issue. Up to now Kesava has not pronounced itself, so
+> > we will have to solve the issue using your criteria.
+> >
+> > The problem is what to do when chalks start with respect to authentication.
+> > Actually when Chalks starts a dialog appears to request a password to
+> > secure the actual document. If the users choice the "use as default"
+> > checkbutton future instances of Chalks will use a default password,
+> > that can be then changed using the menu "File->Set password".
+> >
+> > The problem is that when the user does not choice the "use a default
+> > password" option there is a "popup dialog" at each execution of
+> > Chalks, even when the user pretends to connect to another node, in
+> > which case setting up a password for his local document is futile.
+> >
+> > The objective is to make the software easy to use having the less
+> > number of clicks to get a working session.
+> >
+> > So I see three options:
+> > 1- Let it as it now, not too bad. Most users will use a blank default
+> > password, paranoiacs will pay they price adding one dialog at each
+> > instance.
+> >
+> > 2- Use the MoonEdit approach. At the start of a Chalks session the
+> > document is not shared until the user explicitly click "file->host".
+> > That event would trigger the password setting.  The user can also
+> > choice the "file->join" option to connect to a remote document
+> >
+> > 3 - At the start of Chalks a popup appears to force the user to choice
+> > Host or Join. This reduce one click because it does not have to go to
+> > the "file->" menu. The user could also close the dialog and the
+> > document would be blank and not shared (as option 2).
+> >
+> > What do you think Ricardo ?
+> > Personally I'm more for option3, but I'm not convinced about which is
+> > the best choice. There are also other possibilities (eg: only ask the
+> > password when the first user connects to him) but none seems very
+> > intuitive or efficient.
+> >
+> > Also, should we give a visual feedback about the status of the
+> > document (hosting, joined, non connected), how ? (does knowing the
+> > number of users is enough/correct/useful ?)
+> >
+> > rodrigob.
+> >
+> 
+> 
+> --
+> Ricardo Niederberger Cabral
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+
+
+From rodrigo.benenson at gmail.com  Wed Jun  1 22:23:06 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 1 Jun 2005 22:23:06 +0200
+Subject: [Chalks-devel] When the conditions are met the revolution is inevitable
+Message-ID: <ef5e72570506011323ac862c5@mail.gmail.com>
+
+Gobby is a free collaborative editor based on libobby, a library which
+provides synced document buffers. It supports multiple documents in one
+session and a multi-user chat. It is portable to both Windows and
+Unix-like platforms.
+
+It uses GTK+ 2.6 as its windowing toolkit.
+
+http://darcs.0x539.de/trac/obby/cgi-bin/trac.cgi
+
+http://lists.debian.org/debian-devel/2005/05/msg00330.html
+
+
+They also use gtksourceview, so they could help us with the win32
+compilations issues.
+
+rodrigob.
+
+
+From rodrigo.benenson at gmail.com  Fri Jun  3 17:31:15 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Fri, 3 Jun 2005 17:31:15 +0200
+Subject: [Chalks-devel] Re: ZeroConf
+In-Reply-To: <35f9d9da050603082517a14da@mail.gmail.com>
+References: <ef5e7257050603055846e3104b@mail.gmail.com>
+	 <35f9d9da050603082517a14da@mail.gmail.com>
+Message-ID: <ef5e7257050603083143efcec@mail.gmail.com>
+
+but did you had success with .Net support ? and have an idea about how
+to deal with "process blocking" issues ?
+
+("process blocking" means "not asynchronous")
+
+It's time for beta 0.1, I checked the TODO and we are very, very near.
+I think two weeks ahead.
+
+rodrigob.
+
+On 6/3/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> I didn't have enough time to work on integrating howl.net do our
+> project. I may have some time to work on it this weekend.
+> 
+> All I did was build and test howl libraries and its requirements.
+> 
+> On 6/3/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> > Hi,
+> > how are going on the ZeroConf stuff ? It is any ligth at the end of the tunnel ?
+> >
+> > rodrigob.
+> >
+> 
+> 
+> --
+> Ricardo Niederberger Cabral
+>
+
+
+From rodrigo.benenson at gmail.com  Mon Jun 13 01:04:14 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 13 Jun 2005 01:04:14 +0200
+Subject: [Chalks-devel] Re: Chalks and gobby
+In-Reply-To: <5CC34E57-0211-4377-99D4-9FB956341DCA@philkern.de>
+References: <ef5e7257050601143921e23e1@mail.gmail.com>
+	 <A0A7CF6B-5FD7-4C80-8768-A8DC3BBEFB99@philkern.de>
+	 <ef5e7257050612154864dc2292@mail.gmail.com>
+	 <5CC34E57-0211-4377-99D4-9FB956341DCA@philkern.de>
+Message-ID: <ef5e725705061216041eb3d870@mail.gmail.com>
+
+his public mail 
+(chalks->about->ricardo->bottom of the page)
+is
+
+nieder at mail.ru
+
+we also have a mailing list that is adecuate for public interest discussion
+
+chalks-devel at lists.berlios.de
+
+I'm interested on discussing the topics as soon as possible to avoid
+divergence in possibly convergent projects. Also we are trying to get
+our alpha version as soon as possible (working on the last gui
+issues).
+
+rodrigob.
+
+
+On 6/13/05, Philipp Kern <phil at philkern.de> wrote:
+> On 13.06.2005, at 00:48, rodrigo benenson wrote:
+> > Actually I'm living in France, so I think we are in the same Timezone.
+> > Ricardo, the main collaborator lives at Brazil (5 or 6 hours
+> > backward).
+> 
+> Ok. Could you please give us also his email address?
+> 
+> > I would be pleased to have a IRC meeting. I'm particullary interested
+> > to discuss your crossplatform issues with SourceView, ZeroConf, which
+> > algorithm are you using, and what do you think about the creation of a
+> > language agnostic concurrent text edition library ("libobby" ?).
+> 
+> Well, I think we could certainly arrange a meeting. We are normally
+> available from around 18:00 GMT+2 to 23:00 GMT+2 every day, longer on
+> the week-ends.
+> libobby itself is very C++ dependent, which already got me into some
+> trouble when looking at a native Mac OS X client, but there we also
+> have Objective-C++, so this might work. I don't know how well C++
+> integrates into a free .NET environment.
+> We are especially interested in your peer-to-peer network handling
+> (as far as we discussed your project in real life, I did not yet come
+> around to check it as I use OS X for which Gtk# is still quite a mess).
+> 
+> > ps: this week I'm in travel up to sunday, probably without
+> > time/space/bandwith to check mails.
+> 
+> Got it. We are not in a hurry anyway, are we? (:
+> 
+> Kind regards,
+> Philipp Kern
+> 0x539 dev group
+>
+
+
+From rodrigo.benenson at gmail.com  Mon Jun 13 01:47:55 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 13 Jun 2005 01:47:55 +0200
+Subject: [Chalks-devel] Re: Chalks Gui II
+In-Reply-To: <35f9d9da05060105553159e230@mail.gmail.com>
+References: <ef5e725705052916145da1ed77@mail.gmail.com>
+	 <35f9d9da05060105553159e230@mail.gmail.com>
+Message-ID: <ef5e725705061216477c715467@mail.gmail.com>
+
+> As for the visual feedback about the status of the document, I believe
+> 2 widgets on the status bar would suffice:
+>     | Shared / Not shared | X remote users |
+
+Just to keep a record of the design decisions. I think having two
+labels is redundant.
+It not shared then "Not Shared" appears instead of "Not shared | 0
+remote users". When sharing "0 remote users" appears instead of
+"Shared | 0 remote users".
+
+Actually I prefer having "Not shared" or "1 user"/"N users" where 1 is
+yourself. This way all the users are treated in the same way (simpler
+conceptually, for the user and for coding).
+
+Only one text tag seems to be enough.
+rodrigob.
+
+On 6/1/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> From the 3 options you proposed, I also prefer option 3. It is by far
+> the most intuitive one.
+> 
+> But I have another proposal which I believe is better than 3:
+> 
+> - Show nothing at startup.
+> - File menu with options:
+>     - Open local file: after prompting for the local file, ask if user
+> wants to automatically share it. If there is no default password, ask
+> to enter one or share file passwordless
+>     - Open remote file
+>     - Save
+>     - Save as
+>     - Share: make sure it's disabled when the file is already being
+> shared or if it's a remote file.
+> 
+> As for the visual feedback about the status of the document, I believe
+> 2 widgets on the status bar would suffice:
+>     | Shared / Not shared | X remote users |
+> 
+> 
+> On 5/29/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> > Hi,
+> > still working on purification of Chalks.
+> > I have implemented the "set password" interface and found that there
+> > is a UI design issue. Up to now Kesava has not pronounced itself, so
+> > we will have to solve the issue using your criteria.
+> >
+> > The problem is what to do when chalks start with respect to authentication.
+> > Actually when Chalks starts a dialog appears to request a password to
+> > secure the actual document. If the users choice the "use as default"
+> > checkbutton future instances of Chalks will use a default password,
+> > that can be then changed using the menu "File->Set password".
+> >
+> > The problem is that when the user does not choice the "use a default
+> > password" option there is a "popup dialog" at each execution of
+> > Chalks, even when the user pretends to connect to another node, in
+> > which case setting up a password for his local document is futile.
+> >
+> > The objective is to make the software easy to use having the less
+> > number of clicks to get a working session.
+> >
+> > So I see three options:
+> > 1- Let it as it now, not too bad. Most users will use a blank default
+> > password, paranoiacs will pay they price adding one dialog at each
+> > instance.
+> >
+> > 2- Use the MoonEdit approach. At the start of a Chalks session the
+> > document is not shared until the user explicitly click "file->host".
+> > That event would trigger the password setting.  The user can also
+> > choice the "file->join" option to connect to a remote document
+> >
+> > 3 - At the start of Chalks a popup appears to force the user to choice
+> > Host or Join. This reduce one click because it does not have to go to
+> > the "file->" menu. The user could also close the dialog and the
+> > document would be blank and not shared (as option 2).
+> >
+> > What do you think Ricardo ?
+> > Personally I'm more for option3, but I'm not convinced about which is
+> > the best choice. There are also other possibilities (eg: only ask the
+> > password when the first user connects to him) but none seems very
+> > intuitive or efficient.
+> >
+> > Also, should we give a visual feedback about the status of the
+> > document (hosting, joined, non connected), how ? (does knowing the
+> > number of users is enough/correct/useful ?)
+> >
+> > rodrigob.
+> >
+> 
+> 
+> --
+> Ricardo Niederberger Cabral
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+
+
+From mattis_ at gmx.de  Mon Jun 20 23:36:02 2005
+From: mattis_ at gmx.de (mattis_)
+Date: Mon, 20 Jun 2005 23:36:02 +0200
+Subject: [Chalks-devel] Re: chalks
+In-Reply-To: <ef5e725705060101446c3f01c3@mail.gmail.com>
+References: <200505311427.j4VERU5l017353@unicorn.berlios.de>	 <ef5e725705053107363fec814a@mail.gmail.com> <429C7D46.50909@gmx.de> <ef5e725705060101446c3f01c3@mail.gmail.com>
+Message-ID: <42B736C2.2030803@gmx.de>
+
+Hi chalkers,
+
+I wonder how far you are progressing? Gobby was released a few days ago 
+and works pretty fine, 
+
+http://darcs.0x539.de/trac/obby/cgi-bin/trac.cgi/wiki/InstallationGuide.
+
+It has no perfect history as moonedit has. Does chalks have one?
+Please open up the wiki (or don't call it one as closed it smply is no 
+wiki).
+
+would be nice to push on all together from now on. How incompatible are 
+gobby and chalks really? (sorry I forgot that on open source projects 
+incompatibility doesn't exist).
+
+saluti
+
+mattis
+
+
+rodrigo benenson schrieb:
+
+>Chalks related mails are public, no problem for fowarding to other lists.
+>
+>The Chalks wiki is password protected. It is a wiki because it is
+>easier to us to maintain it up-to-data, we do not pretend to use it as
+>a bidireccional communication channel, we use mail lists for that. In
+>the future there will be a bug tracker and possibly (depending on
+>community demand) some forums.
+>
+>rodrigob.
+>
+>On 5/31/05, mattis_ <mattis_ at gmx.de> wrote:
+>  
+>
+>>Yeah!
+>>
+>>I'm looking forward to try out Chalks. I am not the tech-guy and no
+>>programmer (I'm just a steam-maker). Almost all the others on cw are
+>>programmers though. Central head for OneBigSoupish things is Lion, I
+>>already passed  your mails further to him. But many others are most
+>>interested in Chalks too. Easiest (and fastest) would be to put your two
+>>mails on community-wiki. May I do so?
+>>
+>>I'll try to dig into the mailing list. I can't write on chalks-wiki.
+>>There is no edit button (or I'm blind).
+>>
+>>Great you are there!
+>>
+>>mattis
+>>
+>>rodrigo benenson schrieb:
+>>
+>>    
+>>
+>>>Thanks for the feedback, I think we just found our beta testers group ;p.
+>>>
+>>>Responding to the comments on the wiki, the collaborative algorithm is
+>>>already implemented (port of a previous working version in python,
+>>>wrote by ourself too).
+>>>
+>>>However that block is only a little part of the global system, GUI is
+>>>tricky and network layer too.
+>>>
+>>>I think in two months we should have a beta that your community could
+>>>start to play with.
+>>>
+>>>We lack on Interface Design wisdom and Beautiful Graphics (logos,
+>>>icons), if anyone is interested please read our mailing list historic
+>>>and respond to some of the call for opinions/participation.
+>>>
+>>>https://lists.berlios.de/pipermail/chalks-devel/
+>>>
+>>>
+>>>rodrigob.
+>>>
+>>>On 5/31/05, Mattis Manzel <mattis_ at gmx.de> wrote:
+>>>
+>>>
+>>>      
+>>>
+>>>>Hi Rodrigo,
+>>>>
+>>>>Just wrote Dr. Niederberger already.
+>>>>
+>>>>We are very ( in words v e r y ) interested in Chalks.
+>>>>
+>>>>see down on
+>>>>
+>>>>http://www.emacswiki.org/cw/MoonEdit
+>>>>
+>>>>I'm exited :)
+>>>>
+>>>>Feel most welcome on cw (community-wiki), please.
+>>>>
+>>>>mattis
+>>>>
+>>>>
+>>>>
+>>>>        
+>>>>
+>>>
+>>>
+>>>      
+>>>
+>>
+>>
+>>
+>>
+>>___________________________________________________________
+>>Gesendet von Yahoo! Mail - Jetzt mit 1GB Speicher kostenlos - Hier anmelden: http://mail.yahoo.de
+>>
+>>
+>>    
+>>
+>
+>
+>  
+>
+
+
+	
+
+	
+		
+___________________________________________________________ 
+Gesendet von Yahoo! Mail - Jetzt mit 1GB Speicher kostenlos - Hier anmelden: http://mail.yahoo.de
+
+
+From rodrigo.benenson at gmail.com  Tue Jun 21 01:24:42 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Tue, 21 Jun 2005 01:24:42 +0200
+Subject: [Chalks-devel] Fwd: chalks
+In-Reply-To: <ef5e725705062016245b5fd835@mail.gmail.com>
+References: <200505311427.j4VERU5l017353@unicorn.berlios.de>
+	 <ef5e725705053107363fec814a@mail.gmail.com> <429C7D46.50909@gmx.de>
+	 <ef5e725705060101446c3f01c3@mail.gmail.com> <42B736C2.2030803@gmx.de>
+	 <ef5e725705062014396815b7de@mail.gmail.com> <42B74F1A.3070004@gmx.de>
+	 <ef5e725705062016245b5fd835@mail.gmail.com>
+Message-ID: <ef5e7257050620162416b82fa@mail.gmail.com>
+
+---------- Forwarded message ----------
+From: rodrigo benenson <rodrigo.benenson at gmail.com>
+Date: Jun 21, 2005 1:24 AM
+Subject: Re: chalks
+To: mattis_ <mattis_ at gmx.de>
+
+
+just opened the web page for everyones edition.
+
+Actually file writting and openning is managed by the concurrent
+edition class. As a first implementation we only read/write plain text
+files. But having a binary format that stores all the operations would
+be a simple task.
+
+The undo/redo is based on the history buffer that stores all the
+operations received (from the local site or remote locations).
+
+rodrigob.
+
+On 6/21/05, mattis_ <mattis_ at gmx.de> wrote:
+> chalkers,
+>
+> sorry for the over reaction.
+>
+> Has chalks got a perfect history?
+>
+> bon di'
+>
+> mattis
+>
+> rodrigo benenson schrieb:
+>
+> >why would you want an open wiki ?
+> >
+> >rodrigob.
+> >
+> >On 6/20/05, mattis_ <mattis_ at gmx.de> wrote:
+> >
+> >
+> >>Hi chalkers,
+> >>
+> >>I wonder how far you are progressing? Gobby was released a few days ago
+> >>and works pretty fine,
+> >>
+> >>http://darcs.0x539.de/trac/obby/cgi-bin/trac.cgi/wiki/InstallationGuide.
+> >>
+> >>It has no perfect history as moonedit has. Does chalks have one?
+> >>Please open up the wiki (or don't call it one as closed it smply is no
+> >>wiki).
+> >>
+> >>would be nice to push on all together from now on. How incompatible are
+> >>gobby and chalks really? (sorry I forgot that on open source projects
+> >>incompatibility doesn't exist).
+> >>
+> >>saluti
+> >>
+> >>mattis
+> >>
+> >>
+> >>rodrigo benenson schrieb:
+> >>
+> >>
+> >>
+> >>>Chalks related mails are public, no problem for fowarding to other lists.
+> >>>
+> >>>The Chalks wiki is password protected. It is a wiki because it is
+> >>>easier to us to maintain it up-to-data, we do not pretend to use it as
+> >>>a bidireccional communication channel, we use mail lists for that. In
+> >>>the future there will be a bug tracker and possibly (depending on
+> >>>community demand) some forums.
+> >>>
+> >>>rodrigob.
+> >>>
+> >>>On 5/31/05, mattis_ <mattis_ at gmx.de> wrote:
+> >>>
+> >>>
+> >>>
+> >>>
+> >>>>Yeah!
+> >>>>
+> >>>>I'm looking forward to try out Chalks. I am not the tech-guy and no
+> >>>>programmer (I'm just a steam-maker). Almost all the others on cw are
+> >>>>programmers though. Central head for OneBigSoupish things is Lion, I
+> >>>>already passed  your mails further to him. But many others are most
+> >>>>interested in Chalks too. Easiest (and fastest) would be to put your two
+> >>>>mails on community-wiki. May I do so?
+> >>>>
+> >>>>I'll try to dig into the mailing list. I can't write on chalks-wiki.
+> >>>>There is no edit button (or I'm blind).
+> >>>>
+> >>>>Great you are there!
+> >>>>
+> >>>>mattis
+> >>>>
+> >>>>rodrigo benenson schrieb:
+> >>>>
+> >>>>
+> >>>>
+> >>>>
+> >>>>
+> >>>>>Thanks for the feedback, I think we just found our beta testers group ;p.
+> >>>>>
+> >>>>>Responding to the comments on the wiki, the collaborative algorithm is
+> >>>>>already implemented (port of a previous working version in python,
+> >>>>>wrote by ourself too).
+> >>>>>
+> >>>>>However that block is only a little part of the global system, GUI is
+> >>>>>tricky and network layer too.
+> >>>>>
+> >>>>>I think in two months we should have a beta that your community could
+> >>>>>start to play with.
+> >>>>>
+> >>>>>We lack on Interface Design wisdom and Beautiful Graphics (logos,
+> >>>>>icons), if anyone is interested please read our mailing list historic
+> >>>>>and respond to some of the call for opinions/participation.
+> >>>>>
+> >>>>>https://lists.berlios.de/pipermail/chalks-devel/
+> >>>>>
+> >>>>>
+> >>>>>rodrigob.
+> >>>>>
+> >>>>>On 5/31/05, Mattis Manzel <mattis_ at gmx.de> wrote:
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>>>>Hi Rodrigo,
+> >>>>>>
+> >>>>>>Just wrote Dr. Niederberger already.
+> >>>>>>
+> >>>>>>We are very ( in words v e r y ) interested in Chalks.
+> >>>>>>
+> >>>>>>see down on
+> >>>>>>
+> >>>>>>http://www.emacswiki.org/cw/MoonEdit
+> >>>>>>
+> >>>>>>I'm exited :)
+> >>>>>>
+> >>>>>>Feel most welcome on cw (community-wiki), please.
+> >>>>>>
+> >>>>>>mattis
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>>
+> >>>>
+> >>>>___________________________________________________________
+> >>>>Gesendet von Yahoo! Mail - Jetzt mit 1GB Speicher kostenlos - Hier anmelden: http://mail.yahoo.de
+> >>>>
+> >>>>
+> >>>>
+> >>>>
+> >>>>
+> >>>>
+> >>>
+> >>>
+> >>>
+> >>>
+> >>
+> >>
+> >>
+> >>
+> >>___________________________________________________________
+> >>Gesendet von Yahoo! Mail - Jetzt mit 1GB Speicher kostenlos - Hier anmelden: http://mail.yahoo.de
+> >>
+> >>
+> >>
+> >>
+> >
+> >
+> >
+> >
+>
+>
+>
+>
+>
+>
+> ___________________________________________________________
+> Gesendet von Yahoo! Mail - Jetzt mit 1GB Speicher kostenlos - Hier anmelden: http://mail.yahoo.de
+>
+>
+
+

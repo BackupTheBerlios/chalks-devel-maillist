@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> Fwd: [Chalks-devel] windows stacktrace when connecting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20Fwd%3A%20%5BChalks-devel%5D%20windows%20stacktrace%20when%20connecting&In-Reply-To=%3Cef5e725705051815471bd5037d%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000063.html">
+   <LINK REL="Next"  HREF="000066.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>Fwd: [Chalks-devel] windows stacktrace when connecting</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20Fwd%3A%20%5BChalks-devel%5D%20windows%20stacktrace%20when%20connecting&In-Reply-To=%3Cef5e725705051815471bd5037d%40mail.gmail.com%3E"
+       TITLE="Fwd: [Chalks-devel] windows stacktrace when connecting">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Thu May 19 00:47:35 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000063.html">[Chalks-devel] Chalks status and roadpath
+</A></li>
+        <LI>Next message: <A HREF="000066.html">[Chalks-devel] Chalks Gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#64">[ date ]</a>
+              <a href="thread.html#64">[ thread ]</a>
+              <a href="subject.html#64">[ subject ]</a>
+              <a href="author.html#64">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I implemented this on Server side and got
+
+./test_network.exe
+Doing the Network tests setup
+Gui: set_site_id(124aa469-99ea-4c30-9ad8-5ebe33ceb250)
+Found available port 1080
+Chalks service aviable at:
+<A HREF="tcp://84.100.133.18:1080/node0">tcp://84.100.133.18:1080/node0</A>
+
+Ce: Setting network interface using instance Chalks.Network.NetworkNode
+Gui: set_site_id(cab1593c-acef-4723-83ad-a66429b387b7)
+
+Unhandled Exception: System.NotSupportedException: Operation is not supported.
+in &lt;0x0001d&gt; System.Runtime.Remoting.Channels.ServerDispatchSinkProvider:set_Next
+(IServerChannelSinkProvider value)
+in &lt;0x00061&gt; System.Runtime.Remoting.Channels.ChannelServices:CreateServerChannelSinkChain
+(IServerChannelSinkProvider provider, IChannelReceiver channel)
+in &lt;0x00156&gt; System.Runtime.Remoting.Channels.Tcp.TcpServerChannel:Init
+(IServerChannelSinkProvider serverSinkProvider)
+in &lt;0x0003b&gt; System.Runtime.Remoting.Channels.Tcp.TcpServerChannel:.ctor
+(System.String name, Int32 port, IServerChannelSinkProvider
+serverSinkProvider)
+in &lt;0x00107&gt; Chalks.Network.NetworkNode:start_collaboration_service ()
+make: *** [test_network.exe] Erreur 1
+
+is this a mono &quot;not yet implemented&quot; error ? Could you check what
+happens on .Net 1.1 ? (look at Network.n:231)
+
+
+
+On 5/18/05, rodrigo benenson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+&gt;<i> This seems to be the answer:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://www.glacialcomponents.com/ArticleDetail.aspx?articleID=SerializationException">http://www.glacialcomponents.com/ArticleDetail.aspx?articleID=SerializationException</A>
+</I>&gt;<i>
+</I>&gt;<i> the same
+</I>&gt;<i> <A HREF="http://www.gotdotnet.com/team/changeinfo/Backwards1.0to1.1/default.aspx#00000153">http://www.gotdotnet.com/team/changeinfo/Backwards1.0to1.1/default.aspx#00000153</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> rodrigob.
+</I>&gt;<i>
+</I>&gt;<i> On 5/18/05, Ricardo Niederberger Cabral &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rnc000 at gmail.com</A>&gt; wrote:
+</I>&gt;<i> &gt; Any idea why I'm getting a &quot;security restriction&quot; exception on Windows ?
+</I>&gt;<i> &gt; I'll try googling it later.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Unhandled Exception: System.Runtime.Serialization.SerializationException: Becaus
+</I>&gt;<i> &gt; e of security restrictions, the type System.Runtime.Remoting.ObjRef cannot be ac
+</I>&gt;<i> &gt; cessed. ---&gt; System.Security.SecurityException: Request failed.
+</I>&gt;<i> &gt;    at System.Security.SecurityRuntime.FrameDescSetHelper(FrameSecurityDescriptor
+</I>&gt;<i> &gt;  secDesc, PermissionSet demandSet, PermissionSet&amp; alteredDemandSet)
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.FormatterServices.nativeGetSafeUninitializedO
+</I>&gt;<i> &gt; bject(RuntimeType type)
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+</I>&gt;<i> &gt; Type type)
+</I>&gt;<i> &gt;    --- End of inner exception stack trace ---
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Server stack trace:
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+</I>&gt;<i> &gt; Type type)
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ParseObject(Pa
+</I>&gt;<i> &gt; rseRecord pr)
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Parse(ParseRec
+</I>&gt;<i> &gt; ord pr)
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+</I>&gt;<i> &gt; thMapTyped(BinaryObjectWithMapTyped record)
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+</I>&gt;<i> &gt; thMapTyped(BinaryHeaderEnum binaryHeaderEnum)
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.Run()
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Deserialize(He
+</I>&gt;<i> &gt; aderHandler handler, __BinaryParser serParser, Boolean fCheck, IMethodCallMessag
+</I>&gt;<i> &gt; e methodCallMessage)
+</I>&gt;<i> &gt;    at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize
+</I>&gt;<i> &gt; (Stream serializationStream, HeaderHandler handler, Boolean fCheck, IMethodCallM
+</I>&gt;<i> &gt; essage methodCallMessage)
+</I>&gt;<i> &gt;    at System.Runtime.Remoting.Channels.CoreChannel.DeserializeBinaryRequestMessa
+</I>&gt;<i> &gt; ge(String objectUri, Stream inputStream, Boolean bStrictBinding, TypeFilterLevel
+</I>&gt;<i> &gt;  securityLevel)
+</I>&gt;<i> &gt;    at System.Runtime.Remoting.Channels.BinaryServerFormatterSink.ProcessMessage(
+</I>&gt;<i> &gt; IServerChannelSinkStack sinkStack, IMessage requestMsg, ITransportHeaders reques
+</I>&gt;<i> &gt; tHeaders, Stream requestStream, IMessage&amp; responseMsg, ITransportHeaders&amp; respon
+</I>&gt;<i> &gt; seHeaders, Stream&amp; responseStream)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Exception rethrown at [0]:
+</I>&gt;<i> &gt;    at Chalks.Network.NetworkNode.start_collaborating(String uri)
+</I>&gt;<i> &gt;    at Chalks.Gui.ChalksWindow.on_connect_menu_item_activate(Object _o, EventArgs
+</I>&gt;<i> &gt;  _args)
+</I>&gt;<i> &gt;    at GLib.Signal.voidObjectCallback(IntPtr handle, IntPtr gch)
+</I>&gt;<i> &gt;    at Gtk.Application.gtk_main()
+</I>&gt;<i> &gt;    at Gtk.Application.Run()
+</I>&gt;<i> &gt;    at Chalks.Gui.ChalksWindow..ctor()
+</I>&gt;<i> &gt;    at Chalks.Chalks.Main()
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; C:\prj\chalks\src&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; --
+</I>&gt;<i> &gt; Ricardo Niederberger Cabral
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; Chalks-devel mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">Chalks-devel at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="http://lists.berlios.de/mailman/listinfo/chalks-devel">http://lists.berlios.de/mailman/listinfo/chalks-devel</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000063.html">[Chalks-devel] Chalks status and roadpath
+</A></li>
+	<LI>Next message: <A HREF="000066.html">[Chalks-devel] Chalks Gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#64">[ date ]</a>
+              <a href="thread.html#64">[ thread ]</a>
+              <a href="subject.html#64">[ subject ]</a>
+              <a href="author.html#64">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

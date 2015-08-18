@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705050904012cef2e63%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000032.html">
+   <LINK REL="Next"  HREF="000034.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705050904012cef2e63%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: Chalks">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Mon May  9 13:01:22 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000032.html">[Chalks-devel] Re: Chalks
+</A></li>
+        <LI>Next message: <A HREF="000034.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#33">[ date ]</a>
+              <a href="thread.html#33">[ thread ]</a>
+              <a href="subject.html#33">[ subject ]</a>
+              <a href="author.html#33">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I did not explained why I do not think it is technically sound to
+integrate at network level: the core reason I'm thinking about is
+simply because it depends on the algorithm implemented. And if it
+depends on the algorithm, then it does not make sense to replicate
+they implementation, being double bug prone.
+
+In contrast the relation between the network+concurrenteditable with
+the concurrenteditionwidget+gui is algorithm independent.
+
+To me it make more sense to develop a &quot;concurrent edition library&quot;
+that different applications could use. Then we can discuss which
+algorithm use and which language implementation.
+
+Focusing on network layer will constrain too much future algorithm, or
+will require to define a too ample network protocol that will dificult
+to implement anyway (too much, what if cases).
+
+Actually I think that .Net platform is essentially Gui agnostic.
+However we can think in a language agnostic module interconnection
+system to ease the integration with even larger range of applications.
+
+To enforce the point about the algorithm and the network protocol.
+Supose that I'm implementing an algorithm without garbage collection
+(as MoonEdit probably does) then the data to start a session would be:
+state vector, history buffer, text, delayed_operations. If I implement
+garbage collection, then additional information is required,
+minimum_state_vector and state_vector_table. Thus two implementation
+would anyway be incompatible. Of course we are already enforcing one
+kind of history buffer (linear in Chalks case) and the data encoded
+into the operations is also algorithm specific (definition of the
+state_vector, members for the special cases (relative adressing,
+splitted operations, lost information)). So this simple example
+reforce the concept, trying to define a protocol between different
+algorithms is almost impossible. If we are going to fix the algorithm
+to fix the network protocol, then we are loosing flexibility and
+evolvability for both the network layer and the concurrent edition
+layer (that would lead to the apparition of non compatible
+applications anyway). The logic choice is to define a crossplatform,
+gui agnostic (as it already is in chalks), concurrent edition library,
+that integrate both the concurrent edition algorithm and network
+layer.
+
+Defining such library is not difficult at all (I can say it is already
+done). The only point we have to solve is the &quot;binary compatibility&quot;.
+I'm not an expert in the topic, Ricardo any knowledge/opinion on the
+topic ? Corba, Dcop, DBus have something to do with this ? Can we do
+binaries libraries from .Net ? Does Kde4.0 includes .Net support ?
+(because windows has it already for longhorn and gnome defacto too).
+It is sane to think in implement concurrent edition algorithm in
+languages like C or C++  ? (I really do not think so)
+
+Topics to discuss, fun on the path ! 
+rodrigob.
+
+
+
+
+
+rodrigob.
+
+On 5/9/05, Andreas Ramm &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">psychobrain at gmx.net</A>&gt; wrote:
+&gt;<i> rodrigo benenson wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;grrr, that reply was a mess, second attempt,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> Ok, I will just reply to this one :)
+</I>&gt;<i> 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;Am I correct in assuming that your project aims to be a gnome version of
+</I>&gt;<i> &gt;&gt;a concurrent editing widget, which can be used by all gnome applications
+</I>&gt;<i> &gt;&gt;that chose to use/activate it?
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;No, we want to develop an application that is simple for the end user.
+</I>&gt;<i> &gt;In the actual rewrite we use technologies that allow very easy
+</I>&gt;<i> &gt;integration in other applications, but it is not us purpose.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> That was my initial idea as well. But then I realised that integrating
+</I>&gt;<i> MateEdit into KDE or more specifically Kate would enable a whole heap of
+</I>&gt;<i> applications (KDevelop, Quanta Plus, Kile, PiKdev, KScope, Krusader) to
+</I>&gt;<i> immediately use that technology. This integration is currently scheduled
+</I>&gt;<i> for KDE 4.0.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;If this is the case I propose defining network handshakes and messages
+</I>&gt;<i> &gt;&gt;so that both our projects can talk to each other and thus enable GNOME
+</I>&gt;<i> &gt;&gt;and KDE to integrate nicely.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;I think collaboration for integration is great topic, however I do not
+</I>&gt;<i> &gt;think it is technically factible or desirable to define an integration
+</I>&gt;<i> &gt;at the network level.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> I believe that defining the network layer is the easiest part. It would
+</I>&gt;<i> be a lot harder to convince someone using toolkit X (be it GTK, Qt/KDE,
+</I>&gt;<i> WxWindows or whatever) to use a widget that was written with toolkit Y
+</I>&gt;<i> and/or a different programming language.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;In our actual design and implementation it is very very easy to
+</I>&gt;<i> &gt;implement a KDE frontend on the top of the underlying layers.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> &gt;I invit you to share ideas, create sinergy and evaluate the idea of
+</I>&gt;<i> &gt;developing such Kde frontend.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> Sharing ideas is really what I'm after :) The problem I have though is
+</I>&gt;<i> that if we don't agree on a network protocol, we will just be creating
+</I>&gt;<i> islands of collaboration. At the moment I believe that creating &quot;yet
+</I>&gt;<i> another editor&quot; which can only do one thing better than the rest will be
+</I>&gt;<i> ignored by the users. Sure they'll use it every-so-often, but if they
+</I>&gt;<i> can't share collaboration sessions with people using other editors they
+</I>&gt;<i> will quickly get upset and we'll have fragmentation, because not
+</I>&gt;<i> everyone will switch.
+</I>&gt;<i> 
+</I>&gt;<i> All I am asking right now is to define a simple set of messages that
+</I>&gt;<i> each editor will understand (Insert, Delete, Chat, Joining, User data
+</I>&gt;<i> and maybe a couple of others) so people have a choice in what editor to
+</I>&gt;<i> use. I believe that is the easiest way to start and we can continue from
+</I>&gt;<i> there.
+</I>&gt;<i> 
+</I>&gt;<i> Andreas
+</I>&gt;<i> 
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000032.html">[Chalks-devel] Re: Chalks
+</A></li>
+	<LI>Next message: <A HREF="000034.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#33">[ date ]</a>
+              <a href="thread.html#33">[ thread ]</a>
+              <a href="subject.html#33">[ subject ]</a>
+              <a href="author.html#33">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

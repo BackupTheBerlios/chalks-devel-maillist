@@ -1,0 +1,189 @@
+From bogus@does.not.exist.com  Wed Mar 14 13:21:57 2012
+From: bogus@does.not.exist.com ()
+Date: Wed, 14 Mar 2012 12:21:57 -0000
+Subject: No subject
+Message-ID: <mailman.0.1331727717.29936.chalks-devel@lists.berlios.de>
+
+done at the implementation of the implementation of the Gui and the
+ConcurrentEditableWidget.
+
+The design does not specify how each layer achieve his purpose, just
+what method and abstraction it have to provide.
+
+In particular the Network layer can use any protocol, and possibly it
+will change in the time. The actual implementation use a dumb
+serialization schema, and thus I see it very difficult to make it
+compatible with another non .Net implementation without reimplementing
+a considerable part of the .Net Remoting layer.
+
+Also I see non sense in implementing multiple ConcurrentEdition
+systems, which is (in theory) the most delicate aspect of the software
+(the more complex and the more difficult to debug).
+
+I do not know how is implemented MateEdit, but I think we have similar
+purpose. So I invite you to share ideas, keep in touch, and if
+motivated, participate in the development with ideas, critics, bugs
+report, or better, coding !
+
+For Kde/Gnome integration I repeat that, at first view,  the best
+choice would be to do a Kde based implementation of the
+ConcurrentEditionWidget and the Gui, and reuse directly the two lower
+level layers. I can comment that both of them are pretty simple. I
+implemented them alone, as part time (1 hour per day, app), in three
+weeks, and it was my first time (yes I swear) with .Net And with Gtk.
+
+That is all by now, I will be waiting news from you. A Kde/Gnome
+integration will without doubt boost the project, that, as you know,
+is already a very solicited one.
+
+rodrigob.
+ 
+
+On 5/8/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> Hi,
+> 
+> First a little introduction. I am the author of MateEdit and would like
+> to propose to work together on some techniques used.
+> 
+> I stumbled upon your project this afternoon and I have a questions in
+> regards to your project.
+> 
+> Am I correct in assuming that your project aims to be a gnome version of
+> a concurrent editing widget, which can be used by all gnome applications
+> that chose to use/activate it?
+> 
+> If this is the case I propose defining network handshakes and messages
+> so that both our projects can talk to each other and thus enable GNOME
+> and KDE to integrate nicely.
+> 
+> Let me know what you think about this.
+> 
+> Kind Regards,
+> Andreas
+> 
+>
+
+
+From bogus@does.not.exist.com  Wed Mar 14 13:21:57 2012
+From: bogus@does.not.exist.com ()
+Date: Wed, 14 Mar 2012 12:21:57 -0000
+Subject: No subject
+Message-ID: <mailman.1.1331727717.29936.chalks-devel@lists.berlios.de>
+
+that you are using a much simplistic approach than ours, that I'm not
+sure that ensure the:
+- Convergence, 
+- Causality-preservation, 
+- Intention-preservation,
+- Local operations execution
+
+requirements of a concurrent edition system. 
+(http://citeseer.ist.psu.edu/sun98achieving.html)
+
+If I'm wrong, could you explain us your method ?
+
+Also we do not choice C/C++ because the development of the system
+require a lot of debugging of non trivial deep bugs in big distributed
+state machines. Using interpreted language helps to fight the beast.
+
+
+> >Topics to discuss, fun on the path !
+> >
+> >
+> Lots of fun :)
+> 
+> By the way do you use unit tests or how do you check validity of code?
+> 
+
+Yes we use unit tests to check the network layer and the
+concurrentedition layer. Unfortunately I do not know how to create
+automated tests for Gui layers. But remember that unit tests detect
+errors but does not ensure non existence of bugs.
+
+rodrigob.
+
+> Andreas
+> 
+>
+
+
+From bogus@does.not.exist.com  Wed Mar 14 13:21:57 2012
+From: bogus@does.not.exist.com ()
+Date: Wed, 14 Mar 2012 12:21:57 -0000
+Subject: No subject
+Message-ID: <mailman.2.1331727717.29936.chalks-devel@lists.berlios.de>
+
+the most intuitive one.
+
+But I have another proposal which I believe is better than 3:
+
+- Show nothing at startup. 
+- File menu with options: 
+    - Open local file: after prompting for the local file, ask if user
+wants to automatically share it. If there is no default password, ask
+to enter one or share file passwordless
+    - Open remote file
+    - Save
+    - Save as
+    - Share: make sure it's disabled when the file is already being
+shared or if it's a remote file.
+
+As for the visual feedback about the status of the document, I believe
+2 widgets on the status bar would suffice:
+    | Shared / Not shared | X remote users |
+
+
+On 5/29/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> Hi,
+> still working on purification of Chalks.
+> I have implemented the "set password" interface and found that there
+> is a UI design issue. Up to now Kesava has not pronounced itself, so
+> we will have to solve the issue using your criteria.
+> 
+> The problem is what to do when chalks start with respect to authentication.
+> Actually when Chalks starts a dialog appears to request a password to
+> secure the actual document. If the users choice the "use as default"
+> checkbutton future instances of Chalks will use a default password,
+> that can be then changed using the menu "File->Set password".
+> 
+> The problem is that when the user does not choice the "use a default
+> password" option there is a "popup dialog" at each execution of
+> Chalks, even when the user pretends to connect to another node, in
+> which case setting up a password for his local document is futile.
+> 
+> The objective is to make the software easy to use having the less
+> number of clicks to get a working session.
+> 
+> So I see three options:
+> 1- Let it as it now, not too bad. Most users will use a blank default
+> password, paranoiacs will pay they price adding one dialog at each
+> instance.
+> 
+> 2- Use the MoonEdit approach. At the start of a Chalks session the
+> document is not shared until the user explicitly click "file->host".
+> That event would trigger the password setting.  The user can also
+> choice the "file->join" option to connect to a remote document
+> 
+> 3 - At the start of Chalks a popup appears to force the user to choice
+> Host or Join. This reduce one click because it does not have to go to
+> the "file->" menu. The user could also close the dialog and the
+> document would be blank and not shared (as option 2).
+> 
+> What do you think Ricardo ?
+> Personally I'm more for option3, but I'm not convinced about which is
+> the best choice. There are also other possibilities (eg: only ask the
+> password when the first user connects to him) but none seems very
+> intuitive or efficient.
+> 
+> Also, should we give a visual feedback about the status of the
+> document (hosting, joined, non connected), how ? (does knowing the
+> number of users is enough/correct/useful ?)
+> 
+> rodrigob.
+> 
+
+
+-- 
+Ricardo Niederberger Cabral
+
+

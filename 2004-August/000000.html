@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: DesignProposal
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2004-August/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20DesignProposal&In-Reply-To=%3C4133E1E7.7060004%40123.cl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: DesignProposal</H1>
+    <B>Rita D&#237;az y/o Rodrigo Benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20DesignProposal&In-Reply-To=%3C4133E1E7.7060004%40123.cl%3E"
+       TITLE="[Chalks-devel] Re: DesignProposal">rdrb at 123.cl
+       </A><BR>
+    <I>Tue Aug 31 04:26:47 CEST 2004</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Ricardo Niederberger Cabral a &#233;crit :
+
+&gt;<i> On Sat, 28 Aug 2004 18:26:56 -0400, Rita D&#237;az y/o Rodrigo Benenson  
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rdrb at 123.cl</A>&gt; wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Just finished to wrote the first proposal.
+</I>&gt;&gt;<i> <A HREF="http://ryalias.freezope.org/Chalks/DesignProposal">http://ryalias.freezope.org/Chalks/DesignProposal</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I will be waiting your comments.
+</I>&gt;&gt;<i> rodrigob.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Regarding gui layout
+</I>&gt;<i> ====================
+</I>&gt;<i>
+</I>&gt;<i> - I believe the chat frame should be horizontaly splitted in 2 
+</I>&gt;<i> columns,  showing a list of current known users on the righthand side, 
+</I>&gt;<i> reflecting  their colors, status, etc
+</I>&gt;<i>
+</I>In the sake of simplicity I had omited that possibility, implementing in 
+exchange a &quot;who&quot; command for in &quot;advanced chat usage&quot;. I think writing 
+&quot;help&quot; in the chat bar should print out the implemented commands.
+
+&gt;<i> Regarding tkinter
+</I>&gt;<i> =================
+</I>&gt;<i> pros:
+</I>&gt;<i> - stable api
+</I>&gt;<i>
+</I>&gt;<i> cons:
+</I>&gt;<i> - low mindshare among other programmers, wxPython seems to be the  
+</I>&gt;<i> mainstream python gui programming toolkit nowadays
+</I>&gt;<i> - increasingly few projects using it and as such there is less people  
+</I>&gt;<i> reporting bugs, etc. (development is not too active lately)
+</I>&gt;<i>
+</I>&gt;<i> But anyway I believe we should keep on using tkinter for the first 
+</I>&gt;<i> release  and see how things play along. Provided we honour our intent 
+</I>&gt;<i> of keeping  GUI code clearly separated from concurrent/networking 
+</I>&gt;<i> code, we should be  safe.
+</I>&gt;<i>
+</I>I agree, Tkinter is ugly, but simple. Definitelly GUI code has to be 
+separated from the rest to allow futures gui changes.
+
+
+&gt;<i> Regarding tree topology
+</I>&gt;<i> =======================
+</I>&gt;<i>
+</I>&gt;<i> Append to this paragraph:
+</I>&gt;<i> &quot;&quot;&quot;
+</I>&gt;<i> When an site receive and operation it apply it locally and spread it 
+</I>&gt;<i> to  all the other known sites. As the topology is an acyclic graph, no 
+</I>&gt;<i> special  precautions has to be taken (to avoid repited reception).
+</I>&gt;<i> &quot;&quot;&quot;
+</I>&gt;<i>
+</I>&gt;<i> something like: &quot;Except a rule of never broadcasting change 
+</I>&gt;<i> operations  back to the node that sent it in the first place&quot;
+</I>&gt;<i>
+</I>&gt;<i> I need to study how the history buffer works better before commenting 
+</I>&gt;<i> on  those issues.
+</I>&gt;<i>
+</I>
+That is what I tried to say writing &quot;spread it to  all the Other known 
+sites&quot;
+
+&gt;<i> development in general
+</I>&gt;<i> ======================
+</I>&gt;<i>
+</I>&gt;<i> I CC'd you an email from an acquaintance I have from irc.freenode.net 
+</I>&gt;<i> as  he seemed interested on Chalks development and could be a 
+</I>&gt;<i> potencial  contributor.
+</I>&gt;<i>
+</I>&gt;<i> As I mentioned on that email, I believe we should start using  
+</I>&gt;<i> chalks-devel[1] mailing list for discussing chalks related things 
+</I>&gt;<i> that  could be interesting to others
+</I>&gt;<i>
+</I>&gt;<i> [1] <A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">https://lists.berlios.de/mailman/listinfo/chalks-devel</A>
+</I>&gt;<i>
+</I>&gt;<i> Best regards and sorry for the slow reply and shortage of comments. 
+</I>&gt;<i> I'm  having a terrible week. I will make better comments by 
+</I>&gt;<i> thursday/friday.
+</I>&gt;<i>
+</I>&gt;<i> See you,
+</I>
+
+Cool, name ? url ?  msn ? (asktav did not get google results)
+
+I'm happy now to have written all the text in the wiki, adding some 
+screenshots, to get easier to catch the ideas.
+
+I will try to get some time in between here to december (asap) to solve 
+dummy issues in the code. (as for example the actual error in the 
+conection).
+
+I would like we agree in the desired behaviour when someone disconnect 
+himself (in the topology topic), this is the only point missing to get a 
+smooth cool global design.
+
+rodrigob.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

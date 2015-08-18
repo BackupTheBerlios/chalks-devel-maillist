@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Choosing the build system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Choosing%20the%20build%20system&In-Reply-To=%3Cef5e72570505160553533aa25b%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000054.html">
+   <LINK REL="Next"  HREF="000058.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Choosing the build system</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Choosing%20the%20build%20system&In-Reply-To=%3Cef5e72570505160553533aa25b%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Choosing the build system">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Mon May 16 14:53:43 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000054.html">[Chalks-devel] Buggy but funny
+</A></li>
+        <LI>Next message: <A HREF="000058.html">[Chalks-devel] Re: Choosing the build system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>* Choose the build system
+	- nAnt: brings Ant, a standard on the Java world to .NET
+	- Traditional Makefile
+	- A-A-P (<A HREF="http://www.a-a-p.org/">http://www.a-a-p.org/</A>): Traditional Makefile on steroids
+
+
+After my first experience with Nant, I'm not very happy with it. I do
+not take anymore as the first choice (but you can take a look at
+<A HREF="http://svn.berlios.de/viewcvs/chalks/trunk/src/chalks.build?rev=112">http://svn.berlios.de/viewcvs/chalks/trunk/src/chalks.build?rev=112</A>
+).
+
+Traditional makefiles are a not-so-bad choice but we have to learn how
+to &quot;detect&quot; the compiling platform. Others projects know how to do it
+(so guy in #mono said me to take a look at gtk-sharp svn, but I did
+not see anything).
+
+I add to the list Scons
+<A HREF="http://www.scons.org/">http://www.scons.org/</A>
+
+seems to be as good as aap or better. Python dependencies are not pain
+because they are only for developers and python is aviable in all the
+modern unix distros anyway.
+
+We should have to choose what makes less pain. I do not have time to
+play with that things now.
+
+
+
+* Choose the distribution system
+	- Nullsoft installer for Windows system: GPL and easy to use.
+	- Let's keep a dist-&lt;platform&gt; file for each one. I'm cheking in the
+-win one which
+	  builds a .exe binary installer/uninstaller. 
+	- For nix platforms, I believe we just need to build a tar.gz archive
+with full sources
+	  (that could be a nAnt &quot;src&quot; target). After some time maintainers
+from *nix distributions
+	  may create binary packages for us adhering to their proper standards.
+
+I agree with the general approach. I would add a compiled compressed
+.Net version for linux (that would have dll dependencies) and a zipped
+full dlls included version for windows, to have an &quot;unzip and run&quot;
+deployment for people who do not like to install software just to test
+it.
+
+rodrigob.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000054.html">[Chalks-devel] Buggy but funny
+</A></li>
+	<LI>Next message: <A HREF="000058.html">[Chalks-devel] Re: Choosing the build system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3C427F3D75.7070104%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000031.html">
+   <LINK REL="Next"  HREF="000033.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks</H1>
+    <B>Andreas Ramm</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3C427F3D75.7070104%40gmx.net%3E"
+       TITLE="[Chalks-devel] Re: Chalks">psychobrain at gmx.net
+       </A><BR>
+    <I>Mon May  9 12:37:41 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000031.html">[Chalks-devel] Re: Chalks
+</A></li>
+        <LI>Next message: <A HREF="000033.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>rodrigo benenson wrote:
+
+&gt;<i>grrr, that reply was a mess, second attempt,
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>Ok, I will just reply to this one :)
+
+&gt;<i>  
+</I>&gt;<i>
+</I>&gt;&gt;<i>Am I correct in assuming that your project aims to be a gnome version of
+</I>&gt;&gt;<i>a concurrent editing widget, which can be used by all gnome applications
+</I>&gt;&gt;<i>that chose to use/activate it?
+</I>&gt;&gt;<i>    
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>No, we want to develop an application that is simple for the end user.
+</I>&gt;<i>In the actual rewrite we use technologies that allow very easy
+</I>&gt;<i>integration in other applications, but it is not us purpose.
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>That was my initial idea as well. But then I realised that integrating 
+MateEdit into KDE or more specifically Kate would enable a whole heap of 
+applications (KDevelop, Quanta Plus, Kile, PiKdev, KScope, Krusader) to 
+immediately use that technology. This integration is currently scheduled 
+for KDE 4.0.
+
+&gt;<i>  
+</I>&gt;<i>
+</I>&gt;&gt;<i>If this is the case I propose defining network handshakes and messages
+</I>&gt;&gt;<i>so that both our projects can talk to each other and thus enable GNOME
+</I>&gt;&gt;<i>and KDE to integrate nicely.
+</I>&gt;&gt;<i>    
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>I think collaboration for integration is great topic, however I do not
+</I>&gt;<i>think it is technically factible or desirable to define an integration
+</I>&gt;<i>at the network level.
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>I believe that defining the network layer is the easiest part. It would 
+be a lot harder to convince someone using toolkit X (be it GTK, Qt/KDE, 
+WxWindows or whatever) to use a widget that was written with toolkit Y 
+and/or a different programming language.
+
+&gt;<i>In our actual design and implementation it is very very easy to
+</I>&gt;<i>implement a KDE frontend on the top of the underlying layers.
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>
+&gt;<i>I invit you to share ideas, create sinergy and evaluate the idea of
+</I>&gt;<i>developing such Kde frontend.
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>Sharing ideas is really what I'm after :) The problem I have though is 
+that if we don't agree on a network protocol, we will just be creating 
+islands of collaboration. At the moment I believe that creating &quot;yet 
+another editor&quot; which can only do one thing better than the rest will be 
+ignored by the users. Sure they'll use it every-so-often, but if they 
+can't share collaboration sessions with people using other editors they 
+will quickly get upset and we'll have fragmentation, because not 
+everyone will switch.
+
+All I am asking right now is to define a simple set of messages that 
+each editor will understand (Insert, Delete, Chat, Joining, User data 
+and maybe a couple of others) so people have a choice in what editor to 
+use. I believe that is the easiest way to start and we can continue from 
+there.
+
+Andreas
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000031.html">[Chalks-devel] Re: Chalks
+</A></li>
+	<LI>Next message: <A HREF="000033.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

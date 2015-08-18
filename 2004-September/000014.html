@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] RendezVous
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2004-September/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20RendezVous&In-Reply-To=%3Copsd4gzgjejpk7wx%40rncathlon.domain.invalid%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000013.html">
+   <LINK REL="Next"  HREF="000015.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] RendezVous</H1>
+    <B>Ricardo Niederberger Cabral</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20RendezVous&In-Reply-To=%3Copsd4gzgjejpk7wx%40rncathlon.domain.invalid%3E"
+       TITLE="[Chalks-devel] RendezVous">ncabral at terra.com.br
+       </A><BR>
+    <I>Fri Sep 10 19:46:18 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000013.html">[Chalks-devel] RendezVous
+</A></li>
+        <LI>Next message: <A HREF="000015.html">[Chalks-devel] code problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#14">[ date ]</a>
+              <a href="thread.html#14">[ thread ]</a>
+              <a href="subject.html#14">[ subject ]</a>
+              <a href="author.html#14">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Our ChalksServerMonitor class is based on the example found at  
+pyzeroconf/Browser.py and all Rendezvous/multicast implementation is on  
+pyzeroconf/rendezvous.py.
+
+So I'll just include rendezvous.py on our src/ dir and place a credit note  
+on our README files.
+
+There is no technical info on zeroconf. There is an RFC[1] telling you how  
+to name services properly, and a broad overview of the zeroconf  
+initiative[3].
+
+I skimmed through an RFC[1] and an Apple doc[2] and was unable to find out  
+how the hell service info gets stored on DNS entries (and who exactly  
+stores this info on my windows machine for example) so they can be queried  
+later. But blah... this is not important right now.
+
+[1] <A HREF="http://files.dns-sd.org/draft-cheshire-dnsext-dns-sd.txt">http://files.dns-sd.org/draft-cheshire-dnsext-dns-sd.txt</A>
+[2] <A HREF="http://zeroconf.sourceforge.net/zeroconf-lca2003/x103.html">http://zeroconf.sourceforge.net/zeroconf-lca2003/x103.html</A>
+[3] <A HREF="http://zeroconf.sourceforge.net/zeroconf-lca2003/t1.html">http://zeroconf.sourceforge.net/zeroconf-lca2003/t1.html</A>
+-- 
+Ricardo Niederberger Cabral
+
+
+On Thu, 9 Sep 2004 14:53:40 -0400, rodrigo benenson  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+
+&gt;<i> But the examples you run are just all we need from ZeroConf, does not it  
+</I>&gt;<i> ?
+</I>&gt;<i>
+</I>&gt;<i> If the code run fine I would think a copy/paste strategy and just use it.
+</I>&gt;<i>
+</I>&gt;<i> Honestly I understand what ZeroConfs does but I have no idea about how
+</I>&gt;<i> it does it. It is out there a _Technical_ introduction ?
+</I>&gt;<i>
+</I>&gt;<i> rodrigob.
+</I>&gt;<i>
+</I>&gt;<i> On Thu, 09 Sep 2004 13:27:00 -0300, Ricardo Niederberger Cabral
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">ncabral at terra.com.br</A>&gt; wrote:
+</I>&gt;&gt;<i> On Thu, 9 Sep 2004 02:09:25 -0400, rodrigo benenson
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; I do not remember if it was finally included in the requirements list.
+</I>&gt;&gt;<i> &gt; Having RendezVous in Chalks will surely make it, at least, more
+</I>&gt;&gt;<i> &gt; elegant...
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; <A HREF="http://www.seapig.org/svn/twisted-rendezvous/">http://www.seapig.org/svn/twisted-rendezvous/</A>
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; <A HREF="http://www.seapig.org/NorthwestPythonSprintReportJune2004">http://www.seapig.org/NorthwestPythonSprintReportJune2004</A>
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; if the examples run, then I think the code is good enough to be used  
+</I>&gt;&gt;<i> by
+</I>&gt;&gt;<i> &gt; Chalks.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Yeah, the example runs fine here.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> There is preliminary support for multicast DNS on Twisted[1], but right
+</I>&gt;&gt;<i> now it's very experimental, only suppports querying  and doesn't seem to
+</I>&gt;&gt;<i> be evolving fast enough, so [2] seems to be the best option.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've added some notes about it on the design doc and will study more  
+</I>&gt;&gt;<i> about
+</I>&gt;&gt;<i> mDNS and rendezvous so we can have a good support for it on chalks.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> [1]<A HREF="http://svn.twistedmatrix.com/cvs/trunk/sandbox/itamar/mdns/?root=Twisted">http://svn.twistedmatrix.com/cvs/trunk/sandbox/itamar/mdns/?root=Twisted</A>
+</I>&gt;&gt;<i> [2]<A HREF="http://sourceforge.net/projects/pyzeroconf">http://sourceforge.net/projects/pyzeroconf</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> Ricardo Niederberger Cabral
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000013.html">[Chalks-devel] RendezVous
+</A></li>
+	<LI>Next message: <A HREF="000015.html">[Chalks-devel] code problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#14">[ date ]</a>
+              <a href="thread.html#14">[ thread ]</a>
+              <a href="subject.html#14">[ subject ]</a>
+              <a href="author.html#14">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

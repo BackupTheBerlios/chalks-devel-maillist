@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> No subject
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.0.1331727717.29936.chalks-devel%40lists.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000040.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>No subject</H1>
+    <B></B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.0.1331727717.29936.chalks-devel%40lists.berlios.de%3E"
+       TITLE="No subject">
+       </A><BR>
+    <I>Wed Mar 14 13:21:57 CET 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000040.html">No subject
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>done at the implementation of the implementation of the Gui and the
+ConcurrentEditableWidget.
+
+The design does not specify how each layer achieve his purpose, just
+what method and abstraction it have to provide.
+
+In particular the Network layer can use any protocol, and possibly it
+will change in the time. The actual implementation use a dumb
+serialization schema, and thus I see it very difficult to make it
+compatible with another non .Net implementation without reimplementing
+a considerable part of the .Net Remoting layer.
+
+Also I see non sense in implementing multiple ConcurrentEdition
+systems, which is (in theory) the most delicate aspect of the software
+(the more complex and the more difficult to debug).
+
+I do not know how is implemented MateEdit, but I think we have similar
+purpose. So I invite you to share ideas, keep in touch, and if
+motivated, participate in the development with ideas, critics, bugs
+report, or better, coding !
+
+For Kde/Gnome integration I repeat that, at first view,  the best
+choice would be to do a Kde based implementation of the
+ConcurrentEditionWidget and the Gui, and reuse directly the two lower
+level layers. I can comment that both of them are pretty simple. I
+implemented them alone, as part time (1 hour per day, app), in three
+weeks, and it was my first time (yes I swear) with .Net And with Gtk.
+
+That is all by now, I will be waiting news from you. A Kde/Gnome
+integration will without doubt boost the project, that, as you know,
+is already a very solicited one.
+
+rodrigob.
+ 
+
+On 5/8/05, Andreas Ramm &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">psychobrain at gmx.net</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> First a little introduction. I am the author of MateEdit and would like
+</I>&gt;<i> to propose to work together on some techniques used.
+</I>&gt;<i> 
+</I>&gt;<i> I stumbled upon your project this afternoon and I have a questions in
+</I>&gt;<i> regards to your project.
+</I>&gt;<i> 
+</I>&gt;<i> Am I correct in assuming that your project aims to be a gnome version of
+</I>&gt;<i> a concurrent editing widget, which can be used by all gnome applications
+</I>&gt;<i> that chose to use/activate it?
+</I>&gt;<i> 
+</I>&gt;<i> If this is the case I propose defining network handshakes and messages
+</I>&gt;<i> so that both our projects can talk to each other and thus enable GNOME
+</I>&gt;<i> and KDE to integrate nicely.
+</I>&gt;<i> 
+</I>&gt;<i> Let me know what you think about this.
+</I>&gt;<i> 
+</I>&gt;<i> Kind Regards,
+</I>&gt;<i> Andreas
+</I>&gt;<i> 
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000040.html">No subject
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

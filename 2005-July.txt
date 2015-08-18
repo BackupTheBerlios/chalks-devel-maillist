@@ -1,0 +1,133 @@
+From rnc000 at gmail.com  Sat Jul  9 06:28:40 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Sat, 9 Jul 2005 00:28:40 -0400
+Subject: [Chalks-devel] realtime web-based concurrent editing
+Message-ID: <35f9d9da05070821282b783367@mail.gmail.com>
+
+I just came across this post at 
+http://fettig.net/weblog/2005/07/08/jotspot-live/
+
+I requested a trial account. I really want to see all the javascript
+magic necessary to make such a thing only using browsers as clients.
+
+Using browsers as clients makes things easy on the client side (no
+need to download anything) but has the downside of requiring a
+dedicated web server.
+
+-- 
+Ricardo Niederberger Cabral
+
+
+From rodrigo.benenson at gmail.com  Sat Jul  9 11:37:01 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sat, 9 Jul 2005 11:37:01 +0200
+Subject: [Chalks-devel] realtime web-based concurrent editing
+In-Reply-To: <35f9d9da05070821282b783367@mail.gmail.com>
+References: <35f9d9da05070821282b783367@mail.gmail.com>
+Message-ID: <ef5e7257050709023730fadce8@mail.gmail.com>
+
+but ricardo, look at 
+http://jot.com/images/blog/hackathon/Live%20Editing/Movie%20of%20Live%20Editing.html
+
+they do paragraphs blocking !
+that is extremely easy to do, in one week with
+javascript+python+twisted such kind of thing is done.
+
+to have realtime concurrent text edition from only a browser it would
+be necessary to port the gui in javascript (not really trivial) AND
+the concurrent edition module (to manage operations received while the
+user is writing in the interface).  The network layer would be the RPC
+mechanism used in AJAX, and a star network configuration (everyone
+connected to the server).
+
+Maybe in the short future it will be possible to code client side Web
+applications in .Net (with restrictions for users security)? (as a
+patch solution existed for Python in the past...)
+
+rodrigob.
+On 7/9/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> I just came across this post at
+> http://fettig.net/weblog/2005/07/08/jotspot-live/
+> 
+> I requested a trial account. I really want to see all the javascript
+> magic necessary to make such a thing only using browsers as clients.
+> 
+> Using browsers as clients makes things easy on the client side (no
+> need to download anything) but has the downside of requiring a
+> dedicated web server.
+> 
+> --
+> Ricardo Niederberger Cabral
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+
+
+From rodrigo.benenson at gmail.com  Sat Jul  9 12:46:44 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sat, 9 Jul 2005 12:46:44 +0200
+Subject: [Chalks-devel] Bug tracker
+Message-ID: <ef5e725705070903468783691@mail.gmail.com>
+
+As now the principal task for Chalks is debugging and polishing I
+created the bug tracker in the berlios tracker
+
+http://developer.berlios.de/bugs/?group_id=2147
+
+Let's enjoy the bug documenting and solving !
+
+rodrigob.
+
+
+From rnc000 at gmail.com  Tue Jul 19 16:35:38 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Tue, 19 Jul 2005 11:35:38 -0300
+Subject: [Chalks-devel] Fwd: [Abe Fettig's Weblog] Comment: "JotSpot Live"
+In-Reply-To: <42DD06A0.2070001@fettig.net>
+References: <200507090424.j694O1dM003697@barclay.textdrive.com>
+	 <42DD06A0.2070001@fettig.net>
+Message-ID: <35f9d9da05071907353e0e31cd@mail.gmail.com>
+
+---------- Forwarded message ----------
+From: Abe Fettig <abe at fettig.net>
+Date: Jul 19, 2005 10:56 AM
+Subject: Re: [Abe Fettig's Weblog] Comment: "JotSpot Live"
+To: Ricardo Niederberger <rnc000 at gmail.com>
+
+
+Hi Ricardo,
+
+As a Gnome user myself I'm very excited about Chalks. Can't wait to use
+it! JotSpot Live is focused specifically on the task of editing XHTML,
+not text, so it takes a slightly different approach. I'd love to hear
+what you think of the work we've done so far. Also if you haven't had a
+chance to use JotSpot Live with another user yet, let me know; I can
+meet you on one of the pages so you can see how our edits get synchronized.
+
+Abe
+
+Ricardo Niederberger wrote:
+> New comment on your post #231 "JotSpot Live"
+>
+> Author : Ricardo Niederberger (IP: 200.164.8.242 , 200164008242.user.veloxzone.com.br)
+> E-mail : rnc000 at gmail.com
+> URI    : http://chalks.berlios.de
+> Whois  : http://ws.arin.net/cgi-bin/whois.pl?queryinput=200.164.8.242
+> Comment:
+>  I'm also interested on it. If possible, could you also set up an account for rodrigo.benenson at inria dot fr ? We're both working on the Chalks project (http://chalks.berlios.de), which aims to be a cross platform realtime concurrent text editing software. It'd be interesting to see how this problem can be solved with a web-only approach.
+>
+> You can see all comments on this post here:
+> http://fettig.net/weblog/2005/07/08/jotspot-live/#comments
+>
+> To delete this comment:
+> http://fettig.net/weblog/wp-admin/post.php?action=confirmdeletecomment&p=231&comment=576
+>
+
+
+
+-- 
+Ricardo Niederberger Cabral
+
+

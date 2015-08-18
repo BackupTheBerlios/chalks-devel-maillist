@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks Gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks%20Gui&In-Reply-To=%3Cef5e72570505221454597a3d7f%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000067.html">
+   <LINK REL="Next"  HREF="000068.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks Gui</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks%20Gui&In-Reply-To=%3Cef5e72570505221454597a3d7f%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: Chalks Gui">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Sun May 22 23:54:11 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000067.html">[Chalks-devel] Re: Chalks Gui
+</A></li>
+        <LI>Next message: <A HREF="000068.html">[Chalks-devel] embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#71">[ date ]</a>
+              <a href="thread.html#71">[ thread ]</a>
+              <a href="subject.html#71">[ subject ]</a>
+              <a href="author.html#71">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> 1) Edit widget font size: some people need larger fonts and some like
+</I>&gt;<i> a lot of text viewable at once, etc.
+</I>&gt;<i> 2) Choosing whether or not the editor should replace Tabs with spaces
+</I>&gt;<i> (and how many). Keep in mind that we are working on a pure text
+</I>&gt;<i> editor, so our target users are those who want to work with pure text
+</I>&gt;<i> files, and for some of them these aspects are important.
+</I>
+I agree, will be implemented.
+
+&gt;<i> Yeah, I also agree we could leave that to a second release, but it
+</I>&gt;<i> would be fine to make this &quot;user list&quot; richer in terms of information.
+</I>
+The users list should be a popup, an add/quit division or a resizable
+division (like the log section but vertical)  ?
+(I choose the last one) 
+
+&gt;<i> A good feature would be allowing users to edit a text near their entry
+</I>&gt;<i> on this user list, describing what they are currently working on or
+</I>&gt;<i> thinking about. So they don't need to explain what they are doing on
+</I>&gt;<i> the chat window and you don't have to scroll back the chat window to
+</I>&gt;<i> find out what user X was thinking about and what he is trying to edit
+</I>&gt;<i> on the shared text file.
+</I>&gt;<i> 
+</I>&gt;<i> This feature would also be a flexible and simple substitute to &quot;away&quot;
+</I>&gt;<i> features. So you can change your &quot;user list&quot; extra description from
+</I>&gt;<i> &quot;reviewing specification section&quot; to something like &quot;away for 5min.&quot;.
+</I>
+This feature is trivially implementable. Simply we parse the received messages.
+Messages starting as &quot;/setstatus blabla&quot; are interpreted as special
+messages. Then we just need to add a simple interface  for non
+poweruser, that interface would then generate a message with the good
+format.
+
+
+rodrigob. 
+
+ 
+
+
+On 5/22/05, Ricardo Niederberger Cabral &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rnc000 at gmail.com</A>&gt; wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> On 5/21/05, rodrigo benenson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Essentially I have two questions whose answer is not clear to me:
+</I>&gt;<i> &gt; A) Which things should we let the user configure ?
+</I>&gt;<i> &gt; B) How we should associate the colors in the text to the users ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; My answer for question A) is : &quot;Nothing&quot;.
+</I>&gt;<i> &gt; Ultra simple programs does not need preferences.  If user lack of
+</I>&gt;<i> &gt; something, we should make it autoconfigured.
+</I>&gt;<i> 
+</I>&gt;<i> I agree with your minimalistic approach to make the software easier to
+</I>&gt;<i> use and more robust, but I believe there are some important options
+</I>&gt;<i> that can't be autoconfigured, including:
+</I>&gt;<i> 
+</I>&gt;<i> 1) Edit widget font size: some people need larger fonts and some like
+</I>&gt;<i> a lot of text viewable at once, etc.
+</I>&gt;<i> 2) Choosing whether or not the editor should replace Tabs with spaces
+</I>&gt;<i> (and how many). Keep in mind that we are working on a pure text
+</I>&gt;<i> editor, so our target users are those who want to work with pure text
+</I>&gt;<i> files, and for some of them these aspects are important.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Question B) is more difficult, I see three options:
+</I>&gt;<i> &gt; a) Coloring consistently the messages received is enough
+</I>&gt;<i> &gt; b) The user type the command \who to get an up-to-date list of the
+</I>&gt;<i> &gt; users, each name colored consistently
+</I>&gt;<i> 
+</I>&gt;<i> I suggest using &quot;/who&quot; instead of '\who', that is, with a
+</I>&gt;<i> forward-slash, to be consistent with IRC commands. But I believe these
+</I>&gt;<i> /xyz commands are only intended for power-users, so for every  /xyz
+</I>&gt;<i> command, there should be a menu or toolbar option.
+</I>&gt;<i> 
+</I>&gt;<i> These commands would also be very useful for us during debugging.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> &gt; c) There is always a section of the window that show a colored users
+</I>&gt;<i> &gt; list (this one I want to avoid it, knowing users colors is a not
+</I>&gt;<i> &gt; highly relevant for the user, however is the way Subethadedit and
+</I>&gt;<i> &gt; MoonEdit does it)
+</I>&gt;<i> 
+</I>&gt;<i> Yeah, I also agree we could leave that to a second release, but it
+</I>&gt;<i> would be fine to make this &quot;user list&quot; richer in terms of information.
+</I>&gt;<i> A good feature would be allowing users to edit a text near their entry
+</I>&gt;<i> on this user list, describing what they are currently working on or
+</I>&gt;<i> thinking about. So they don't need to explain what they are doing on
+</I>&gt;<i> the chat window and you don't have to scroll back the chat window to
+</I>&gt;<i> find out what user X was thinking about and what he is trying to edit
+</I>&gt;<i> on the shared text file.
+</I>&gt;<i> 
+</I>&gt;<i> This feature would also be a flexible and simple substitute to &quot;away&quot;
+</I>&gt;<i> features. So you can change your &quot;user list&quot; extra description from
+</I>&gt;<i> &quot;reviewing specification section&quot; to something like &quot;away for 5min.&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; d) When putting the mouse over colored text a popup appears to
+</I>&gt;<i> &gt; indicate the originator name's
+</I>&gt;<i> 
+</I>&gt;<i> I guess this is not needed. In most cases, there will be an average of
+</I>&gt;<i> only 2 concurrent editors, so a simple panel somewhere on the GUI or
+</I>&gt;<i> as a menu showing which color is which user is fine. The user will
+</I>&gt;<i> verify it 3 times and after that he will memorize.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; e) The user click over the &quot;N users&quot; section of the status bar and a
+</I>&gt;<i> &gt; secondary window appears with the list of the users. The user can
+</I>&gt;<i> &gt; switch from one window to the other to consult the users.
+</I>&gt;<i> 
+</I>&gt;<i> Even though bringing user info after clicking on this status bar label
+</I>&gt;<i> seems logical, it may not seem intuitive. I believe we should let the
+</I>&gt;<i> user list on a very visible place, because people need to constantly
+</I>&gt;<i> know who's online or not.
+</I>&gt;<i> 
+</I>&gt;<i> Summarizing my opinion:
+</I>&gt;<i> 
+</I>&gt;<i> a) + b) + c)
+</I>&gt;<i> 
+</I>&gt;<i> In this order of implementation.
+</I>&gt;<i> 
+</I>&gt;<i> --
+</I>&gt;<i> Ricardo Niederberger Cabral
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Chalks-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">Chalks-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="http://lists.berlios.de/mailman/listinfo/chalks-devel">http://lists.berlios.de/mailman/listinfo/chalks-devel</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000067.html">[Chalks-devel] Re: Chalks Gui
+</A></li>
+	<LI>Next message: <A HREF="000068.html">[Chalks-devel] embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#71">[ date ]</a>
+              <a href="thread.html#71">[ thread ]</a>
+              <a href="subject.html#71">[ subject ]</a>
+              <a href="author.html#71">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705051104453420c655%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000043.html">
+   <LINK REL="Next"  HREF="000045.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705051104453420c655%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: Chalks">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Wed May 11 13:45:47 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000043.html">[Chalks-devel] Re: Chalks
+</A></li>
+        <LI>Next message: <A HREF="000045.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#44">[ date ]</a>
+              <a href="thread.html#44">[ thread ]</a>
+              <a href="subject.html#44">[ subject ]</a>
+              <a href="author.html#44">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> I'll try and convert the testcases over the weekend and let you know of
+</I>&gt;<i> the results.
+</I>
+If your application is server based, you should look at the method
+
+chalks/chalks0/src/ConcurrentEdition.py:TestConcurrentEditionServer
+
+in the svn repository, there is a test case for a server-N clients architecture.
+
+&gt;<i> This is all fine by me. I don't even want to tell you what tools to use.
+</I>&gt;<i> All I'm trying to say is that I don't believe everyone else will take it
+</I>&gt;<i> like that.
+</I>
+Of course, we are not trying to create a development platform for
+everyone, just an application for everyone.
+
+&gt;<i> After looking at your test cases I think the whole thing could be
+</I>&gt;<i> problematic anyway. The lack of a globally ordered sequence with your
+</I>&gt;<i> approach would seriously upset my approach. Now I am convinced that it
+</I>&gt;<i> wouldn't be as easy as defining a protocol, but would also involve
+</I>&gt;<i> transferring application states and extending my algorithm. Nevertheless
+</I>&gt;<i> it would have been a good thing I believe :)
+</I>
+Howhever what do you think about creating a base library ? Or about
+defining an implementation independent interface such that different
+implementations could be exchangable under the same gui ? (I mean
+creating a hard separation between gui and collaboration service).
+
+rodrigob.
+
+
+On 5/11/05, Andreas Ramm &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">psychobrain at gmx.net</A>&gt; wrote:
+&gt;<i> rodrigo benenson wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;Misc letter, I jump through various topics;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;All our code is in an open access svn repository (see our web page)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;For the tests your should look at TestConcurrentEdition.n and the
+</I>&gt;<i> &gt;referred paper. I'm curious to see how your implementation handle that
+</I>&gt;<i> &gt;case.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> I'll try and convert the testcases over the weekend and let you know of
+</I>&gt;<i> the results.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt;&gt;Convergence is really only an issue for 2 Insert operations on the same
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;start point, which is taken care of by introducing a priority based on
+</I>&gt;<i> &gt;the client id.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Convergence is an issue because the users generate different
+</I>&gt;<i> &gt;operations over different text versions, it has nothing to do with
+</I>&gt;<i> &gt;what you describe. Two operations at the same point at the same
+</I>&gt;<i> &gt;version relates more (if I remember fine) to intention preservation.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> Maybe I didn't describe it clear enough. Assume Person A types ABC and
+</I>&gt;<i> Person B types DEF in the same position concurrently, then you need to
+</I>&gt;<i> worry about whether you make that ABCDEF or DEFABC. By convergence only
+</I>&gt;<i> being an issue in this case I meant that the intentation preservation
+</I>&gt;<i> solves the problem of convergence automatically for all other cases.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;I agree that centralized approaches are much simpler, however we did
+</I>&gt;<i> &gt;not wanted to use this approach for two reasons:
+</I>&gt;<i> &gt;- this approach overload the bandwidth of the &quot;server&quot; node.
+</I>&gt;<i> &gt;- if two groups are collaborating, all the delay will be as slow as
+</I>&gt;<i> &gt;the server node. In decentralized approach nodes in local area
+</I>&gt;<i> &gt;networks have the delay of local area network and nodes in remote
+</I>&gt;<i> &gt;locations have the delay of remote locations. I expect that this
+</I>&gt;<i> &gt;effect will be noticeable.
+</I>&gt;<i> &gt;- a decentralized approach allow to use one and only one node as &quot;server&quot;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> OK
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt;&gt;Fair enough, but again it just might not get used by people using
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;different languages. (kde libs are usually C++ based for example)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;the dotnet platform can interest people programming in ML, Java, C#,
+</I>&gt;<i> &gt;Python, we consider that .Net allow better integration and
+</I>&gt;<i> &gt;collaboration between &quot;people of different languages&quot;.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;Personally I'm language agnostic, I just try to use the correct tool
+</I>&gt;<i> &gt;available for the required job.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;The topic is deployability and compatibility, not a C# versus C++ flame ware.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> This is all fine by me. I don't even want to tell you what tools to use.
+</I>&gt;<i> All I'm trying to say is that I don't believe everyone else will take it
+</I>&gt;<i> like that.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;Finally,
+</I>&gt;<i> &gt;let's imagine that we have a common protocol. And now imagine that I
+</I>&gt;<i> &gt;need to change something, for example, sites identifier are no more 16
+</I>&gt;<i> &gt;bytes random numbers, but Ip+Port strings.
+</I>&gt;<i> &gt;Doing such change would not break immediately the compatibility ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> Sure changing from a number to a string will be a problem.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;What would have to be done to have systems inter operate again ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> We would have to define a new version of the networking protocol
+</I>&gt;<i> (protocol version should be checked in the initial connection anyway)
+</I>&gt;<i> and maybe try and set up a work around for old clients.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;It will be hard to me to think that specifying a protocol is not
+</I>&gt;<i> &gt;create double work, double bugs and double pain.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> I think we are already doing exactly doing that by using 2 different
+</I>&gt;<i> approaches.
+</I>&gt;<i> 
+</I>&gt;<i> After looking at your test cases I think the whole thing could be
+</I>&gt;<i> problematic anyway. The lack of a globally ordered sequence with your
+</I>&gt;<i> approach would seriously upset my approach. Now I am convinced that it
+</I>&gt;<i> wouldn't be as easy as defining a protocol, but would also involve
+</I>&gt;<i> transferring application states and extending my algorithm. Nevertheless
+</I>&gt;<i> it would have been a good thing I believe :)
+</I>&gt;<i> 
+</I>&gt;<i> Andreas
+</I>&gt;<i> 
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000043.html">[Chalks-devel] Re: Chalks
+</A></li>
+	<LI>Next message: <A HREF="000045.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#44">[ date ]</a>
+              <a href="thread.html#44">[ thread ]</a>
+              <a href="subject.html#44">[ subject ]</a>
+              <a href="author.html#44">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

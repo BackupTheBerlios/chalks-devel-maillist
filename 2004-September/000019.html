@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: About the Chat problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2004-September/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20About%20the%20Chat%20problem&In-Reply-To=%3Copsecdjnqcjpk7wx%40rncathlon.domain.invalid%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000018.html">
+   <LINK REL="Next"  HREF="000020.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: About the Chat problem</H1>
+    <B>Ricardo Niederberger Cabral</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20About%20the%20Chat%20problem&In-Reply-To=%3Copsecdjnqcjpk7wx%40rncathlon.domain.invalid%3E"
+       TITLE="[Chalks-devel] Re: About the Chat problem">ncabral at terra.com.br
+       </A><BR>
+    <I>Wed Sep 15 02:12:49 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000018.html">[Chalks-devel] Re: About the Chat problem
+</A></li>
+        <LI>Next message: <A HREF="000020.html">[Chalks-devel] UML diagrams
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#19">[ date ]</a>
+              <a href="thread.html#19">[ thread ]</a>
+              <a href="subject.html#19">[ subject ]</a>
+              <a href="author.html#19">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 14 Sep 2004 17:26:14 -0400, rodrigo benenson  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+
+&gt;<i> Auto answer and auto proposal
+</I>&gt;<i>
+</I>&gt;&gt;<i> Should ChalksNode be implemented as an Avatar (ohhh that sound smart) ?
+</I>&gt;<i>
+</I>&gt;<i> Wrong ! A local avatar instance is created each time a client connect
+</I>&gt;<i> himself to the local node. But there is only One ChalksNode instance
+</I>&gt;<i> per node, so obviously this does not work.
+</I>&gt;<i>
+</I>&gt;<i> New proposal: Let's do the inverse.
+</I>&gt;<i>
+</I>&gt;<i> Each time a children connects himself to the local node a ChalksAvatar
+</I>&gt;<i> instance is created. The ChalksAvatar allow children-&gt;parent actions.
+</I>&gt;<i>
+</I>&gt;<i> The parent receive a ChalksNode reference of the children, to do
+</I>&gt;<i> parent-&gt;children actions. This is the cause of the asimetry. The
+</I>
+I understood the problem and agree with your solution of using a unique  
+ChalksAvatar interface, but I'm not sure if PB will allow us to manipulate  
+Avatars this easily and send them over the wire. If that works as planned,  
+then we're done, since the implementation seems to be a lot cleaner than  
+the alternative way I propose after this paragraph. In other words, only  
+read the rest of this message if the unique ChalksAvatar interface  
+approach doesn't work and we have to rethink the whole system:
+
+There is one server, with several clients. Each client (children) has  
+exactly one parent, right ?
+So the server has to know which of its children called a remote method,  
+but a client doesn't need that: it has only one parent and thus all remote  
+calls are obviously from his parent server.
+
+Before joining Chalks, I thought about this issue and how it should be  
+properly done with Twisted's PB, and it all became clear to me with the  
+following example, which is very simple and even does more than we need,  
+since this example would allow a server to serve multiple files and keep  
+track of which client is contributing to which file: (The complete source  
+is available at /twisted/doc/core/howto/listings/pb/chat{client,server}.py)
+
+The example uses 3 PB concepts: Perspectives, plain Referenceables and  
+Views.
+
+The SERVER is made of the following 4 classes:
+
+class ChatServer:
+     def __init__(self):
+         self.groups = {} # indexed by name
+
+     def joinGroup(self, groupname, user, allowMattress):
+         if not self.groups.has_key(groupname):
+             self.groups[groupname] = Group(groupname, allowMattress)
+         self.groups[groupname].addUser(user)
+         return self.groups[groupname]
+
+class ChatRealm:
+     __implements__ = portal.IRealm
+     def requestAvatar(self, avatarID, mind, *interfaces):
+         assert pb.IPerspective in interfaces
+         avatar = User(avatarID)
+         avatar.server = self.server
+         avatar.attached(mind)
+         return pb.IPerspective, avatar, lambda a=avatar:a.detached(mind)
+
+class User(pb.Avatar):
+     def __init__(self, name):
+         self.name = name
+     def attached(self, mind):
+         self.remote = mind
+     def detached(self, mind):
+         self.remote = None
+     def perspective_joinGroup(self, groupname, allowMattress=True):
+         return self.server.joinGroup(groupname, self, allowMattress)
+     def send(self, message):
+         self.remote.callRemote(&quot;print&quot;, message)
+
+class Group(pb.Viewable):
+     def __init__(self, groupname, allowMattress):
+         self.name = groupname
+         self.allowMattress = allowMattress
+         self.users = []
+     def addUser(self, user):
+         self.users.append(user)
+     def view_send(self, from_user, message):
+         if not self.allowMattress and message.find(&quot;mattress&quot;) != -1:
+             raise ValueError, &quot;Don't say that word&quot;
+         for user in self.users:
+             user.send(&quot;&lt;%s&gt; says: %s&quot; % (from_user.name, message))
+
+The Group class would be our EditableFile, where clients invoke methods  
+like view_sendMessage and view_sendOperation. The from_user parameter on  
+each of these view_* methods is a User instance. Each User instance has a  
+&quot;remote&quot; attribute, where you can do stuff like  
+from_user.remote.callRemote(&quot;propagateOperation&quot;, opData).
+
+Since we serve only one file, the ChatServer class is dispensable, as we  
+would only have one instance of Group.
+
+On the User class, we would have administrative remote methods, like  
+perspective_joinGroup(), which would become perspective_collaborateIn().  
+All this method would do is return a Group() instance.
+
+The ChatRealm class would need no changes.
+
+Now, on the CLIENT side, we have only one class:
+
+class Client(pb.Referenceable):
+
+     def remote_print(self, message):
+         print message
+
+     def connect(self):
+         factory = pb.PBClientFactory()
+         reactor.connectTCP(&quot;localhost&quot;, 8800, factory)
+         def1 = factory.login(credentials.UsernamePassword(&quot;alice&quot;, &quot;1234&quot;),
+                              client=self)
+         def1.addCallback(self.connected)
+         reactor.run()
+
+     def connected(self, perspective):
+         print &quot;connected, joining group #lookingForFourth&quot;
+         # this perspective is a reference to our User object
+         d = perspective.callRemote(&quot;joinGroup&quot;, &quot;#lookingForFourth&quot;)
+         d.addCallback(self.gotGroup)
+
+     def gotGroup(self, group):
+         print &quot;joined group, now sending a message to all members&quot;
+         # 'group' is a reference to the Group object (through a ViewPoint)
+         d = group.callRemote(&quot;send&quot;, &quot;You can call me Al.&quot;)
+         d.addCallback(self.shutdown)
+
+     def shutdown(self, result):
+         reactor.stop()
+
+
+Once connected, the client receives a perspective (our User() avatar),  
+where it would call perspective_collaborateIn().
+The server would respond a collaborateIn() call with a Viewable instance  
+(the Group() instance on the server). The client would use this view to  
+call remote file methods like &quot;sendMessage&quot;, &quot;sendOperation&quot;.
+
+The ugly part is that this Client class would need to forward some calls  
+(like chat messages and operations) to all users of the Group class, but  
+that would be as simple as:
+
+for user in myGroup.users:
+      user.remote.callRemote(&quot;sendMessage&quot;, messageData)
+
+
+
+-- 
+Ricardo Niederberger Cabral
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000018.html">[Chalks-devel] Re: About the Chat problem
+</A></li>
+	<LI>Next message: <A HREF="000020.html">[Chalks-devel] UML diagrams
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#19">[ date ]</a>
+              <a href="thread.html#19">[ thread ]</a>
+              <a href="subject.html#19">[ subject ]</a>
+              <a href="author.html#19">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

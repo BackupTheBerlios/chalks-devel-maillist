@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3C4281EE48.80407%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000042.html">
+   <LINK REL="Next"  HREF="000044.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks</H1>
+    <B>Andreas Ramm</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3C4281EE48.80407%40gmx.net%3E"
+       TITLE="[Chalks-devel] Re: Chalks">psychobrain at gmx.net
+       </A><BR>
+    <I>Wed May 11 13:36:40 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000042.html">[Chalks-devel] Re: Chalks
+</A></li>
+        <LI>Next message: <A HREF="000044.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#43">[ date ]</a>
+              <a href="thread.html#43">[ thread ]</a>
+              <a href="subject.html#43">[ subject ]</a>
+              <a href="author.html#43">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>rodrigo benenson wrote:
+
+&gt;<i>Misc letter, I jump through various topics;
+</I>&gt;<i>
+</I>&gt;<i>All our code is in an open access svn repository (see our web page)
+</I>&gt;<i>
+</I>&gt;<i>For the tests your should look at TestConcurrentEdition.n and the
+</I>&gt;<i>referred paper. I'm curious to see how your implementation handle that
+</I>&gt;<i>case.
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>I'll try and convert the testcases over the weekend and let you know of 
+the results.
+
+&gt;&gt;&gt;<i>Convergence is really only an issue for 2 Insert operations on the same
+</I>&gt;&gt;&gt;<i>      
+</I>&gt;&gt;&gt;<i>
+</I>&gt;<i>start point, which is taken care of by introducing a priority based on
+</I>&gt;<i>the client id.
+</I>&gt;<i>
+</I>&gt;<i>Convergence is an issue because the users generate different
+</I>&gt;<i>operations over different text versions, it has nothing to do with
+</I>&gt;<i>what you describe. Two operations at the same point at the same
+</I>&gt;<i>version relates more (if I remember fine) to intention preservation.
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>Maybe I didn't describe it clear enough. Assume Person A types ABC and 
+Person B types DEF in the same position concurrently, then you need to 
+worry about whether you make that ABCDEF or DEFABC. By convergence only 
+being an issue in this case I meant that the intentation preservation 
+solves the problem of convergence automatically for all other cases.
+
+&gt;<i>I agree that centralized approaches are much simpler, however we did
+</I>&gt;<i>not wanted to use this approach for two reasons:
+</I>&gt;<i>- this approach overload the bandwidth of the &quot;server&quot; node.
+</I>&gt;<i>- if two groups are collaborating, all the delay will be as slow as
+</I>&gt;<i>the server node. In decentralized approach nodes in local area
+</I>&gt;<i>networks have the delay of local area network and nodes in remote
+</I>&gt;<i>locations have the delay of remote locations. I expect that this
+</I>&gt;<i>effect will be noticeable.
+</I>&gt;<i>- a decentralized approach allow to use one and only one node as &quot;server&quot;
+</I>&gt;<i>
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>OK
+
+&gt;&gt;&gt;<i>Fair enough, but again it just might not get used by people using
+</I>&gt;&gt;&gt;<i>      
+</I>&gt;&gt;&gt;<i>
+</I>&gt;<i>different languages. (kde libs are usually C++ based for example)
+</I>&gt;<i>
+</I>&gt;<i>the dotnet platform can interest people programming in ML, Java, C#,
+</I>&gt;<i>Python, we consider that .Net allow better integration and
+</I>&gt;<i>collaboration between &quot;people of different languages&quot;.
+</I>&gt;<i>
+</I>&gt;<i>Personally I'm language agnostic, I just try to use the correct tool
+</I>&gt;<i>available for the required job.
+</I>&gt;<i>
+</I>&gt;<i>The topic is deployability and compatibility, not a C# versus C++ flame ware.
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>This is all fine by me. I don't even want to tell you what tools to use. 
+All I'm trying to say is that I don't believe everyone else will take it 
+like that.
+
+&gt;<i>Finally, 
+</I>&gt;<i>let's imagine that we have a common protocol. And now imagine that I
+</I>&gt;<i>need to change something, for example, sites identifier are no more 16
+</I>&gt;<i>bytes random numbers, but Ip+Port strings.
+</I>&gt;<i>Doing such change would not break immediately the compatibility ?
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>Sure changing from a number to a string will be a problem.
+
+&gt;<i>What would have to be done to have systems inter operate again ?
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>We would have to define a new version of the networking protocol 
+(protocol version should be checked in the initial connection anyway) 
+and maybe try and set up a work around for old clients.
+
+&gt;<i>It will be hard to me to think that specifying a protocol is not
+</I>&gt;<i>create double work, double bugs and double pain.
+</I>&gt;<i>  
+</I>&gt;<i>
+</I>I think we are already doing exactly doing that by using 2 different 
+approaches.
+
+After looking at your test cases I think the whole thing could be 
+problematic anyway. The lack of a globally ordered sequence with your 
+approach would seriously upset my approach. Now I am convinced that it 
+wouldn't be as easy as defining a protocol, but would also involve 
+transferring application states and extending my algorithm. Nevertheless 
+it would have been a good thing I believe :)
+
+Andreas
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000042.html">[Chalks-devel] Re: Chalks
+</A></li>
+	<LI>Next message: <A HREF="000044.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#43">[ date ]</a>
+              <a href="thread.html#43">[ thread ]</a>
+              <a href="subject.html#43">[ subject ]</a>
+              <a href="author.html#43">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20embedding%20mdnsResponder%20on%20.NET%20apps.%20%28was%3A%20building%20howl.NET%20bindings%29&In-Reply-To=%3C35f9d9da05052210192dbf189c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000071.html">
+   <LINK REL="Next"  HREF="000069.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)</H1>
+    <B>Ricardo Niederberger Cabral</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20embedding%20mdnsResponder%20on%20.NET%20apps.%20%28was%3A%20building%20howl.NET%20bindings%29&In-Reply-To=%3C35f9d9da05052210192dbf189c%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)">rnc000 at gmail.com
+       </A><BR>
+    <I>Sun May 22 19:19:42 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000071.html">[Chalks-devel] Re: Chalks Gui
+</A></li>
+        <LI>Next message: <A HREF="000069.html">[Chalks-devel] Fwd: [howl-users]embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Scott,
+
+Thanks a lot for the fix and thanks for Howl. I just tried the latest
+CVS code and .NET bindings are working as expected.
+
+My interest on Howl comes from a Zeroconf feature I'm working for the
+Chalks project [1], which intends to be a crossplatform realtime
+concurrent text editing software. We aim to make Chalks really easy to
+use and cut down on dependencies, so embedding the mdnsResponder
+daemon inside our app would be desirable, so the end user doesn't have
+to bother about installing a Windows service, starting it, etc.
+
+My questions: is this a good idea ? Anyone tried it before ? Any thoughts ?
+
+[1] <A HREF="http://chalks.berlios.de/">http://chalks.berlios.de/</A>
+
+Thanks and best regards,
+-- 
+Ricardo Niederberger Cabral
+
+
+On 5/16/05, Scott Herscher &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">scott at porchdogsoft.com</A>&gt; wrote:
+&gt;<i> Hey there Ricardo.  I should have this error fixed and checked-in
+</I>&gt;<i> later today.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks,
+</I>&gt;<i> 
+</I>&gt;<i> Scott
+</I>&gt;<i> 
+</I>&gt;<i> On May 15, 2005, at 6:05 PM, Ricardo Niederberger Cabral wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'm trying to build the howl.NET bindings project on MSVC 7.1.3088
+</I>&gt;<i> &gt; (.NET framework 1.1). I'm using a fresh CVS checkout of the howl
+</I>&gt;<i> &gt; module and I've managed to build and test all C libs and sample
+</I>&gt;<i> &gt; programs, but the .NET bindings project fails with the following
+</I>&gt;<i> &gt; console output:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Microsoft (R) .NET Framework Strong Name Utility  Version 1.1.4322.573
+</I>&gt;<i> &gt; Copyright (C) Microsoft Corporation 1998-2002. All rights reserved.
+</I>&gt;<i> &gt; Key pair written to howl_NET.snk
+</I>&gt;<i> &gt; Compiling...
+</I>&gt;<i> &gt; discovery.cpp
+</I>&gt;<i> &gt; ../../include\discovery.NET\discovery.h(244) : error C2061: syntax
+</I>&gt;<i> &gt; error : identifier 'sw_discovery_publish_handler'
+</I>&gt;<i> &gt; ../../include\discovery.NET\discovery.h(253) : error C2061: syntax
+</I>&gt;<i> &gt; error : identifier 'sw_discovery_browse_handler'
+</I>&gt;<i> &gt; ../../include\discovery.NET\discovery.h(265) : error C2061: syntax
+</I>&gt;<i> &gt; error : identifier 'sw_discovery_resolve_handler'
+</I>&gt;<i> &gt; ../../include\discovery.NET\discovery.h(281) : error C2061: syntax
+</I>&gt;<i> &gt; error : identifier 'sw_discovery_publish_host_handler'
+</I>&gt;<i> &gt; discovery.cpp(271) : fatal error C1903: unable to recover from
+</I>&gt;<i> &gt; previous error(s); stopping compilation
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Where are the sw_discovery_*_handler symbols defined ? I couldn't find
+</I>&gt;<i> &gt; them anywhere on the CVS.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Thanks and best regards,
+</I>&gt;<i> &gt; --
+</I>&gt;<i> &gt; Ricardo Niederberger Cabral
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000071.html">[Chalks-devel] Re: Chalks Gui
+</A></li>
+	<LI>Next message: <A HREF="000069.html">[Chalks-devel] Fwd: [howl-users]embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Chalks Gui II
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Chalks%20Gui%20II&In-Reply-To=%3Cef5e725705052916145da1ed77%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000072.html">
+   <LINK REL="Next"  HREF="000074.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Chalks Gui II</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Chalks%20Gui%20II&In-Reply-To=%3Cef5e725705052916145da1ed77%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Chalks Gui II">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Mon May 30 01:14:56 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000072.html">[Chalks-devel] Fwd: [howl-users]embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+</A></li>
+        <LI>Next message: <A HREF="000074.html">[Chalks-devel] Re: chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#73">[ date ]</a>
+              <a href="thread.html#73">[ thread ]</a>
+              <a href="subject.html#73">[ subject ]</a>
+              <a href="author.html#73">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+still working on purification of Chalks.
+I have implemented the &quot;set password&quot; interface and found that there
+is a UI design issue. Up to now Kesava has not pronounced itself, so
+we will have to solve the issue using your criteria.
+
+The problem is what to do when chalks start with respect to authentication.
+Actually when Chalks starts a dialog appears to request a password to
+secure the actual document. If the users choice the &quot;use as default&quot;
+checkbutton future instances of Chalks will use a default password,
+that can be then changed using the menu &quot;File-&gt;Set password&quot;.
+
+The problem is that when the user does not choice the &quot;use a default
+password&quot; option there is a &quot;popup dialog&quot; at each execution of
+Chalks, even when the user pretends to connect to another node, in
+which case setting up a password for his local document is futile.
+
+The objective is to make the software easy to use having the less
+number of clicks to get a working session.
+
+So I see three options:
+1- Let it as it now, not too bad. Most users will use a blank default
+password, paranoiacs will pay they price adding one dialog at each
+instance.
+
+2- Use the MoonEdit approach. At the start of a Chalks session the
+document is not shared until the user explicitly click &quot;file-&gt;host&quot;.
+That event would trigger the password setting.  The user can also
+choice the &quot;file-&gt;join&quot; option to connect to a remote document
+
+3 - At the start of Chalks a popup appears to force the user to choice
+Host or Join. This reduce one click because it does not have to go to
+the &quot;file-&gt;&quot; menu. The user could also close the dialog and the
+document would be blank and not shared (as option 2).
+
+What do you think Ricardo ?
+Personally I'm more for option3, but I'm not convinced about which is
+the best choice. There are also other possibilities (eg: only ask the
+password when the first user connects to him) but none seems very
+intuitive or efficient.
+
+Also, should we give a visual feedback about the status of the
+document (hosting, joined, non connected), how ? (does knowing the
+number of users is enough/correct/useful ?)
+
+rodrigob.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000072.html">[Chalks-devel] Fwd: [howl-users]embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+</A></li>
+	<LI>Next message: <A HREF="000074.html">[Chalks-devel] Re: chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#73">[ date ]</a>
+              <a href="thread.html#73">[ thread ]</a>
+              <a href="subject.html#73">[ subject ]</a>
+              <a href="author.html#73">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Choosing the build system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Choosing%20the%20build%20system&In-Reply-To=%3Cef5e7257050516060170d620e3%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000057.html">
+   <LINK REL="Next"  HREF="000059.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Choosing the build system</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Choosing%20the%20build%20system&In-Reply-To=%3Cef5e7257050516060170d620e3%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: Choosing the build system">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Mon May 16 15:01:30 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000057.html">[Chalks-devel] Choosing the build system
+</A></li>
+        <LI>Next message: <A HREF="000059.html">[Chalks-devel] Chalks artwork
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Just to enforce about Scons
+
+<A HREF="http://nsis.sourceforge.net/index.php?id=2&amp;backPID=2&amp;tt_news=22">http://nsis.sourceforge.net/index.php?id=2&amp;backPID=2&amp;tt_news=22</A>
+
+&quot;A new build system was recently created for NSIS. It uses SCons. It
+now takes just one command to build the entire NSIS package.&quot;
+
+rodrigob.
+
+On 5/16/05, rodrigo benenson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+&gt;<i> * Choose the build system
+</I>&gt;<i>         - nAnt: brings Ant, a standard on the Java world to .NET
+</I>&gt;<i>         - Traditional Makefile
+</I>&gt;<i>         - A-A-P (<A HREF="http://www.a-a-p.org/">http://www.a-a-p.org/</A>): Traditional Makefile on steroids
+</I>&gt;<i> 
+</I>&gt;<i> After my first experience with Nant, I'm not very happy with it. I do
+</I>&gt;<i> not take anymore as the first choice (but you can take a look at
+</I>&gt;<i> <A HREF="http://svn.berlios.de/viewcvs/chalks/trunk/src/chalks.build?rev=112">http://svn.berlios.de/viewcvs/chalks/trunk/src/chalks.build?rev=112</A>
+</I>&gt;<i> ).
+</I>&gt;<i> 
+</I>&gt;<i> Traditional makefiles are a not-so-bad choice but we have to learn how
+</I>&gt;<i> to &quot;detect&quot; the compiling platform. Others projects know how to do it
+</I>&gt;<i> (so guy in #mono said me to take a look at gtk-sharp svn, but I did
+</I>&gt;<i> not see anything).
+</I>&gt;<i> 
+</I>&gt;<i> I add to the list Scons
+</I>&gt;<i> <A HREF="http://www.scons.org/">http://www.scons.org/</A>
+</I>&gt;<i> 
+</I>&gt;<i> seems to be as good as aap or better. Python dependencies are not pain
+</I>&gt;<i> because they are only for developers and python is aviable in all the
+</I>&gt;<i> modern unix distros anyway.
+</I>&gt;<i> 
+</I>&gt;<i> We should have to choose what makes less pain. I do not have time to
+</I>&gt;<i> play with that things now.
+</I>&gt;<i> 
+</I>&gt;<i> * Choose the distribution system
+</I>&gt;<i>         - Nullsoft installer for Windows system: GPL and easy to use.
+</I>&gt;<i>         - Let's keep a dist-&lt;platform&gt; file for each one. I'm cheking in the
+</I>&gt;<i> -win one which
+</I>&gt;<i>           builds a .exe binary installer/uninstaller.
+</I>&gt;<i>         - For nix platforms, I believe we just need to build a tar.gz archive
+</I>&gt;<i> with full sources
+</I>&gt;<i>           (that could be a nAnt &quot;src&quot; target). After some time maintainers
+</I>&gt;<i> from *nix distributions
+</I>&gt;<i>           may create binary packages for us adhering to their proper standards.
+</I>&gt;<i> 
+</I>&gt;<i> I agree with the general approach. I would add a compiled compressed
+</I>&gt;<i> .Net version for linux (that would have dll dependencies) and a zipped
+</I>&gt;<i> full dlls included version for windows, to have an &quot;unzip and run&quot;
+</I>&gt;<i> deployment for people who do not like to install software just to test
+</I>&gt;<i> it.
+</I>&gt;<i> 
+</I>&gt;<i> rodrigob.
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000057.html">[Chalks-devel] Choosing the build system
+</A></li>
+	<LI>Next message: <A HREF="000059.html">[Chalks-devel] Chalks artwork
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,3806 @@
+From rodrigo.benenson at gmail.com  Sun May  8 21:59:07 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sun, 8 May 2005 21:59:07 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <427DFBD8.3000109@gmx.net>
+References: <427DFBD8.3000109@gmx.net>
+Message-ID: <ef5e725705050812595c3cfe1f@mail.gmail.com>
+
+Hi,
+it's great that you entered in contact. As you could notice
+(http://chalks.berlios.de/dokuwiki/doku.php?id=dev:design) we had
+already noticed your project but were not so sure about his status.
+
+> Am I correct in assuming that your project aims to be a gnome version of
+> a concurrent editing widget, which can be used by all gnome applications
+> that chose to use/activate it?
+
+Back in 2003 the project was the first open source concurrent edition
+system (called LeoN) however it was not adapted for mass use
+(developed a plug-in for a weird text editor (Leo)).
+http://ryalias.freezope.org/souvenirs/leon
+
+Thus in 2004 I started Chalks, a spin out of LeoN, more adapted for
+mass use. However that year this project became lower priority and go
+frozen. At that time I thought 'someone else will do it anyway...'.
+During the second semester of 2004 Ricardo motivated me to continue
+the project and the project advanced considerably. The motto of Chalks
+is "collaborative text editing for everyone" and that was what we
+tried to do.
+
+Both Ricardo and me had busy times at the end of 2004, so we made a
+pause. At the end of the pause I realized that the code had became
+spaghetti. The basics were correct but the shift between LeoN to
+Chalks needed more than just some children classes.
+
+So at the beginning 2005 I revised the design and started a full
+rewrite. The motto is the same, the objective is the same, the
+approach is the same, the developers are the same, the core algorithm
+is the same, and the network layer design is the same. What has
+changed is: a cleaner macroscopic design, a full rewrite of the code,
+and the most essential, I decided to change the technology.
+
+Up to now we developed in Python using TwistedMatrix. It was great for
+developing but had three problems:
+- Hard to release in a clean way
+- Hard to integrate with existing platform
+- Propensity to spaghetti code.
+
+The new platform was choose because :
+- It enforce clean design and code (strong typing, interfaces)
+- Have excellent integration capabilities
+- It can be released without too much pain
+
+Notice that Chalks, in difference from MateEdit has a requirement to
+be multiplatform: windows, linux and mac os at least.
+
+So the chosen platform is the .Net technology (actually developing
+with Mono and Nemerle) and the Gtk toolkit for the Gui.
+
+In the last weeks the new design was implemented and now we are just
+starting the debugging phase.
+
+> If this is the case I propose defining network handshakes and messages
+> so that both our projects can talk to each other and thus enable GNOME
+> and KDE to integrate nicely.
+
+Now, on the technical aspect I agree that it would be great to have
+KDE/Gnome integration. Also I think it is good that open source
+developer with similar/identical objectives collaborate between them.
+
+In particular I was surprised to see how similar is your Gui approach to ours.
+However I do not think that integration at network level is the correct choice.
+
+The actual design (and implementation) of Chalks (that I have to
+finish to describe on the wiki) define four distinctive layers:
+
+Gui
+ConcurrentEditableWidget
+ConcurrentEditable
+Network
+
+as you are in the topic, it is obvious what each layer does. You can
+also take a look at
+http://svn.berlios.de/viewcvs/*checkout*/chalks/trunk/doc/schemas/chalks.dia
+for more details.
+
+The relation between the layers is as thin as possible and as well
+defined as possible.
+
+
+From rodrigo.benenson at gmail.com  Sun May  8 22:32:56 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sun, 8 May 2005 22:32:56 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <427DFBD8.3000109@gmx.net>
+References: <427DFBD8.3000109@gmx.net>
+Message-ID: <ef5e7257050508133246f69c63@mail.gmail.com>
+
+grrr, that reply was a mess, second attempt,
+
+> Am I correct in assuming that your project aims to be a gnome version of
+> a concurrent editing widget, which can be used by all gnome applications
+> that chose to use/activate it?
+
+No, we want to develop an application that is simple for the end user.
+In the actual rewrite we use technologies that allow very easy
+integration in other applications, but it is not us purpose.
+
+> If this is the case I propose defining network handshakes and messages
+> so that both our projects can talk to each other and thus enable GNOME
+> and KDE to integrate nicely.
+
+I think collaboration for integration is great topic, however I do not
+think it is technically factible or desirable to define an integration
+at the network level.
+
+In our actual design and implementation it is very very easy to
+implement a KDE frontend on the top of the underlying layers.
+
+I invit you to share ideas, create sinergy and evaluate the idea of
+developing such Kde frontend.
+
+rodrigob.
+
+
+
+
+On 5/8/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> Hi,
+> 
+> First a little introduction. I am the author of MateEdit and would like
+> to propose to work together on some techniques used.
+> 
+> I stumbled upon your project this afternoon and I have a questions in
+> regards to your project.
+> 
+> Am I correct in assuming that your project aims to be a gnome version of
+> a concurrent editing widget, which can be used by all gnome applications
+> that chose to use/activate it?
+> 
+> If this is the case I propose defining network handshakes and messages
+> so that both our projects can talk to each other and thus enable GNOME
+> and KDE to integrate nicely.
+> 
+> Let me know what you think about this.
+> 
+> Kind Regards,
+> Andreas
+> 
+>
+
+
+From psychobrain at gmx.net  Mon May  9 12:37:41 2005
+From: psychobrain at gmx.net (Andreas Ramm)
+Date: Mon, 09 May 2005 20:37:41 +1000
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <ef5e7257050508133246f69c63@mail.gmail.com>
+References: <427DFBD8.3000109@gmx.net> <ef5e7257050508133246f69c63@mail.gmail.com>
+Message-ID: <427F3D75.7070104@gmx.net>
+
+rodrigo benenson wrote:
+
+>grrr, that reply was a mess, second attempt,
+>  
+>
+Ok, I will just reply to this one :)
+
+>  
+>
+>>Am I correct in assuming that your project aims to be a gnome version of
+>>a concurrent editing widget, which can be used by all gnome applications
+>>that chose to use/activate it?
+>>    
+>>
+>
+>No, we want to develop an application that is simple for the end user.
+>In the actual rewrite we use technologies that allow very easy
+>integration in other applications, but it is not us purpose.
+>  
+>
+That was my initial idea as well. But then I realised that integrating 
+MateEdit into KDE or more specifically Kate would enable a whole heap of 
+applications (KDevelop, Quanta Plus, Kile, PiKdev, KScope, Krusader) to 
+immediately use that technology. This integration is currently scheduled 
+for KDE 4.0.
+
+>  
+>
+>>If this is the case I propose defining network handshakes and messages
+>>so that both our projects can talk to each other and thus enable GNOME
+>>and KDE to integrate nicely.
+>>    
+>>
+>
+>I think collaboration for integration is great topic, however I do not
+>think it is technically factible or desirable to define an integration
+>at the network level.
+>  
+>
+I believe that defining the network layer is the easiest part. It would 
+be a lot harder to convince someone using toolkit X (be it GTK, Qt/KDE, 
+WxWindows or whatever) to use a widget that was written with toolkit Y 
+and/or a different programming language.
+
+>In our actual design and implementation it is very very easy to
+>implement a KDE frontend on the top of the underlying layers.
+>  
+>
+
+>I invit you to share ideas, create sinergy and evaluate the idea of
+>developing such Kde frontend.
+>  
+>
+Sharing ideas is really what I'm after :) The problem I have though is 
+that if we don't agree on a network protocol, we will just be creating 
+islands of collaboration. At the moment I believe that creating "yet 
+another editor" which can only do one thing better than the rest will be 
+ignored by the users. Sure they'll use it every-so-often, but if they 
+can't share collaboration sessions with people using other editors they 
+will quickly get upset and we'll have fragmentation, because not 
+everyone will switch.
+
+All I am asking right now is to define a simple set of messages that 
+each editor will understand (Insert, Delete, Chat, Joining, User data 
+and maybe a couple of others) so people have a choice in what editor to 
+use. I believe that is the easiest way to start and we can continue from 
+there.
+
+Andreas
+
+
+
+From rodrigo.benenson at gmail.com  Mon May  9 13:01:22 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 9 May 2005 13:01:22 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <427F3D75.7070104@gmx.net>
+References: <427DFBD8.3000109@gmx.net>
+	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>
+Message-ID: <ef5e725705050904012cef2e63@mail.gmail.com>
+
+I did not explained why I do not think it is technically sound to
+integrate at network level: the core reason I'm thinking about is
+simply because it depends on the algorithm implemented. And if it
+depends on the algorithm, then it does not make sense to replicate
+they implementation, being double bug prone.
+
+In contrast the relation between the network+concurrenteditable with
+the concurrenteditionwidget+gui is algorithm independent.
+
+To me it make more sense to develop a "concurrent edition library"
+that different applications could use. Then we can discuss which
+algorithm use and which language implementation.
+
+Focusing on network layer will constrain too much future algorithm, or
+will require to define a too ample network protocol that will dificult
+to implement anyway (too much, what if cases).
+
+Actually I think that .Net platform is essentially Gui agnostic.
+However we can think in a language agnostic module interconnection
+system to ease the integration with even larger range of applications.
+
+To enforce the point about the algorithm and the network protocol.
+Supose that I'm implementing an algorithm without garbage collection
+(as MoonEdit probably does) then the data to start a session would be:
+state vector, history buffer, text, delayed_operations. If I implement
+garbage collection, then additional information is required,
+minimum_state_vector and state_vector_table. Thus two implementation
+would anyway be incompatible. Of course we are already enforcing one
+kind of history buffer (linear in Chalks case) and the data encoded
+into the operations is also algorithm specific (definition of the
+state_vector, members for the special cases (relative adressing,
+splitted operations, lost information)). So this simple example
+reforce the concept, trying to define a protocol between different
+algorithms is almost impossible. If we are going to fix the algorithm
+to fix the network protocol, then we are loosing flexibility and
+evolvability for both the network layer and the concurrent edition
+layer (that would lead to the apparition of non compatible
+applications anyway). The logic choice is to define a crossplatform,
+gui agnostic (as it already is in chalks), concurrent edition library,
+that integrate both the concurrent edition algorithm and network
+layer.
+
+Defining such library is not difficult at all (I can say it is already
+done). The only point we have to solve is the "binary compatibility".
+I'm not an expert in the topic, Ricardo any knowledge/opinion on the
+topic ? Corba, Dcop, DBus have something to do with this ? Can we do
+binaries libraries from .Net ? Does Kde4.0 includes .Net support ?
+(because windows has it already for longhorn and gnome defacto too).
+It is sane to think in implement concurrent edition algorithm in
+languages like C or C++  ? (I really do not think so)
+
+Topics to discuss, fun on the path ! 
+rodrigob.
+
+
+
+
+
+rodrigob.
+
+On 5/9/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> rodrigo benenson wrote:
+> 
+> >grrr, that reply was a mess, second attempt,
+> >
+> >
+> Ok, I will just reply to this one :)
+> 
+> >
+> >
+> >>Am I correct in assuming that your project aims to be a gnome version of
+> >>a concurrent editing widget, which can be used by all gnome applications
+> >>that chose to use/activate it?
+> >>
+> >>
+> >
+> >No, we want to develop an application that is simple for the end user.
+> >In the actual rewrite we use technologies that allow very easy
+> >integration in other applications, but it is not us purpose.
+> >
+> >
+> That was my initial idea as well. But then I realised that integrating
+> MateEdit into KDE or more specifically Kate would enable a whole heap of
+> applications (KDevelop, Quanta Plus, Kile, PiKdev, KScope, Krusader) to
+> immediately use that technology. This integration is currently scheduled
+> for KDE 4.0.
+> 
+> >
+> >
+> >>If this is the case I propose defining network handshakes and messages
+> >>so that both our projects can talk to each other and thus enable GNOME
+> >>and KDE to integrate nicely.
+> >>
+> >>
+> >
+> >I think collaboration for integration is great topic, however I do not
+> >think it is technically factible or desirable to define an integration
+> >at the network level.
+> >
+> >
+> I believe that defining the network layer is the easiest part. It would
+> be a lot harder to convince someone using toolkit X (be it GTK, Qt/KDE,
+> WxWindows or whatever) to use a widget that was written with toolkit Y
+> and/or a different programming language.
+> 
+> >In our actual design and implementation it is very very easy to
+> >implement a KDE frontend on the top of the underlying layers.
+> >
+> >
+> 
+> >I invit you to share ideas, create sinergy and evaluate the idea of
+> >developing such Kde frontend.
+> >
+> >
+> Sharing ideas is really what I'm after :) The problem I have though is
+> that if we don't agree on a network protocol, we will just be creating
+> islands of collaboration. At the moment I believe that creating "yet
+> another editor" which can only do one thing better than the rest will be
+> ignored by the users. Sure they'll use it every-so-often, but if they
+> can't share collaboration sessions with people using other editors they
+> will quickly get upset and we'll have fragmentation, because not
+> everyone will switch.
+> 
+> All I am asking right now is to define a simple set of messages that
+> each editor will understand (Insert, Delete, Chat, Joining, User data
+> and maybe a couple of others) so people have a choice in what editor to
+> use. I believe that is the easiest way to start and we can continue from
+> there.
+> 
+> Andreas
+> 
+>
+
+
+From rodrigo.benenson at gmail.com  Mon May  9 13:34:29 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 9 May 2005 13:34:29 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <ef5e725705050904012cef2e63@mail.gmail.com>
+References: <427DFBD8.3000109@gmx.net>
+	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>
+	 <ef5e725705050904012cef2e63@mail.gmail.com>
+Message-ID: <ef5e7257050509043415d2b12d@mail.gmail.com>
+
+after a little google seach about .Net+kde. The thing seems rotted. 
+
+So this lead to two options: 
+- reimplementation of the cce+network layers on c/c++ (promises to be a pain)
+- use of "language agnostic" interface, for instance XML-RPC would be
+very easy to code.
+
+rodrigob.
+
+On 5/9/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> I did not explained why I do not think it is technically sound to
+> integrate at network level: the core reason I'm thinking about is
+> simply because it depends on the algorithm implemented. And if it
+> depends on the algorithm, then it does not make sense to replicate
+> they implementation, being double bug prone.
+> 
+> In contrast the relation between the network+concurrenteditable with
+> the concurrenteditionwidget+gui is algorithm independent.
+> 
+> To me it make more sense to develop a "concurrent edition library"
+> that different applications could use. Then we can discuss which
+> algorithm use and which language implementation.
+> 
+> Focusing on network layer will constrain too much future algorithm, or
+> will require to define a too ample network protocol that will dificult
+> to implement anyway (too much, what if cases).
+> 
+> Actually I think that .Net platform is essentially Gui agnostic.
+> However we can think in a language agnostic module interconnection
+> system to ease the integration with even larger range of applications.
+> 
+> To enforce the point about the algorithm and the network protocol.
+> Supose that I'm implementing an algorithm without garbage collection
+> (as MoonEdit probably does) then the data to start a session would be:
+> state vector, history buffer, text, delayed_operations. If I implement
+> garbage collection, then additional information is required,
+> minimum_state_vector and state_vector_table. Thus two implementation
+> would anyway be incompatible. Of course we are already enforcing one
+> kind of history buffer (linear in Chalks case) and the data encoded
+> into the operations is also algorithm specific (definition of the
+> state_vector, members for the special cases (relative adressing,
+> splitted operations, lost information)). So this simple example
+> reforce the concept, trying to define a protocol between different
+> algorithms is almost impossible. If we are going to fix the algorithm
+> to fix the network protocol, then we are loosing flexibility and
+> evolvability for both the network layer and the concurrent edition
+> layer (that would lead to the apparition of non compatible
+> applications anyway). The logic choice is to define a crossplatform,
+> gui agnostic (as it already is in chalks), concurrent edition library,
+> that integrate both the concurrent edition algorithm and network
+> layer.
+> 
+> Defining such library is not difficult at all (I can say it is already
+> done). The only point we have to solve is the "binary compatibility".
+> I'm not an expert in the topic, Ricardo any knowledge/opinion on the
+> topic ? Corba, Dcop, DBus have something to do with this ? Can we do
+> binaries libraries from .Net ? Does Kde4.0 includes .Net support ?
+> (because windows has it already for longhorn and gnome defacto too).
+> It is sane to think in implement concurrent edition algorithm in
+> languages like C or C++  ? (I really do not think so)
+> 
+> Topics to discuss, fun on the path !
+> rodrigob.
+> 
+> rodrigob.
+> 
+> On 5/9/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> > rodrigo benenson wrote:
+> >
+> > >grrr, that reply was a mess, second attempt,
+> > >
+> > >
+> > Ok, I will just reply to this one :)
+> >
+> > >
+> > >
+> > >>Am I correct in assuming that your project aims to be a gnome version of
+> > >>a concurrent editing widget, which can be used by all gnome applications
+> > >>that chose to use/activate it?
+> > >>
+> > >>
+> > >
+> > >No, we want to develop an application that is simple for the end user.
+> > >In the actual rewrite we use technologies that allow very easy
+> > >integration in other applications, but it is not us purpose.
+> > >
+> > >
+> > That was my initial idea as well. But then I realised that integrating
+> > MateEdit into KDE or more specifically Kate would enable a whole heap of
+> > applications (KDevelop, Quanta Plus, Kile, PiKdev, KScope, Krusader) to
+> > immediately use that technology. This integration is currently scheduled
+> > for KDE 4.0.
+> >
+> > >
+> > >
+> > >>If this is the case I propose defining network handshakes and messages
+> > >>so that both our projects can talk to each other and thus enable GNOME
+> > >>and KDE to integrate nicely.
+> > >>
+> > >>
+> > >
+> > >I think collaboration for integration is great topic, however I do not
+> > >think it is technically factible or desirable to define an integration
+> > >at the network level.
+> > >
+> > >
+> > I believe that defining the network layer is the easiest part. It would
+> > be a lot harder to convince someone using toolkit X (be it GTK, Qt/KDE,
+> > WxWindows or whatever) to use a widget that was written with toolkit Y
+> > and/or a different programming language.
+> >
+> > >In our actual design and implementation it is very very easy to
+> > >implement a KDE frontend on the top of the underlying layers.
+> > >
+> > >
+> >
+> > >I invit you to share ideas, create sinergy and evaluate the idea of
+> > >developing such Kde frontend.
+> > >
+> > >
+> > Sharing ideas is really what I'm after :) The problem I have though is
+> > that if we don't agree on a network protocol, we will just be creating
+> > islands of collaboration. At the moment I believe that creating "yet
+> > another editor" which can only do one thing better than the rest will be
+> > ignored by the users. Sure they'll use it every-so-often, but if they
+> > can't share collaboration sessions with people using other editors they
+> > will quickly get upset and we'll have fragmentation, because not
+> > everyone will switch.
+> >
+> > All I am asking right now is to define a simple set of messages that
+> > each editor will understand (Insert, Delete, Chat, Joining, User data
+> > and maybe a couple of others) so people have a choice in what editor to
+> > use. I believe that is the easiest way to start and we can continue from
+> > there.
+> >
+> > Andreas
+> >
+> >
+>
+
+
+From ncabral at terra.com.br  Tue May 10 05:29:33 2005
+From: ncabral at terra.com.br (Ricardo Niederberger Cabral)
+Date: Tue, 10 May 2005 00:29:33 -0300
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <ef5e7257050509043415d2b12d@mail.gmail.com>
+References: <427DFBD8.3000109@gmx.net>  <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>  <ef5e725705050904012cef2e63@mail.gmail.com> <ef5e7257050509043415d2b12d@mail.gmail.com>
+Message-ID: <opsqjinjnzjpk7wx@rncathlon.domain.invalid>
+
+I agree with Rodrigo on all points.
+
+In my opinion the "language agnostic module interconnection system" we are  
+looking for already exists and is the CLR.
+I believe we can be safe in the long run by having a "concurrent  
+collaboration library" (CCL), composed of the "Ce" and "Network" modules  
+(from [1]) implemented on any CLR compliant language (that is, Nemerle,  
+which I *still* need to learn).
+
+I say we are "safe" in only worrying about having CLR modules right now  
+because it's just a matter of time before all efforts on making Qt  
+bindings to .NET world (there is a Qt# initiative. I'm not sure if Qt 4  
+already does that) mature and becomes useful, so Qt based apps could  
+easily implement a GUI module which makes use of the Ce and N modules from  
+CCL.
+
+I'm not sure if exposing an XML-RPC/DCOP/KParts/SOAP/... interface on CCL  
+and making sure it's usable from other KDE/Gnome apps on this early stage  
+of development would be worth all the trouble, specially since Rodrigo is  
+the only one really working on Chalks right now and on the near future. So  
+by the time Chalks and the CCL underneath it matures, we may have more  
+progress on integrating Qt, Gtk and Mono components.
+
+
+[1]  
+http://svn.berlios.de/viewcvs/*checkout*/chalks/trunk/doc/schemas/chalks.dia
+
+-- 
+Ricardo Niederberger Cabral
+
+
+
+On Mon, 9 May 2005 13:34:29 +0200, rodrigo benenson  
+<rodrigo.benenson at gmail.com> wrote:
+
+> after a little google seach about .Net+kde. The thing seems rotted.
+>
+> So this lead to two options:
+> - reimplementation of the cce+network layers on c/c++ (promises to be a  
+> pain)
+> - use of "language agnostic" interface, for instance XML-RPC would be
+> very easy to code.
+[...]
+>> Defining such library is not difficult at all (I can say it is already
+>> done). The only point we have to solve is the "binary compatibility".
+>> I'm not an expert in the topic, Ricardo any knowledge/opinion on the
+>> topic ? Corba, Dcop, DBus have something to do with this ? Can we do
+>> binaries libraries from .Net ? Does Kde4.0 includes .Net support ?
+>> (because windows has it already for longhorn and gnome defacto too).
+>> It is sane to think in implement concurrent edition algorithm in
+>> languages like C or C++  ? (I really do not think so)
+
+
+
+From psychobrain at gmx.net  Tue May 10 13:04:13 2005
+From: psychobrain at gmx.net (Andreas Ramm)
+Date: Tue, 10 May 2005 21:04:13 +1000
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <ef5e725705050904012cef2e63@mail.gmail.com>
+References: <427DFBD8.3000109@gmx.net>	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net> <ef5e725705050904012cef2e63@mail.gmail.com>
+Message-ID: <4280952D.4060605@gmx.net>
+
+rodrigo benenson wrote:
+
+>I did not explained why I do not think it is technically sound to
+>integrate at network level: the core reason I'm thinking about is
+>simply because it depends on the algorithm implemented. And if it
+>depends on the algorithm, then it does not make sense to replicate
+>they implementation, being double bug prone.
+>
+>In contrast the relation between the network+concurrenteditable with
+>the concurrenteditionwidget+gui is algorithm independent.
+>
+>To me it make more sense to develop a "concurrent edition library"
+>that different applications could use. Then we can discuss which
+>algorithm use and which language implementation.
+>  
+>
+Having a concurrent editing library does make sense indeed. That's why 
+I'll be including the MateEdit core into KDE for every KDE program to 
+use. (I only say KDE because I know that people using different toolkits 
+would not touch a kde library)
+
+>Focusing on network layer will constrain too much future algorithm, or
+>will require to define a too ample network protocol that will dificult
+>to implement anyway (too much, what if cases).
+>  
+>
+Ok let me just show you what I see as necessary for an Insert operation 
+and you can tell me what you think needs to be added. Copied verbatim 
+from my networking code :)
+
+        stream << m_type << m_fromCoords[0] << m_toCoords[0] << m_sender 
+<< m_state.server << m_state.client;
+
+            stream << m_message;
+
+m_type - describes the operation here INSERT
+m_fromCoords - starting position
+m_toCoords - end position
+m_sender - sender id
+m_state.server - (always 0 on sending and on closer inspection not 
+strictly necessary)
+m_state.client - number of messages received from other clients
+m_message - the actual text of the insert
+
+>Actually I think that .Net platform is essentially Gui agnostic.
+>However we can think in a language agnostic module interconnection
+>system to ease the integration with even larger range of applications.
+>  
+>
+Just as you already found out not everyone likes .Net or even Mono. The 
+danger of the whole thing being shut down, due to some dubious patent or 
+license is just to big for some people.
+
+>To enforce the point about the algorithm and the network protocol.
+>Supose that I'm implementing an algorithm without garbage collection
+>(as MoonEdit probably does)
+>
+You probably meant MateEdit ;)
+
+> then the data to start a session would be:
+>state vector, history buffer, text, delayed_operations. If I implement
+>garbage collection, then additional information is required,
+>minimum_state_vector and state_vector_table. Thus two implementation
+>would anyway be incompatible. Of course we are already enforcing one
+>kind of history buffer (linear in Chalks case) and the data encoded
+>into the operations is also algorithm specific (definition of the
+>state_vector, members for the special cases (relative adressing,
+>splitted operations, lost information)). So this simple example
+>reforce the concept, trying to define a protocol between different
+>algorithms is almost impossible. 
+>
+I am not at all familiar with where the problems are with the "garbage 
+collection" algorithm you mention.
+In my mind what is needed to start a session is the text and optionally 
+a description for each character so a colour and other information can 
+be associated. Then you add user data and if you are really keen you can 
+retransmit every message that was sent so far to create a history 
+buffer, in which case you don't need the text nor the extra character 
+information.
+
+>If we are going to fix the algorithm
+>to fix the network protocol, then we are loosing flexibility and
+>evolvability for both the network layer and the concurrent edition
+>layer (that would lead to the apparition of non compatible
+>applications anyway). The logic choice is to define a crossplatform,
+>gui agnostic (as it already is in chalks), concurrent edition library,
+>that integrate both the concurrent edition algorithm and network
+>layer.
+>  
+>
+Sure that can be a long term goal, but a) not everyone working on 
+collaborative editing will use it and b) this makes the choice 
+programming language very important.
+
+>Defining such library is not difficult at all (I can say it is already
+>done). 
+>
+Twice by the sounds of it :)
+
+>The only point we have to solve is the "binary compatibility".
+>I'm not an expert in the topic, Ricardo any knowledge/opinion on the
+>topic ? Corba, Dcop, DBus have something to do with this ? Can we do
+>binaries libraries from .Net ? Does Kde4.0 includes .Net support ?
+>(because windows has it already for longhorn and gnome defacto too).
+>It is sane to think in implement concurrent edition algorithm in
+>languages like C or C++  ? (I really do not think so)
+>  
+>
+I don't think C or C++ are a problem at all (having just done it myself 
+in C++). But I think in order for it to be an all-plattform library 
+which gets used by people of all camps it would need to be written in C 
+with language bindings for C++, C#, Python, you-name-it .... Not 
+something that will it happen overnight.
+
+>Topics to discuss, fun on the path ! 
+>  
+>
+Lots of fun :)
+
+By the way do you use unit tests or how do you check validity of code?
+
+Andreas
+
+
+
+From psychobrain at gmx.net  Tue May 10 13:03:40 2005
+From: psychobrain at gmx.net (Andreas Ramm)
+Date: Tue, 10 May 2005 21:03:40 +1000
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <opsqjinjnzjpk7wx@rncathlon.domain.invalid>
+References: <427DFBD8.3000109@gmx.net>  <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>  <ef5e725705050904012cef2e63@mail.gmail.com> <ef5e7257050509043415d2b12d@mail.gmail.com> <opsqjinjnzjpk7wx@rncathlon.domain.invalid>
+Message-ID: <4280950C.5000502@gmx.net>
+
+Ricardo Niederberger Cabral wrote:
+
+> I agree with Rodrigo on all points.
+>
+> In my opinion the "language agnostic module interconnection system" we 
+> are  looking for already exists and is the CLR.
+> I believe we can be safe in the long run by having a "concurrent  
+> collaboration library" (CCL), composed of the "Ce" and "Network" 
+> modules  (from [1]) implemented on any CLR compliant language (that 
+> is, Nemerle,  which I *still* need to learn).
+>
+> I say we are "safe" in only worrying about having CLR modules right 
+> now  because it's just a matter of time before all efforts on making 
+> Qt  bindings to .NET world (there is a Qt# initiative. I'm not sure if 
+> Qt 4  already does that) mature and becomes useful, so Qt based apps 
+> could  easily implement a GUI module which makes use of the Ce and N 
+> modules from  CCL.
+
+The same could be said the other way around. Just that Qt4.0 will be 
+fully GPL for all platforms while .Net will rely on Mono to work on 
+anything but Windows. And personally I'm not really happy about that.
+
+>
+> I'm not sure if exposing an XML-RPC/DCOP/KParts/SOAP/... interface on 
+> CCL  and making sure it's usable from other KDE/Gnome apps on this 
+> early stage  of development would be worth all the trouble, specially 
+> since Rodrigo is  the only one really working on Chalks right now and 
+> on the near future. So  by the time Chalks and the CCL underneath it 
+> matures, we may have more  progress on integrating Qt, Gtk and Mono 
+> components.
+
+Integrating KParts will be fairly easy for MateEdit being a KDE program, 
+but I agree for Chalks other priorities might be more important.
+
+>
+>
+> [1]  
+> http://svn.berlios.de/viewcvs/*checkout*/chalks/trunk/doc/schemas/chalks.dia 
+>
+>
+
+
+From rodrigo.benenson at gmail.com  Tue May 10 13:14:08 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Tue, 10 May 2005 13:14:08 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <4280950C.5000502@gmx.net>
+References: <427DFBD8.3000109@gmx.net>
+	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>
+	 <ef5e725705050904012cef2e63@mail.gmail.com>
+	 <ef5e7257050509043415d2b12d@mail.gmail.com>
+	 <opsqjinjnzjpk7wx@rncathlon.domain.invalid> <4280950C.5000502@gmx.net>
+Message-ID: <ef5e725705051004146335779@mail.gmail.com>
+
+KParts seems to be not technically compatible with .Net technology.
+
+XML-RPC interface is almost trivial with .Net, and could be
+implemented without too many suffering if required.
+
+Qt is only a Gui. We have choosen .Net because it provide solutions
+for all the topics (file manipulation, networking, security, etc...),
+including gui. Gtk# was choosen only because it seems to be a well
+supported all-platform free Gui.
+
+rodrigob.
+
+
+On 5/10/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> Ricardo Niederberger Cabral wrote:
+> 
+> > I agree with Rodrigo on all points.
+> >
+> > In my opinion the "language agnostic module interconnection system" we
+> > are  looking for already exists and is the CLR.
+> > I believe we can be safe in the long run by having a "concurrent
+> > collaboration library" (CCL), composed of the "Ce" and "Network"
+> > modules  (from [1]) implemented on any CLR compliant language (that
+> > is, Nemerle,  which I *still* need to learn).
+> >
+> > I say we are "safe" in only worrying about having CLR modules right
+> > now  because it's just a matter of time before all efforts on making
+> > Qt  bindings to .NET world (there is a Qt# initiative. I'm not sure if
+> > Qt 4  already does that) mature and becomes useful, so Qt based apps
+> > could  easily implement a GUI module which makes use of the Ce and N
+> > modules from  CCL.
+> 
+> The same could be said the other way around. Just that Qt4.0 will be
+> fully GPL for all platforms while .Net will rely on Mono to work on
+> anything but Windows. And personally I'm not really happy about that.
+> 
+> >
+> > I'm not sure if exposing an XML-RPC/DCOP/KParts/SOAP/... interface on
+> > CCL  and making sure it's usable from other KDE/Gnome apps on this
+> > early stage  of development would be worth all the trouble, specially
+> > since Rodrigo is  the only one really working on Chalks right now and
+> > on the near future. So  by the time Chalks and the CCL underneath it
+> > matures, we may have more  progress on integrating Qt, Gtk and Mono
+> > components.
+> 
+> Integrating KParts will be fairly easy for MateEdit being a KDE program,
+> but I agree for Chalks other priorities might be more important.
+> 
+> >
+> >
+> > [1]
+> > http://svn.berlios.de/viewcvs/*checkout*/chalks/trunk/doc/schemas/chalks.dia
+> >
+> >
+>
+
+
+From rodrigo.benenson at gmail.com  Tue May 10 13:31:00 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Tue, 10 May 2005 13:31:00 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <4280952D.4060605@gmx.net>
+References: <427DFBD8.3000109@gmx.net>
+	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>
+	 <ef5e725705050904012cef2e63@mail.gmail.com> <4280952D.4060605@gmx.net>
+Message-ID: <ef5e72570505100431475c5d73@mail.gmail.com>
+
+On 5/10/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> rodrigo benenson wrote:
+> 
+> >I did not explained why I do not think it is technically sound to
+> >integrate at network level: the core reason I'm thinking about is
+> >simply because it depends on the algorithm implemented. And if it
+> >depends on the algorithm, then it does not make sense to replicate
+> >they implementation, being double bug prone.
+> >
+> >In contrast the relation between the network+concurrenteditable with
+> >the concurrenteditionwidget+gui is algorithm independent.
+> >
+> >To me it make more sense to develop a "concurrent edition library"
+> >that different applications could use. Then we can discuss which
+> >algorithm use and which language implementation.
+> >
+> >
+> Having a concurrent editing library does make sense indeed. That's why
+> I'll be including the MateEdit core into KDE for every KDE program to
+> use. (I only say KDE because I know that people using different toolkits
+> would not touch a kde library)
+> 
+> >Focusing on network layer will constrain too much future algorithm, or
+> >will require to define a too ample network protocol that will dificult
+> >to implement anyway (too much, what if cases).
+> >
+> >
+> Ok let me just show you what I see as necessary for an Insert operation
+> and you can tell me what you think needs to be added. Copied verbatim
+> from my networking code :)
+> 
+>         stream << m_type << m_fromCoords[0] << m_toCoords[0] << m_sender
+> << m_state.server << m_state.client;
+> 
+>             stream << m_message;
+> 
+> m_type - describes the operation here INSERT
+> m_fromCoords - starting position
+> m_toCoords - end position
+> m_sender - sender id
+> m_state.server - (always 0 on sending and on closer inspection not
+> strictly necessary)
+> m_state.client - number of messages received from other clients
+> m_message - the actual text of the insert
+> 
+
+Messages is the easiest part of the problem. What happens with binary
+formats?  Encryption ? Site identifiers ? States are vectors or Hash ?
+In Chalks we do not have "a server" ?
+
+I do not think we should focus on detail, but on basic concept. Let's
+fix some points:
+
+Do we agree that fixing a protocol necessarily imply fixing a specific
+algorithm ?
+
+
+
+> >Actually I think that .Net platform is essentially Gui agnostic.
+> >However we can think in a language agnostic module interconnection
+> >system to ease the integration with even larger range of applications.
+> >
+> >
+> Just as you already found out not everyone likes .Net or even Mono. The
+> danger of the whole thing being shut down, due to some dubious patent or
+> license is just to big for some people.
+> 
+
+Exactly as some persons tried to enforce patents over linux, over
+double click, over kind of web pages, etc... License is something we
+have to deal with.
+
+Chalks developed is driven over objectives. Up to know .Net platforms
+seems to have been the best choice.
+
+> >To enforce the point about the algorithm and the network protocol.
+> >Supose that I'm implementing an algorithm without garbage collection
+> >(as MoonEdit probably does)
+> >
+> You probably meant MateEdit ;)
+> 
+> > then the data to start a session would be:
+> >state vector, history buffer, text, delayed_operations. If I implement
+> >garbage collection, then additional information is required,
+> >minimum_state_vector and state_vector_table. Thus two implementation
+> >would anyway be incompatible. Of course we are already enforcing one
+> >kind of history buffer (linear in Chalks case) and the data encoded
+> >into the operations is also algorithm specific (definition of the
+> >state_vector, members for the special cases (relative adressing,
+> >splitted operations, lost information)). So this simple example
+> >reforce the concept, trying to define a protocol between different
+> >algorithms is almost impossible.
+> >
+> I am not at all familiar with where the problems are with the "garbage
+> collection" algorithm you mention.
+> In my mind what is needed to start a session is the text and optionally
+> a description for each character so a colour and other information can
+> be associated. Then you add user data and if you are really keen you can
+> retransmit every message that was sent so far to create a history
+> buffer, in which case you don't need the text nor the extra character
+> information.
+> 
+> >If we are going to fix the algorithm
+> >to fix the network protocol, then we are loosing flexibility and
+> >evolvability for both the network layer and the concurrent edition
+> >layer (that would lead to the apparition of non compatible
+> >applications anyway). The logic choice is to define a crossplatform,
+> >gui agnostic (as it already is in chalks), concurrent edition library,
+> >that integrate both the concurrent edition algorithm and network
+> >layer.
+> >
+> >
+> Sure that can be a long term goal, but a) not everyone working on
+> collaborative editing will use it and b) this makes the choice
+> programming language very important.
+> 
+
+We are not talking about long term goals, we talk about what is
+necessary to achieve the interoperability / smooth integration goal.
+
+> >Defining such library is not difficult at all (I can say it is already
+> >done).
+> >
+> Twice by the sounds of it :)
+> 
+
+Could you show us you design ? Or comment the diagrams sent ? Do we
+agree on the overall form ?
+
+> >The only point we have to solve is the "binary compatibility".
+> >I'm not an expert in the topic, Ricardo any knowledge/opinion on the
+> >topic ? Corba, Dcop, DBus have something to do with this ? Can we do
+> >binaries libraries from .Net ? Does Kde4.0 includes .Net support ?
+> >(because windows has it already for longhorn and gnome defacto too).
+> >It is sane to think in implement concurrent edition algorithm in
+> >languages like C or C++  ? (I really do not think so)
+> >
+> >
+> I don't think C or C++ are a problem at all (having just done it myself
+> in C++). But I think in order for it to be an all-plattform library
+> which gets used by people of all camps it would need to be written in C
+> with language bindings for C++, C#, Python, you-name-it .... Not
+> something that will it happen overnight.
+> 
+
+
+From psychobrain at gmx.net  Tue May 10 15:23:51 2005
+From: psychobrain at gmx.net (Andreas Ramm)
+Date: Tue, 10 May 2005 23:23:51 +1000
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <ef5e72570505100431475c5d73@mail.gmail.com>
+References: <427DFBD8.3000109@gmx.net>	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>	 <ef5e725705050904012cef2e63@mail.gmail.com> <4280952D.4060605@gmx.net> <ef5e72570505100431475c5d73@mail.gmail.com>
+Message-ID: <4280B5E7.60903@gmx.net>
+
+rodrigo benenson wrote:
+
+>On 5/10/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+>  
+>
+>>rodrigo benenson wrote:
+>>
+>>    
+>>
+>>>I did not explained why I do not think it is technically sound to
+>>>integrate at network level: the core reason I'm thinking about is
+>>>simply because it depends on the algorithm implemented. And if it
+>>>depends on the algorithm, then it does not make sense to replicate
+>>>they implementation, being double bug prone.
+>>>
+>>>In contrast the relation between the network+concurrenteditable with
+>>>the concurrenteditionwidget+gui is algorithm independent.
+>>>
+>>>To me it make more sense to develop a "concurrent edition library"
+>>>that different applications could use. Then we can discuss which
+>>>algorithm use and which language implementation.
+>>>
+>>>
+>>>      
+>>>
+>>Having a concurrent editing library does make sense indeed. That's why
+>>I'll be including the MateEdit core into KDE for every KDE program to
+>>use. (I only say KDE because I know that people using different toolkits
+>>would not touch a kde library)
+>>
+>>    
+>>
+>>>Focusing on network layer will constrain too much future algorithm, or
+>>>will require to define a too ample network protocol that will dificult
+>>>to implement anyway (too much, what if cases).
+>>>
+>>>
+>>>      
+>>>
+>>Ok let me just show you what I see as necessary for an Insert operation
+>>and you can tell me what you think needs to be added. Copied verbatim
+>>from my networking code :)
+>>
+>>        stream << m_type << m_fromCoords[0] << m_toCoords[0] << m_sender
+>><< m_state.server << m_state.client;
+>>
+>>            stream << m_message;
+>>
+>>m_type - describes the operation here INSERT
+>>m_fromCoords - starting position
+>>m_toCoords - end position
+>>m_sender - sender id
+>>m_state.server - (always 0 on sending and on closer inspection not
+>>strictly necessary)
+>>m_state.client - number of messages received from other clients
+>>m_message - the actual text of the insert
+>>
+>>    
+>>
+>
+>Messages is the easiest part of the problem. What happens with binary
+>formats?  Encryption ? Site identifiers ? States are vectors or Hash ?
+>In Chalks we do not have "a server" ?
+>  
+>
+What do you need binary formats for? Isn't unicode enough? Or do you 
+mean pictures and things like that?
+Encryption can be turned on and a check at the start of a session 
+ensures that it is available. Obviously some arrangements will need to 
+be made. For site identifiers I would suggest integers, but anything 
+goes as MateEdit uses a server to assign them. States are vectors, or 
+even more simplisticly integers for MateEdit purposes.
+
+I imagine each MateEdit client could open it's own server simple server 
+if talking in a chalks session. But I would need to look at your 
+implementation in detail to see what's possible. I don't think it is 
+impossible though until I have seen it :)
+
+>I do not think we should focus on detail, but on basic concept. Let's
+>fix some points:
+>
+>Do we agree that fixing a protocol necessarily imply fixing a specific
+>algorithm ?
+>
+>  
+>
+I am not yet convinced. Fixing a protocol is by no means a thing to be 
+set in stone. It would be more like "At this point in time we think this 
+works best for our purposes". As for the algorithm fixing by fixing a 
+protocol I don't think that is true, but again I need to look at it in 
+detail.
+
+>
+>  
+>
+>>>Actually I think that .Net platform is essentially Gui agnostic.
+>>>However we can think in a language agnostic module interconnection
+>>>system to ease the integration with even larger range of applications.
+>>>
+>>>
+>>>      
+>>>
+>>Just as you already found out not everyone likes .Net or even Mono. The
+>>danger of the whole thing being shut down, due to some dubious patent or
+>>license is just to big for some people.
+>>
+>>    
+>>
+>
+>Exactly as some persons tried to enforce patents over linux, over
+>double click, over kind of web pages, etc... License is something we
+>have to deal with.
+>
+>Chalks developed is driven over objectives. Up to know .Net platforms
+>seems to have been the best choice.
+>  
+>
+Sure for the moment it seems alright. There is just that little 
+uncertainty that bugs some people.
+
+>  
+>
+>>>To enforce the point about the algorithm and the network protocol.
+>>>Supose that I'm implementing an algorithm without garbage collection
+>>>(as MoonEdit probably does)
+>>>
+>>>      
+>>>
+>>You probably meant MateEdit ;)
+>>
+>>    
+>>
+>>>then the data to start a session would be:
+>>>state vector, history buffer, text, delayed_operations. If I implement
+>>>garbage collection, then additional information is required,
+>>>minimum_state_vector and state_vector_table. Thus two implementation
+>>>would anyway be incompatible. Of course we are already enforcing one
+>>>kind of history buffer (linear in Chalks case) and the data encoded
+>>>into the operations is also algorithm specific (definition of the
+>>>state_vector, members for the special cases (relative adressing,
+>>>splitted operations, lost information)). So this simple example
+>>>reforce the concept, trying to define a protocol between different
+>>>algorithms is almost impossible.
+>>>
+>>>      
+>>>
+>>I am not at all familiar with where the problems are with the "garbage
+>>collection" algorithm you mention.
+>>In my mind what is needed to start a session is the text and optionally
+>>a description for each character so a colour and other information can
+>>be associated. Then you add user data and if you are really keen you can
+>>retransmit every message that was sent so far to create a history
+>>buffer, in which case you don't need the text nor the extra character
+>>information.
+>>
+>>    
+>>
+>>>If we are going to fix the algorithm
+>>>to fix the network protocol, then we are loosing flexibility and
+>>>evolvability for both the network layer and the concurrent edition
+>>>layer (that would lead to the apparition of non compatible
+>>>applications anyway). The logic choice is to define a crossplatform,
+>>>gui agnostic (as it already is in chalks), concurrent edition library,
+>>>that integrate both the concurrent edition algorithm and network
+>>>layer.
+>>>
+>>>
+>>>      
+>>>
+>>Sure that can be a long term goal, but a) not everyone working on
+>>collaborative editing will use it and b) this makes the choice
+>>programming language very important.
+>>
+>>    
+>>
+>
+>We are not talking about long term goals, we talk about what is
+>necessary to achieve the interoperability / smooth integration goal.
+>
+>  
+>
+>>>Defining such library is not difficult at all (I can say it is already
+>>>done).
+>>>
+>>>      
+>>>
+>>Twice by the sounds of it :)
+>>
+>>    
+>>
+>
+>Could you show us you design ? Or comment the diagrams sent ? Do we
+>agree on the overall form ?
+>  
+>
+I haven't compared your diagrams to my design in detail yet, but the 
+overall thing seems ok. If anything I would cut down on the ability of 
+the gui to call functions in the ce and n layers.
+
+>  
+>
+>>>The only point we have to solve is the "binary compatibility".
+>>>I'm not an expert in the topic, Ricardo any knowledge/opinion on the
+>>>topic ? Corba, Dcop, DBus have something to do with this ? Can we do
+>>>binaries libraries from .Net ? Does Kde4.0 includes .Net support ?
+>>>(because windows has it already for longhorn and gnome defacto too).
+>>>It is sane to think in implement concurrent edition algorithm in
+>>>languages like C or C++  ? (I really do not think so)
+>>>
+>>>
+>>>      
+>>>
+>>I don't think C or C++ are a problem at all (having just done it myself
+>>in C++). But I think in order for it to be an all-plattform library
+>>which gets used by people of all camps it would need to be written in C
+>>with language bindings for C++, C#, Python, you-name-it .... Not
+>>something that will it happen overnight.
+>>
+>>    
+>>
+>
+>>From what I can see from a very fast overlook of your code it seems
+>that you are using a much simplistic approach than ours, that I'm not
+>sure that ensure the:
+>- Convergence, 
+>- Causality-preservation, 
+>- Intention-preservation,
+>- Local operations execution
+>
+>requirements of a concurrent edition system. 
+>(http://citeseer.ist.psu.edu/sun98achieving.html)
+>  
+>
+I didn't like the decentralised approach much, so I went for a server 
+based system instead. The server takes care of ordering messages and 
+local operations are executed first, so that leaves convergence and 
+intention-preservation to worry about. The algorithm I came up with 
+tries to take care of those two things at the same time by carefully 
+defining transformation functions for the different possible cases. 
+Convergence is really only an issue for 2 Insert operations on the same 
+start point, which is taken care of by introducing a priority based on 
+the client id. Intention-preservation is rather trivial for all 
+non-overlapping cases and took quite a bit of work for the overlapping 
+cases, but I feel it is correct now. (Over time I will add more tests to 
+validate that statement, but I am happy for the moment with the ~350 
+checks in place)
+
+>If I'm wrong, could you explain us your method ?
+>
+>Also we do not choice C/C++ because the development of the system
+>require a lot of debugging of non trivial deep bugs in big distributed
+>state machines. Using interpreted language helps to fight the beast.
+>  
+>
+Fair enough, but again it just might not get used by people using 
+different languages. (kde libs are usually C++ based for example)
+
+>
+>  
+>
+>>>Topics to discuss, fun on the path !
+>>>
+>>>
+>>>      
+>>>
+>>Lots of fun :)
+>>
+>>By the way do you use unit tests or how do you check validity of code?
+>>
+>>    
+>>
+>
+>Yes we use unit tests to check the network layer and the
+>concurrentedition layer. Unfortunately I do not know how to create
+>automated tests for Gui layers. But remember that unit tests detect
+>errors but does not ensure non existence of bugs.
+>  
+>
+It would be great if they could though. :) I was just wondering so I can 
+maybe have a look to see if you have any cases I currently don't cover.
+
+Overall I feel this discussion is very constructive. Just to have 
+mentioned it :)
+
+Andreas
+
+
+From rodrigo.benenson at gmail.com  Tue May 10 15:56:12 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Tue, 10 May 2005 15:56:12 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <4280B5E7.60903@gmx.net>
+References: <427DFBD8.3000109@gmx.net>
+	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>
+	 <ef5e725705050904012cef2e63@mail.gmail.com> <4280952D.4060605@gmx.net>
+	 <ef5e72570505100431475c5d73@mail.gmail.com> <4280B5E7.60903@gmx.net>
+Message-ID: <ef5e725705051006561cd11a2c@mail.gmail.com>
+
+Misc letter, I jump through various topics;
+
+All our code is in an open access svn repository (see our web page)
+
+For the tests your should look at TestConcurrentEdition.n and the
+referred paper. I'm curious to see how your implementation handle that
+case.
+
+>>Convergence is really only an issue for 2 Insert operations on the same
+start point, which is taken care of by introducing a priority based on
+the client id.
+
+Convergence is an issue because the users generate different
+operations over different text versions, it has nothing to do with
+what you describe. Two operations at the same point at the same
+version relates more (if I remember fine) to intention preservation.
+
+I agree that centralized approaches are much simpler, however we did
+not wanted to use this approach for two reasons:
+- this approach overload the bandwidth of the "server" node.
+- if two groups are collaborating, all the delay will be as slow as
+the server node. In decentralized approach nodes in local area
+networks have the delay of local area network and nodes in remote
+locations have the delay of remote locations. I expect that this
+effect will be noticeable.
+- a decentralized approach allow to use one and only one node as "server"
+
+>> Fair enough, but again it just might not get used by people using
+different languages. (kde libs are usually C++ based for example)
+
+the dotnet platform can interest people programming in ML, Java, C#,
+Python, we consider that .Net allow better integration and
+collaboration between "people of different languages".
+
+Personally I'm language agnostic, I just try to use the correct tool
+available for the required job.
+
+The topic is deployability and compatibility, not a C# versus C++ flame ware.
+
+Finally, 
+let's imagine that we have a common protocol. And now imagine that I
+need to change something, for example, sites identifier are no more 16
+bytes random numbers, but Ip+Port strings.
+Doing such change would not break immediately the compatibility ?
+What would have to be done to have systems inter operate again ?
+
+It will be hard to me to think that specifying a protocol is not
+create double work, double bugs and double pain.
+
+rodrigob.
+
+
+
+
+On 5/10/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> rodrigo benenson wrote:
+> 
+> >On 5/10/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> >
+> >
+> >>rodrigo benenson wrote:
+> >>
+> >>
+> >>
+> >>>I did not explained why I do not think it is technically sound to
+> >>>integrate at network level: the core reason I'm thinking about is
+> >>>simply because it depends on the algorithm implemented. And if it
+> >>>depends on the algorithm, then it does not make sense to replicate
+> >>>they implementation, being double bug prone.
+> >>>
+> >>>In contrast the relation between the network+concurrenteditable with
+> >>>the concurrenteditionwidget+gui is algorithm independent.
+> >>>
+> >>>To me it make more sense to develop a "concurrent edition library"
+> >>>that different applications could use. Then we can discuss which
+> >>>algorithm use and which language implementation.
+> >>>
+> >>>
+> >>>
+> >>>
+> >>Having a concurrent editing library does make sense indeed. That's why
+> >>I'll be including the MateEdit core into KDE for every KDE program to
+> >>use. (I only say KDE because I know that people using different toolkits
+> >>would not touch a kde library)
+> >>
+> >>
+> >>
+> >>>Focusing on network layer will constrain too much future algorithm, or
+> >>>will require to define a too ample network protocol that will dificult
+> >>>to implement anyway (too much, what if cases).
+> >>>
+> >>>
+> >>>
+> >>>
+> >>Ok let me just show you what I see as necessary for an Insert operation
+> >>and you can tell me what you think needs to be added. Copied verbatim
+> >>from my networking code :)
+> >>
+> >>        stream << m_type << m_fromCoords[0] << m_toCoords[0] << m_sender
+> >><< m_state.server << m_state.client;
+> >>
+> >>            stream << m_message;
+> >>
+> >>m_type - describes the operation here INSERT
+> >>m_fromCoords - starting position
+> >>m_toCoords - end position
+> >>m_sender - sender id
+> >>m_state.server - (always 0 on sending and on closer inspection not
+> >>strictly necessary)
+> >>m_state.client - number of messages received from other clients
+> >>m_message - the actual text of the insert
+> >>
+> >>
+> >>
+> >
+> >Messages is the easiest part of the problem. What happens with binary
+> >formats?  Encryption ? Site identifiers ? States are vectors or Hash ?
+> >In Chalks we do not have "a server" ?
+> >
+> >
+> What do you need binary formats for? Isn't unicode enough? Or do you
+> mean pictures and things like that?
+> Encryption can be turned on and a check at the start of a session
+> ensures that it is available. Obviously some arrangements will need to
+> be made. For site identifiers I would suggest integers, but anything
+> goes as MateEdit uses a server to assign them. States are vectors, or
+> even more simplisticly integers for MateEdit purposes.
+> 
+> I imagine each MateEdit client could open it's own server simple server
+> if talking in a chalks session. But I would need to look at your
+> implementation in detail to see what's possible. I don't think it is
+> impossible though until I have seen it :)
+> 
+> >I do not think we should focus on detail, but on basic concept. Let's
+> >fix some points:
+> >
+> >Do we agree that fixing a protocol necessarily imply fixing a specific
+> >algorithm ?
+> >
+> >
+> >
+> I am not yet convinced. Fixing a protocol is by no means a thing to be
+> set in stone. It would be more like "At this point in time we think this
+> works best for our purposes". As for the algorithm fixing by fixing a
+> protocol I don't think that is true, but again I need to look at it in
+> detail.
+> 
+> >
+> >
+> >
+> >>>Actually I think that .Net platform is essentially Gui agnostic.
+> >>>However we can think in a language agnostic module interconnection
+> >>>system to ease the integration with even larger range of applications.
+> >>>
+> >>>
+> >>>
+> >>>
+> >>Just as you already found out not everyone likes .Net or even Mono. The
+> >>danger of the whole thing being shut down, due to some dubious patent or
+> >>license is just to big for some people.
+> >>
+> >>
+> >>
+> >
+> >Exactly as some persons tried to enforce patents over linux, over
+> >double click, over kind of web pages, etc... License is something we
+> >have to deal with.
+> >
+> >Chalks developed is driven over objectives. Up to know .Net platforms
+> >seems to have been the best choice.
+> >
+> >
+> Sure for the moment it seems alright. There is just that little
+> uncertainty that bugs some people.
+> 
+> >
+> >
+> >>>To enforce the point about the algorithm and the network protocol.
+> >>>Supose that I'm implementing an algorithm without garbage collection
+> >>>(as MoonEdit probably does)
+> >>>
+> >>>
+> >>>
+> >>You probably meant MateEdit ;)
+> >>
+> >>
+> >>
+> >>>then the data to start a session would be:
+> >>>state vector, history buffer, text, delayed_operations. If I implement
+> >>>garbage collection, then additional information is required,
+> >>>minimum_state_vector and state_vector_table. Thus two implementation
+> >>>would anyway be incompatible. Of course we are already enforcing one
+> >>>kind of history buffer (linear in Chalks case) and the data encoded
+> >>>into the operations is also algorithm specific (definition of the
+> >>>state_vector, members for the special cases (relative adressing,
+> >>>splitted operations, lost information)). So this simple example
+> >>>reforce the concept, trying to define a protocol between different
+> >>>algorithms is almost impossible.
+> >>>
+> >>>
+> >>>
+> >>I am not at all familiar with where the problems are with the "garbage
+> >>collection" algorithm you mention.
+> >>In my mind what is needed to start a session is the text and optionally
+> >>a description for each character so a colour and other information can
+> >>be associated. Then you add user data and if you are really keen you can
+> >>retransmit every message that was sent so far to create a history
+> >>buffer, in which case you don't need the text nor the extra character
+> >>information.
+> >>
+> >>
+> >>
+> >>>If we are going to fix the algorithm
+> >>>to fix the network protocol, then we are loosing flexibility and
+> >>>evolvability for both the network layer and the concurrent edition
+> >>>layer (that would lead to the apparition of non compatible
+> >>>applications anyway). The logic choice is to define a crossplatform,
+> >>>gui agnostic (as it already is in chalks), concurrent edition library,
+> >>>that integrate both the concurrent edition algorithm and network
+> >>>layer.
+> >>>
+> >>>
+> >>>
+> >>>
+> >>Sure that can be a long term goal, but a) not everyone working on
+> >>collaborative editing will use it and b) this makes the choice
+> >>programming language very important.
+> >>
+> >>
+> >>
+> >
+> >We are not talking about long term goals, we talk about what is
+> >necessary to achieve the interoperability / smooth integration goal.
+> >
+> >
+> >
+> >>>Defining such library is not difficult at all (I can say it is already
+> >>>done).
+> >>>
+> >>>
+> >>>
+> >>Twice by the sounds of it :)
+> >>
+> >>
+> >>
+> >
+> >Could you show us you design ? Or comment the diagrams sent ? Do we
+> >agree on the overall form ?
+> >
+> >
+> I haven't compared your diagrams to my design in detail yet, but the
+> overall thing seems ok. If anything I would cut down on the ability of
+> the gui to call functions in the ce and n layers.
+> 
+> >
+> >
+> >>>The only point we have to solve is the "binary compatibility".
+> >>>I'm not an expert in the topic, Ricardo any knowledge/opinion on the
+> >>>topic ? Corba, Dcop, DBus have something to do with this ? Can we do
+> >>>binaries libraries from .Net ? Does Kde4.0 includes .Net support ?
+> >>>(because windows has it already for longhorn and gnome defacto too).
+> >>>It is sane to think in implement concurrent edition algorithm in
+> >>>languages like C or C++  ? (I really do not think so)
+> >>>
+> >>>
+> >>>
+> >>>
+> >>I don't think C or C++ are a problem at all (having just done it myself
+> >>in C++). But I think in order for it to be an all-plattform library
+> >>which gets used by people of all camps it would need to be written in C
+> >>with language bindings for C++, C#, Python, you-name-it .... Not
+> >>something that will it happen overnight.
+> >>
+> >>
+> >>
+> >
+> >>From what I can see from a very fast overlook of your code it seems
+> >that you are using a much simplistic approach than ours, that I'm not
+> >sure that ensure the:
+> >- Convergence,
+> >- Causality-preservation,
+> >- Intention-preservation,
+> >- Local operations execution
+> >
+> >requirements of a concurrent edition system.
+> >(http://citeseer.ist.psu.edu/sun98achieving.html)
+> >
+> >
+> I didn't like the decentralised approach much, so I went for a server
+> based system instead. The server takes care of ordering messages and
+> local operations are executed first, so that leaves convergence and
+> intention-preservation to worry about. The algorithm I came up with
+> tries to take care of those two things at the same time by carefully
+> defining transformation functions for the different possible cases.
+> Convergence is really only an issue for 2 Insert operations on the same
+> start point, which is taken care of by introducing a priority based on
+> the client id. Intention-preservation is rather trivial for all
+> non-overlapping cases and took quite a bit of work for the overlapping
+> cases, but I feel it is correct now. (Over time I will add more tests to
+> validate that statement, but I am happy for the moment with the ~350
+> checks in place)
+> 
+> >If I'm wrong, could you explain us your method ?
+> >
+> >Also we do not choice C/C++ because the development of the system
+> >require a lot of debugging of non trivial deep bugs in big distributed
+> >state machines. Using interpreted language helps to fight the beast.
+> >
+> >
+> Fair enough, but again it just might not get used by people using
+> different languages. (kde libs are usually C++ based for example)
+> 
+> >
+> >
+> >
+> >>>Topics to discuss, fun on the path !
+> >>>
+> >>>
+> >>>
+> >>>
+> >>Lots of fun :)
+> >>
+> >>By the way do you use unit tests or how do you check validity of code?
+> >>
+> >>
+> >>
+> >
+> >Yes we use unit tests to check the network layer and the
+> >concurrentedition layer. Unfortunately I do not know how to create
+> >automated tests for Gui layers. But remember that unit tests detect
+> >errors but does not ensure non existence of bugs.
+> >
+> >
+> It would be great if they could though. :) I was just wondering so I can
+> maybe have a look to see if you have any cases I currently don't cover.
+> 
+> Overall I feel this discussion is very constructive. Just to have
+> mentioned it :)
+> 
+> Andreas
+>
+
+
+From psychobrain at gmx.net  Wed May 11 13:36:40 2005
+From: psychobrain at gmx.net (Andreas Ramm)
+Date: Wed, 11 May 2005 21:36:40 +1000
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <ef5e725705051006561cd11a2c@mail.gmail.com>
+References: <427DFBD8.3000109@gmx.net>	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>	 <ef5e725705050904012cef2e63@mail.gmail.com> <4280952D.4060605@gmx.net>	 <ef5e72570505100431475c5d73@mail.gmail.com> <4280B5E7.60903@gmx.net> <ef5e725705051006561cd11a2c@mail.gmail.com>
+Message-ID: <4281EE48.80407@gmx.net>
+
+rodrigo benenson wrote:
+
+>Misc letter, I jump through various topics;
+>
+>All our code is in an open access svn repository (see our web page)
+>
+>For the tests your should look at TestConcurrentEdition.n and the
+>referred paper. I'm curious to see how your implementation handle that
+>case.
+>
+>  
+>
+I'll try and convert the testcases over the weekend and let you know of 
+the results.
+
+>>>Convergence is really only an issue for 2 Insert operations on the same
+>>>      
+>>>
+>start point, which is taken care of by introducing a priority based on
+>the client id.
+>
+>Convergence is an issue because the users generate different
+>operations over different text versions, it has nothing to do with
+>what you describe. Two operations at the same point at the same
+>version relates more (if I remember fine) to intention preservation.
+>  
+>
+Maybe I didn't describe it clear enough. Assume Person A types ABC and 
+Person B types DEF in the same position concurrently, then you need to 
+worry about whether you make that ABCDEF or DEFABC. By convergence only 
+being an issue in this case I meant that the intentation preservation 
+solves the problem of convergence automatically for all other cases.
+
+>I agree that centralized approaches are much simpler, however we did
+>not wanted to use this approach for two reasons:
+>- this approach overload the bandwidth of the "server" node.
+>- if two groups are collaborating, all the delay will be as slow as
+>the server node. In decentralized approach nodes in local area
+>networks have the delay of local area network and nodes in remote
+>locations have the delay of remote locations. I expect that this
+>effect will be noticeable.
+>- a decentralized approach allow to use one and only one node as "server"
+>
+>  
+>
+OK
+
+>>>Fair enough, but again it just might not get used by people using
+>>>      
+>>>
+>different languages. (kde libs are usually C++ based for example)
+>
+>the dotnet platform can interest people programming in ML, Java, C#,
+>Python, we consider that .Net allow better integration and
+>collaboration between "people of different languages".
+>
+>Personally I'm language agnostic, I just try to use the correct tool
+>available for the required job.
+>
+>The topic is deployability and compatibility, not a C# versus C++ flame ware.
+>  
+>
+This is all fine by me. I don't even want to tell you what tools to use. 
+All I'm trying to say is that I don't believe everyone else will take it 
+like that.
+
+>Finally, 
+>let's imagine that we have a common protocol. And now imagine that I
+>need to change something, for example, sites identifier are no more 16
+>bytes random numbers, but Ip+Port strings.
+>Doing such change would not break immediately the compatibility ?
+>  
+>
+Sure changing from a number to a string will be a problem.
+
+>What would have to be done to have systems inter operate again ?
+>  
+>
+We would have to define a new version of the networking protocol 
+(protocol version should be checked in the initial connection anyway) 
+and maybe try and set up a work around for old clients.
+
+>It will be hard to me to think that specifying a protocol is not
+>create double work, double bugs and double pain.
+>  
+>
+I think we are already doing exactly doing that by using 2 different 
+approaches.
+
+After looking at your test cases I think the whole thing could be 
+problematic anyway. The lack of a globally ordered sequence with your 
+approach would seriously upset my approach. Now I am convinced that it 
+wouldn't be as easy as defining a protocol, but would also involve 
+transferring application states and extending my algorithm. Nevertheless 
+it would have been a good thing I believe :)
+
+Andreas
+
+
+
+From rodrigo.benenson at gmail.com  Wed May 11 13:45:47 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 11 May 2005 13:45:47 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <4281EE48.80407@gmx.net>
+References: <427DFBD8.3000109@gmx.net>
+	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>
+	 <ef5e725705050904012cef2e63@mail.gmail.com> <4280952D.4060605@gmx.net>
+	 <ef5e72570505100431475c5d73@mail.gmail.com> <4280B5E7.60903@gmx.net>
+	 <ef5e725705051006561cd11a2c@mail.gmail.com> <4281EE48.80407@gmx.net>
+Message-ID: <ef5e725705051104453420c655@mail.gmail.com>
+
+> I'll try and convert the testcases over the weekend and let you know of
+> the results.
+
+If your application is server based, you should look at the method
+
+chalks/chalks0/src/ConcurrentEdition.py:TestConcurrentEditionServer
+
+in the svn repository, there is a test case for a server-N clients architecture.
+
+> This is all fine by me. I don't even want to tell you what tools to use.
+> All I'm trying to say is that I don't believe everyone else will take it
+> like that.
+
+Of course, we are not trying to create a development platform for
+everyone, just an application for everyone.
+
+> After looking at your test cases I think the whole thing could be
+> problematic anyway. The lack of a globally ordered sequence with your
+> approach would seriously upset my approach. Now I am convinced that it
+> wouldn't be as easy as defining a protocol, but would also involve
+> transferring application states and extending my algorithm. Nevertheless
+> it would have been a good thing I believe :)
+
+Howhever what do you think about creating a base library ? Or about
+defining an implementation independent interface such that different
+implementations could be exchangable under the same gui ? (I mean
+creating a hard separation between gui and collaboration service).
+
+rodrigob.
+
+
+On 5/11/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> rodrigo benenson wrote:
+> 
+> >Misc letter, I jump through various topics;
+> >
+> >All our code is in an open access svn repository (see our web page)
+> >
+> >For the tests your should look at TestConcurrentEdition.n and the
+> >referred paper. I'm curious to see how your implementation handle that
+> >case.
+> >
+> >
+> >
+> I'll try and convert the testcases over the weekend and let you know of
+> the results.
+> 
+> >>>Convergence is really only an issue for 2 Insert operations on the same
+> >>>
+> >>>
+> >start point, which is taken care of by introducing a priority based on
+> >the client id.
+> >
+> >Convergence is an issue because the users generate different
+> >operations over different text versions, it has nothing to do with
+> >what you describe. Two operations at the same point at the same
+> >version relates more (if I remember fine) to intention preservation.
+> >
+> >
+> Maybe I didn't describe it clear enough. Assume Person A types ABC and
+> Person B types DEF in the same position concurrently, then you need to
+> worry about whether you make that ABCDEF or DEFABC. By convergence only
+> being an issue in this case I meant that the intentation preservation
+> solves the problem of convergence automatically for all other cases.
+> 
+> >I agree that centralized approaches are much simpler, however we did
+> >not wanted to use this approach for two reasons:
+> >- this approach overload the bandwidth of the "server" node.
+> >- if two groups are collaborating, all the delay will be as slow as
+> >the server node. In decentralized approach nodes in local area
+> >networks have the delay of local area network and nodes in remote
+> >locations have the delay of remote locations. I expect that this
+> >effect will be noticeable.
+> >- a decentralized approach allow to use one and only one node as "server"
+> >
+> >
+> >
+> OK
+> 
+> >>>Fair enough, but again it just might not get used by people using
+> >>>
+> >>>
+> >different languages. (kde libs are usually C++ based for example)
+> >
+> >the dotnet platform can interest people programming in ML, Java, C#,
+> >Python, we consider that .Net allow better integration and
+> >collaboration between "people of different languages".
+> >
+> >Personally I'm language agnostic, I just try to use the correct tool
+> >available for the required job.
+> >
+> >The topic is deployability and compatibility, not a C# versus C++ flame ware.
+> >
+> >
+> This is all fine by me. I don't even want to tell you what tools to use.
+> All I'm trying to say is that I don't believe everyone else will take it
+> like that.
+> 
+> >Finally,
+> >let's imagine that we have a common protocol. And now imagine that I
+> >need to change something, for example, sites identifier are no more 16
+> >bytes random numbers, but Ip+Port strings.
+> >Doing such change would not break immediately the compatibility ?
+> >
+> >
+> Sure changing from a number to a string will be a problem.
+> 
+> >What would have to be done to have systems inter operate again ?
+> >
+> >
+> We would have to define a new version of the networking protocol
+> (protocol version should be checked in the initial connection anyway)
+> and maybe try and set up a work around for old clients.
+> 
+> >It will be hard to me to think that specifying a protocol is not
+> >create double work, double bugs and double pain.
+> >
+> >
+> I think we are already doing exactly doing that by using 2 different
+> approaches.
+> 
+> After looking at your test cases I think the whole thing could be
+> problematic anyway. The lack of a globally ordered sequence with your
+> approach would seriously upset my approach. Now I am convinced that it
+> wouldn't be as easy as defining a protocol, but would also involve
+> transferring application states and extending my algorithm. Nevertheless
+> it would have been a good thing I believe :)
+> 
+> Andreas
+> 
+>
+
+
+From psychobrain at gmx.net  Wed May 11 14:06:17 2005
+From: psychobrain at gmx.net (Andreas Ramm)
+Date: Wed, 11 May 2005 22:06:17 +1000
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <ef5e725705051104453420c655@mail.gmail.com>
+References: <427DFBD8.3000109@gmx.net>	 <ef5e7257050508133246f69c63@mail.gmail.com> <427F3D75.7070104@gmx.net>	 <ef5e725705050904012cef2e63@mail.gmail.com> <4280952D.4060605@gmx.net>	 <ef5e72570505100431475c5d73@mail.gmail.com> <4280B5E7.60903@gmx.net>	 <ef5e725705051006561cd11a2c@mail.gmail.com> <4281EE48.80407@gmx.net> <ef5e725705051104453420c655@mail.gmail.com>
+Message-ID: <4281F539.4040008@gmx.net>
+
+rodrigo benenson wrote:
+
+>>I'll try and convert the testcases over the weekend and let you know of
+>>the results.
+>>    
+>>
+>
+>If your application is server based, you should look at the method
+>
+>chalks/chalks0/src/ConcurrentEdition.py:TestConcurrentEditionServer
+>
+>in the svn repository, there is a test case for a server-N clients architecture.
+>  
+>
+One thing I noticed while looking at your test cases is that you seem to 
+be using character based indices. Doesn't that slow down the actual 
+operations?
+
+>  
+>
+>>This is all fine by me. I don't even want to tell you what tools to use.
+>>All I'm trying to say is that I don't believe everyone else will take it
+>>like that.
+>>    
+>>
+>
+>Of course, we are not trying to create a development platform for
+>everyone, just an application for everyone.
+>  
+>
+OK.
+
+>>After looking at your test cases I think the whole thing could be
+>>problematic anyway. The lack of a globally ordered sequence with your
+>>approach would seriously upset my approach. Now I am convinced that it
+>>wouldn't be as easy as defining a protocol, but would also involve
+>>transferring application states and extending my algorithm. Nevertheless
+>>it would have been a good thing I believe :)
+>>    
+>>
+>
+>Howhever what do you think about creating a base library ? 
+>
+That again has the problem of not everyone will use it.
+
+>Or about
+>defining an implementation independent interface such that different
+>implementations could be exchangable under the same gui ? (I mean
+>creating a hard separation between gui and collaboration service).
+>  
+>
+That sounds like an idea that could work. It would basically mean having 
+multiple libraries around. I guess we can look at that when core 
+functionalities are up and running.
+
+Andreas
+
+
+
+From rodrigo.benenson at gmail.com  Wed May 11 14:09:54 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 11 May 2005 14:09:54 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <4281F539.4040008@gmx.net>
+References: <427DFBD8.3000109@gmx.net> <427F3D75.7070104@gmx.net>
+	 <ef5e725705050904012cef2e63@mail.gmail.com> <4280952D.4060605@gmx.net>
+	 <ef5e72570505100431475c5d73@mail.gmail.com> <4280B5E7.60903@gmx.net>
+	 <ef5e725705051006561cd11a2c@mail.gmail.com> <4281EE48.80407@gmx.net>
+	 <ef5e725705051104453420c655@mail.gmail.com> <4281F539.4040008@gmx.net>
+Message-ID: <ef5e725705051105093b330f37@mail.gmail.com>
+
+> One thing I noticed while looking at your test cases is that you seem to
+> be using character based indices. Doesn't that slow down the actual
+> operations?
+
+what do you mean ?
+
+rodrigob.
+
+On 5/11/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> rodrigo benenson wrote:
+> 
+> >>I'll try and convert the testcases over the weekend and let you know of
+> >>the results.
+> >>
+> >>
+> >
+> >If your application is server based, you should look at the method
+> >
+> >chalks/chalks0/src/ConcurrentEdition.py:TestConcurrentEditionServer
+> >
+> >in the svn repository, there is a test case for a server-N clients architecture.
+> >
+> >
+> One thing I noticed while looking at your test cases is that you seem to
+> be using character based indices. Doesn't that slow down the actual
+> operations?
+> 
+> >
+> >
+> >>This is all fine by me. I don't even want to tell you what tools to use.
+> >>All I'm trying to say is that I don't believe everyone else will take it
+> >>like that.
+> >>
+> >>
+> >
+> >Of course, we are not trying to create a development platform for
+> >everyone, just an application for everyone.
+> >
+> >
+> OK.
+> 
+> >>After looking at your test cases I think the whole thing could be
+> >>problematic anyway. The lack of a globally ordered sequence with your
+> >>approach would seriously upset my approach. Now I am convinced that it
+> >>wouldn't be as easy as defining a protocol, but would also involve
+> >>transferring application states and extending my algorithm. Nevertheless
+> >>it would have been a good thing I believe :)
+> >>
+> >>
+> >
+> >Howhever what do you think about creating a base library ?
+> >
+> That again has the problem of not everyone will use it.
+> 
+> >Or about
+> >defining an implementation independent interface such that different
+> >implementations could be exchangable under the same gui ? (I mean
+> >creating a hard separation between gui and collaboration service).
+> >
+> >
+> That sounds like an idea that could work. It would basically mean having
+> multiple libraries around. I guess we can look at that when core
+> functionalities are up and running.
+> 
+> Andreas
+> 
+>
+
+
+From psychobrain at gmx.net  Wed May 11 14:32:51 2005
+From: psychobrain at gmx.net (Andreas Ramm)
+Date: Wed, 11 May 2005 22:32:51 +1000
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <ef5e725705051105093b330f37@mail.gmail.com>
+References: <427DFBD8.3000109@gmx.net> <427F3D75.7070104@gmx.net>	 <ef5e725705050904012cef2e63@mail.gmail.com> <4280952D.4060605@gmx.net>	 <ef5e72570505100431475c5d73@mail.gmail.com> <4280B5E7.60903@gmx.net>	 <ef5e725705051006561cd11a2c@mail.gmail.com> <4281EE48.80407@gmx.net>	 <ef5e725705051104453420c655@mail.gmail.com> <4281F539.4040008@gmx.net> <ef5e725705051105093b330f37@mail.gmail.com>
+Message-ID: <4281FB73.2080806@gmx.net>
+
+
+rodrigo benenson wrote:
+
+>>One thing I noticed while looking at your test cases is that you seem to
+>>be using character based indices. Doesn't that slow down the actual
+>>operations?
+>>    
+>>
+>
+>what do you mean ?
+>
+>  
+>
+Inserting something at offset 10000 is slower than inserting something 
+at line 300 offset 5 for most implementations.
+
+But then I have no idea how you actually implemented the widget side of 
+things.
+
+Andreas
+
+
+From rodrigo.benenson at gmail.com  Wed May 11 16:13:26 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 11 May 2005 16:13:26 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <4281FB73.2080806@gmx.net>
+References: <427DFBD8.3000109@gmx.net> <4280952D.4060605@gmx.net>
+	 <ef5e72570505100431475c5d73@mail.gmail.com> <4280B5E7.60903@gmx.net>
+	 <ef5e725705051006561cd11a2c@mail.gmail.com> <4281EE48.80407@gmx.net>
+	 <ef5e725705051104453420c655@mail.gmail.com> <4281F539.4040008@gmx.net>
+	 <ef5e725705051105093b330f37@mail.gmail.com> <4281FB73.2080806@gmx.net>
+Message-ID: <ef5e72570505110713117ad79f@mail.gmail.com>
+
+the document is a string. return to line is a character. the time to
+access an array is infinitesimal (I estimate in base of my experience)
+in comparison to network delays, serialization of data or computation
+of the operations transform.
+
+Anyway we are not at the point to worry about optimization, and
+optimization before necessity is not a good programming practice. We
+just consider design issues as scalability and functionalities.
+
+rodrigob.
+
+On 5/11/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> 
+> 
+> rodrigo benenson wrote:
+> 
+> >>One thing I noticed while looking at your test cases is that you seem to
+> >>be using character based indices. Doesn't that slow down the actual
+> >>operations?
+> >>
+> >>
+> >
+> >what do you mean ?
+> >
+> >
+> >
+> Inserting something at offset 10000 is slower than inserting something
+> at line 300 offset 5 for most implementations.
+> 
+> But then I have no idea how you actually implemented the widget side of
+> things.
+> 
+> Andreas
+>
+
+
+From psychobrain at gmx.net  Wed May 11 23:05:23 2005
+From: psychobrain at gmx.net (Andreas Ramm)
+Date: Thu, 12 May 2005 07:05:23 +1000
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <ef5e72570505110713117ad79f@mail.gmail.com>
+References: <427DFBD8.3000109@gmx.net> <4280952D.4060605@gmx.net>	 <ef5e72570505100431475c5d73@mail.gmail.com> <4280B5E7.60903@gmx.net>	 <ef5e725705051006561cd11a2c@mail.gmail.com> <4281EE48.80407@gmx.net>	 <ef5e725705051104453420c655@mail.gmail.com> <4281F539.4040008@gmx.net>	 <ef5e725705051105093b330f37@mail.gmail.com> <4281FB73.2080806@gmx.net> <ef5e72570505110713117ad79f@mail.gmail.com>
+Message-ID: <42827393.4080604@gmx.net>
+
+rodrigo benenson wrote:
+
+>the document is a string. return to line is a character. the time to
+>access an array is infinitesimal (I estimate in base of my experience)
+>in comparison to network delays, serialization of data or computation
+>of the operations transform.
+>  
+>
+The problem is not accessing time, but time to perform an insert or delete.
+
+>Anyway we are not at the point to worry about optimization, and
+>optimization before necessity is not a good programming practice. We
+>just consider design issues as scalability and functionalities.
+>  
+>
+Sure, just thought I'd mention it while I saw it :)
+
+Andreas
+
+
+From rodrigo.benenson at gmail.com  Wed May 11 23:35:16 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 11 May 2005 23:35:16 +0200
+Subject: [Chalks-devel] Re: Chalks
+In-Reply-To: <42827393.4080604@gmx.net>
+References: <427DFBD8.3000109@gmx.net> <4280B5E7.60903@gmx.net>
+	 <ef5e725705051006561cd11a2c@mail.gmail.com> <4281EE48.80407@gmx.net>
+	 <ef5e725705051104453420c655@mail.gmail.com> <4281F539.4040008@gmx.net>
+	 <ef5e725705051105093b330f37@mail.gmail.com> <4281FB73.2080806@gmx.net>
+	 <ef5e72570505110713117ad79f@mail.gmail.com> <42827393.4080604@gmx.net>
+Message-ID: <ef5e7257050511143576ca5d13@mail.gmail.com>
+
+anyway the "data container" is abstracted by a ITextBuffer interface,
+so there is no trouble in changing/optimizing it in the future.
+Actually we use the GtkTextBuffer, in that case accessing by line or
+by offset just does not make difference over the time to perform an
+insert or delete.
+
+We apply the KISS principle as much as we are capable, as well as the
+common quote of Einstein:
+
+keep it as simple as possible, but not simpler
+
+rodrigob.
+
+
+On 5/11/05, Andreas Ramm <psychobrain at gmx.net> wrote:
+> rodrigo benenson wrote:
+> 
+> >the document is a string. return to line is a character. the time to
+> >access an array is infinitesimal (I estimate in base of my experience)
+> >in comparison to network delays, serialization of data or computation
+> >of the operations transform.
+> >
+> >
+> The problem is not accessing time, but time to perform an insert or delete.
+> 
+> >Anyway we are not at the point to worry about optimization, and
+> >optimization before necessity is not a good programming practice. We
+> >just consider design issues as scalability and functionalities.
+> >
+> >
+> Sure, just thought I'd mention it while I saw it :)
+> 
+> Andreas
+>
+
+
+From rodrigo.benenson at gmail.com  Sat May 14 22:25:57 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sat, 14 May 2005 22:25:57 +0200
+Subject: [Chalks-devel] Chalks on windows
+Message-ID: <ef5e7257050514132527eb976b@mail.gmail.com>
+
+Today Ricardo and me where working to get Chalks run on Windows.
+The result can be seen at
+http://chalks.berlios.de/dokuwiki/doku.php?id=status
+
+there still a lot of work to get Chalks compiling and running "clean"
+on windows (we also need to understand better how gtk/gtk# is supposed
+to work on Windows).
+
+
+I will just add two elements to the work of today:
+
+- There is .Net 2.0 version of nemerle aviable at 
+http://nemerle.org/download/boot_2_0/
+
+this version allow embedding (but does not seems to make chalks work)
+
+- The test_network.exe over windows indeed rise a different error that
+on linux/mono:
+
+Instead of "tcp transport error" we get 
+
+System.Runtime.Serialization.SerializationException: Type 'Nemerle.Internal.Tupl
+e3' in Assembly 'Nemerle, Version=0.3.1.4, Culture=neutral, PublicKeyToken=e080a
+9c724e2bfcd' is not marked as serializable.
+
+A bug was repported to the nermelies
+http://nemerle.org/bugs/view.php?id=453
+
+It is marked as having "high severity".
+
+rodrigob.
+
+
+From rodrigo.benenson at gmail.com  Sat May 14 22:53:25 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sat, 14 May 2005 22:53:25 +0200
+Subject: [Chalks-devel] OpenUsability for Chalks
+Message-ID: <ef5e72570505141353636252cc@mail.gmail.com>
+
+Hi Kesava,
+we are very pleased to know that an usability expert has joined the
+development of Chalks.
+
+As Chalks has as objective to be used in everyday life usable
+interface is a core preoccupation. You collaboration is very welcome !
+
+
+Actually we are working to get the first alpha version operational. As
+you could look in the project web page
+http://chalks.berlios.de
+
+Chalks is a project that started in 2003 and still going on. We had a
+first version in Python and now have switched to .Net, doing a
+complete rewrite of the code.
+
+The actual Gui is made using Gtk, but the revised design allow the
+implementation of specific guis for each platform if required. For the
+first development iteration we will be using the cross platform
+capabilities of Gtk.
+
+Actually the Gui is almost structured and now we are working in the
+"invisible" layers, so I think you could already take a look and make
+you first appreciations. On the technical side I think that the
+easiest thing to you is to take a look at the chalks.glade file (using
+Glade)  and look the LeoN/Chalks screen shots available on the web
+site.
+
+
+I'm specially worried of two things:
+
+- The specific design of the Gui itself (having the required
+preferences, a good order for the menus, the correct information on
+the status bar, etc...)
+
+- The design of the interaction of the user with a collaborative
+system, in particular when the user joins a session or when a remote
+user enter into the document being edited.
+
+I would be very pleased to hear your comments about the actual overall
+design, and your opinion about how a concurrent plain text edition
+system should look.
+
+Feel free to ask any question about the  project,
+
+Thanks for joining,
+rodrigob.
+
+PS: The OpenUsability entry of chalks is
+http://www.openusability.org/projects/chalks/
+
+
+Ricardo:
+A reference of Kesava can be found at (with a photo ;p)
+
+Usability Engineer
+http://www.chi-southindia.org/member-profile.htm
+
+and here we can see the subjects Kesava like to be involved
+
+Books about Practical HCI
+by Kesava Mallela, Interaction Designer
+http://www.amazon.com/exec/obidos/tg/listmania/list-browse/-/3G3BVTX934IGK/ref=cm_lm_lists/102-4058396-8320935
+
+
+PS: Cool, now we are at France, Brazil and India. Completely worldwide
+since his birth !
+
+
+From rodrigo.benenson at gmail.com  Sun May 15 17:24:37 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sun, 15 May 2005 17:24:37 +0200
+Subject: [Chalks-devel] ZeroConf for Chalks
+Message-ID: <ef5e7257050515082423bc416f@mail.gmail.com>
+
+Having ZeroConf working for Chalks is starting to become a priority.
+
+There is a short path to get it work.
+We only need three functions:
+- Get services
+- Publish service
+- Delete service
+
+The idea is to write a little C code that implements this three
+function, and then we write us own warper for this three functions. In
+.Net this is trivial.
+
+Ricardo: If you have troubles with Nemerle you can write that section in C#.
+
+Anyway I think I will be playing a little with this idea.
+
+rodrigob.
+
+
+From rodrigo.benenson at gmail.com  Sun May 15 19:23:04 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sun, 15 May 2005 19:23:04 +0200
+Subject: [Chalks-devel] Buggy but funny
+Message-ID: <ef5e725705051510236ac22d28@mail.gmail.com>
+
+Chalks is alife again !
+
+rodrigob.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: Capture.png
+Type: image/png
+Size: 146764 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/chalks-devel/attachments/20050515/b64330e6/attachment.png>
+
+From rnc000 at gmail.com  Sun May 15 21:45:41 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Sun, 15 May 2005 16:45:41 -0300
+Subject: [Chalks-devel] ZeroConf for Chalks
+In-Reply-To: <ef5e7257050515082423bc416f@mail.gmail.com>
+References: <ef5e7257050515082423bc416f@mail.gmail.com>
+Message-ID: <35f9d9da05051512454d1544fc@mail.gmail.com>
+
+I tried building Howl yesterday. C sources went fine, but I didn't
+manage to build the howl.NET bindings. I'll try posting on their
+-users mailing list.
+
+-- 
+Ricardo Niederberger Cabral
+
+
+On 5/15/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> Having ZeroConf working for Chalks is starting to become a priority.
+> 
+> There is a short path to get it work.
+> We only need three functions:
+> - Get services
+> - Publish service
+> - Delete service
+> 
+> The idea is to write a little C code that implements this three
+> function, and then we write us own warper for this three functions. In
+> .Net this is trivial.
+> 
+> Ricardo: If you have troubles with Nemerle you can write that section in C#.
+> 
+> Anyway I think I will be playing a little with this idea.
+> 
+> rodrigob.
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+
+
+From rodrigo.benenson at gmail.com  Mon May 16 11:35:39 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 16 May 2005 11:35:39 +0200
+Subject: [Chalks-devel] ZeroConf for Chalks
+In-Reply-To: <35f9d9da05051512454d1544fc@mail.gmail.com>
+References: <ef5e7257050515082423bc416f@mail.gmail.com>
+	 <35f9d9da05051512454d1544fc@mail.gmail.com>
+Message-ID: <ef5e72570505160235409c1143@mail.gmail.com>
+
+I played with it too, apparently the publication need to run in a
+thread. Stopping the thread stop the service publication.
+
+I'm not convincded .Net bindings will be the easiest/best way. Try it
+a little, I will add my playground to the repository (but probably not
+in the trunk). My strategy is to write a simple interface in C. Use it
+from .Net and let .Net manage the thread stuff.
+
+rodrigob.
+
+On 5/15/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> I tried building Howl yesterday. C sources went fine, but I didn't
+> manage to build the howl.NET bindings. I'll try posting on their
+> -users mailing list.
+> 
+> --
+> Ricardo Niederberger Cabral
+> 
+> 
+> On 5/15/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> > Having ZeroConf working for Chalks is starting to become a priority.
+> >
+> > There is a short path to get it work.
+> > We only need three functions:
+> > - Get services
+> > - Publish service
+> > - Delete service
+> >
+> > The idea is to write a little C code that implements this three
+> > function, and then we write us own warper for this three functions. In
+> > .Net this is trivial.
+> >
+> > Ricardo: If you have troubles with Nemerle you can write that section in C#.
+> >
+> > Anyway I think I will be playing a little with this idea.
+> >
+> > rodrigob.
+> > _______________________________________________
+> > Chalks-devel mailing list
+> > Chalks-devel at lists.berlios.de
+> > http://lists.berlios.de/mailman/listinfo/chalks-devel
+> >
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+
+
+From rodrigo.benenson at gmail.com  Mon May 16 14:53:43 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 16 May 2005 14:53:43 +0200
+Subject: [Chalks-devel] Choosing the build system
+Message-ID: <ef5e72570505160553533aa25b@mail.gmail.com>
+
+* Choose the build system
+	- nAnt: brings Ant, a standard on the Java world to .NET
+	- Traditional Makefile
+	- A-A-P (http://www.a-a-p.org/): Traditional Makefile on steroids
+
+
+After my first experience with Nant, I'm not very happy with it. I do
+not take anymore as the first choice (but you can take a look at
+http://svn.berlios.de/viewcvs/chalks/trunk/src/chalks.build?rev=112
+).
+
+Traditional makefiles are a not-so-bad choice but we have to learn how
+to "detect" the compiling platform. Others projects know how to do it
+(so guy in #mono said me to take a look at gtk-sharp svn, but I did
+not see anything).
+
+I add to the list Scons
+http://www.scons.org/
+
+seems to be as good as aap or better. Python dependencies are not pain
+because they are only for developers and python is aviable in all the
+modern unix distros anyway.
+
+We should have to choose what makes less pain. I do not have time to
+play with that things now.
+
+
+
+* Choose the distribution system
+	- Nullsoft installer for Windows system: GPL and easy to use.
+	- Let's keep a dist-<platform> file for each one. I'm cheking in the
+-win one which
+	  builds a .exe binary installer/uninstaller. 
+	- For nix platforms, I believe we just need to build a tar.gz archive
+with full sources
+	  (that could be a nAnt "src" target). After some time maintainers
+from *nix distributions
+	  may create binary packages for us adhering to their proper standards.
+
+I agree with the general approach. I would add a compiled compressed
+.Net version for linux (that would have dll dependencies) and a zipped
+full dlls included version for windows, to have an "unzip and run"
+deployment for people who do not like to install software just to test
+it.
+
+rodrigob.
+
+
+From rodrigo.benenson at gmail.com  Mon May 16 15:01:30 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 16 May 2005 15:01:30 +0200
+Subject: [Chalks-devel] Re: Choosing the build system
+In-Reply-To: <ef5e72570505160553533aa25b@mail.gmail.com>
+References: <ef5e72570505160553533aa25b@mail.gmail.com>
+Message-ID: <ef5e7257050516060170d620e3@mail.gmail.com>
+
+Just to enforce about Scons
+
+http://nsis.sourceforge.net/index.php?id=2&backPID=2&tt_news=22
+
+"A new build system was recently created for NSIS. It uses SCons. It
+now takes just one command to build the entire NSIS package."
+
+rodrigob.
+
+On 5/16/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> * Choose the build system
+>         - nAnt: brings Ant, a standard on the Java world to .NET
+>         - Traditional Makefile
+>         - A-A-P (http://www.a-a-p.org/): Traditional Makefile on steroids
+> 
+> After my first experience with Nant, I'm not very happy with it. I do
+> not take anymore as the first choice (but you can take a look at
+> http://svn.berlios.de/viewcvs/chalks/trunk/src/chalks.build?rev=112
+> ).
+> 
+> Traditional makefiles are a not-so-bad choice but we have to learn how
+> to "detect" the compiling platform. Others projects know how to do it
+> (so guy in #mono said me to take a look at gtk-sharp svn, but I did
+> not see anything).
+> 
+> I add to the list Scons
+> http://www.scons.org/
+> 
+> seems to be as good as aap or better. Python dependencies are not pain
+> because they are only for developers and python is aviable in all the
+> modern unix distros anyway.
+> 
+> We should have to choose what makes less pain. I do not have time to
+> play with that things now.
+> 
+> * Choose the distribution system
+>         - Nullsoft installer for Windows system: GPL and easy to use.
+>         - Let's keep a dist-<platform> file for each one. I'm cheking in the
+> -win one which
+>           builds a .exe binary installer/uninstaller.
+>         - For nix platforms, I believe we just need to build a tar.gz archive
+> with full sources
+>           (that could be a nAnt "src" target). After some time maintainers
+> from *nix distributions
+>           may create binary packages for us adhering to their proper standards.
+> 
+> I agree with the general approach. I would add a compiled compressed
+> .Net version for linux (that would have dll dependencies) and a zipped
+> full dlls included version for windows, to have an "unzip and run"
+> deployment for people who do not like to install software just to test
+> it.
+> 
+> rodrigob.
+>
+
+
+From rodrigo.benenson at gmail.com  Mon May 16 15:33:09 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 16 May 2005 15:33:09 +0200
+Subject: [Chalks-devel] Chalks artwork
+Message-ID: <ef5e725705051606336ef641f7@mail.gmail.com>
+
+Hi,
+we are a group of opensource enthusiast developing Chalks, an open
+source multiplatform realtime concurrent text editor.
+
+We pretend to create a simple and usable text editor that allow
+simultaneous edition of the text by multiple persons at the same time.
+This crossplatform tool would help people around the world to
+collaborate during the elaboration of documents, code, or simply
+convergence of ideas.
+
+Actually in alpha stage we are working to make this piece a world
+class software, contacting usability engineers and using the state of
+art techniques in software development and concurrent edition
+algorithms.
+
+At the actual point of the project I think it would be beneficious to
+enhance the visual identity of the product developing a minimal set of
+artworks, i.e. : logo and different size icons.
+
+I wrote this mail thus to ask your help in finding people capable and
+possibly interested in collaborating with us in the visual identity of
+the product.
+
+Thanks for your answer,
+Rodrigo Benenson
+http://chalks.berlios.de
+
+
+From rnc000 at gmail.com  Wed May 18 04:45:43 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Tue, 17 May 2005 23:45:43 -0300
+Subject: [Chalks-devel] windows stacktrace when connecting
+Message-ID: <35f9d9da050517194520fc6dfd@mail.gmail.com>
+
+Any idea why I'm getting a "security restriction" exception on Windows ? 
+I'll try googling it later. 
+
+Unhandled Exception: System.Runtime.Serialization.SerializationException: Becaus
+e of security restrictions, the type System.Runtime.Remoting.ObjRef cannot be ac
+cessed. ---> System.Security.SecurityException: Request failed.
+   at System.Security.SecurityRuntime.FrameDescSetHelper(FrameSecurityDescriptor
+ secDesc, PermissionSet demandSet, PermissionSet& alteredDemandSet)
+   at System.Runtime.Serialization.FormatterServices.nativeGetSafeUninitializedO
+bject(RuntimeType type)
+   at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+Type type)
+   --- End of inner exception stack trace ---
+
+Server stack trace:
+   at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+Type type)
+   at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ParseObject(Pa
+rseRecord pr)
+   at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Parse(ParseRec
+ord pr)
+   at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+thMapTyped(BinaryObjectWithMapTyped record)
+   at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+thMapTyped(BinaryHeaderEnum binaryHeaderEnum)
+   at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.Run()
+   at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Deserialize(He
+aderHandler handler, __BinaryParser serParser, Boolean fCheck, IMethodCallMessag
+e methodCallMessage)
+   at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize
+(Stream serializationStream, HeaderHandler handler, Boolean fCheck, IMethodCallM
+essage methodCallMessage)
+   at System.Runtime.Remoting.Channels.CoreChannel.DeserializeBinaryRequestMessa
+ge(String objectUri, Stream inputStream, Boolean bStrictBinding, TypeFilterLevel
+ securityLevel)
+   at System.Runtime.Remoting.Channels.BinaryServerFormatterSink.ProcessMessage(
+IServerChannelSinkStack sinkStack, IMessage requestMsg, ITransportHeaders reques
+tHeaders, Stream requestStream, IMessage& responseMsg, ITransportHeaders& respon
+seHeaders, Stream& responseStream)
+
+Exception rethrown at [0]:
+   at Chalks.Network.NetworkNode.start_collaborating(String uri)
+   at Chalks.Gui.ChalksWindow.on_connect_menu_item_activate(Object _o, EventArgs
+ _args)
+   at GLib.Signal.voidObjectCallback(IntPtr handle, IntPtr gch)
+   at Gtk.Application.gtk_main()
+   at Gtk.Application.Run()
+   at Chalks.Gui.ChalksWindow..ctor()
+   at Chalks.Chalks.Main()
+
+C:\prj\chalks\src>
+
+
+-- 
+Ricardo Niederberger Cabral
+
+
+From rodrigo.benenson at gmail.com  Wed May 18 09:30:11 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 18 May 2005 09:30:11 +0200
+Subject: [Chalks-devel] windows stacktrace when connecting
+In-Reply-To: <35f9d9da050517194520fc6dfd@mail.gmail.com>
+References: <35f9d9da050517194520fc6dfd@mail.gmail.com>
+Message-ID: <ef5e725705051800309f51c20@mail.gmail.com>
+
+This seems to be the answer:
+
+http://www.glacialcomponents.com/ArticleDetail.aspx?articleID=SerializationException
+
+the same
+http://www.gotdotnet.com/team/changeinfo/Backwards1.0to1.1/default.aspx#00000153
+
+
+rodrigob.
+
+On 5/18/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> Any idea why I'm getting a "security restriction" exception on Windows ?
+> I'll try googling it later.
+> 
+> Unhandled Exception: System.Runtime.Serialization.SerializationException: Becaus
+> e of security restrictions, the type System.Runtime.Remoting.ObjRef cannot be ac
+> cessed. ---> System.Security.SecurityException: Request failed.
+>    at System.Security.SecurityRuntime.FrameDescSetHelper(FrameSecurityDescriptor
+>  secDesc, PermissionSet demandSet, PermissionSet& alteredDemandSet)
+>    at System.Runtime.Serialization.FormatterServices.nativeGetSafeUninitializedO
+> bject(RuntimeType type)
+>    at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+> Type type)
+>    --- End of inner exception stack trace ---
+> 
+> Server stack trace:
+>    at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+> Type type)
+>    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ParseObject(Pa
+> rseRecord pr)
+>    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Parse(ParseRec
+> ord pr)
+>    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+> thMapTyped(BinaryObjectWithMapTyped record)
+>    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+> thMapTyped(BinaryHeaderEnum binaryHeaderEnum)
+>    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.Run()
+>    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Deserialize(He
+> aderHandler handler, __BinaryParser serParser, Boolean fCheck, IMethodCallMessag
+> e methodCallMessage)
+>    at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize
+> (Stream serializationStream, HeaderHandler handler, Boolean fCheck, IMethodCallM
+> essage methodCallMessage)
+>    at System.Runtime.Remoting.Channels.CoreChannel.DeserializeBinaryRequestMessa
+> ge(String objectUri, Stream inputStream, Boolean bStrictBinding, TypeFilterLevel
+>  securityLevel)
+>    at System.Runtime.Remoting.Channels.BinaryServerFormatterSink.ProcessMessage(
+> IServerChannelSinkStack sinkStack, IMessage requestMsg, ITransportHeaders reques
+> tHeaders, Stream requestStream, IMessage& responseMsg, ITransportHeaders& respon
+> seHeaders, Stream& responseStream)
+> 
+> Exception rethrown at [0]:
+>    at Chalks.Network.NetworkNode.start_collaborating(String uri)
+>    at Chalks.Gui.ChalksWindow.on_connect_menu_item_activate(Object _o, EventArgs
+>  _args)
+>    at GLib.Signal.voidObjectCallback(IntPtr handle, IntPtr gch)
+>    at Gtk.Application.gtk_main()
+>    at Gtk.Application.Run()
+>    at Chalks.Gui.ChalksWindow..ctor()
+>    at Chalks.Chalks.Main()
+> 
+> C:\prj\chalks\src>
+> 
+> --
+> Ricardo Niederberger Cabral
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+
+
+From rodrigo.benenson at gmail.com  Wed May 18 20:35:03 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Wed, 18 May 2005 20:35:03 +0200
+Subject: [Chalks-devel] Fwd: [Bug 74950][Nor] Changed - The misterious System.Runtime.Remoting "tcp transport error"
+In-Reply-To: <20050518165655.7FBAD1AE51E@bugzilla.ximian.com>
+References: <bug-74950@chernobyl.ximian.com>
+	 <20050518165655.7FBAD1AE51E@bugzilla.ximian.com>
+Message-ID: <ef5e725705051811357cfbc4b@mail.gmail.com>
+
+---------- Forwarded message ----------
+From: bugzilla-daemon at bugzilla.ximian.com <bugzilla-daemon at bugzilla.ximian.com>
+Date: May 18, 2005 6:56 PM
+Subject: [Bug 74950][Nor] Changed - The misterious
+System.Runtime.Remoting "tcp transport error"
+To: mono-bugs at ximian.com, rodrigo.benenson at gmail.com
+
+
+Please do not reply to this email- if you want to comment on the bug, go to the
+URL shown below and enter your comments there.
+
+Changed by lluis at ximian.com.
+
+http://bugzilla.ximian.com/show_bug.cgi?id=74950
+
+--- shadow/74950        2005-05-14 16:36:11.000000000 -0400
++++ shadow/74950.tmp.27866      2005-05-18 12:56:55.000000000 -0400
+@@ -1,14 +1,14 @@
+ Bug#: 74950
+ Product: Mono: Class Libraries
+ Version: 1.1
+-OS:
++OS: unknown
+ OS Details: Ubuntu breezy
+-Status: NEW
+-Resolution:
+-Severity:
++Status: RESOLVED
++Resolution: FIXED
++Severity: Unknown
+ Priority: Normal
+ Component: System
+ AssignedTo: mono-bugs at ximian.com
+ ReportedBy: rodrigo.benenson at gmail.com
+ QAContact: mono-bugs at ximian.com
+ TargetMilestone: ---
+@@ -54,6 +54,9 @@
+ Additional Information:
+
+ can look at Chalks code at revision 110
+ http://svn.berlios.de/viewcvs/chalks/?rev=110
+
+ the error is generated when running test_network.exe
++
++------- Additional Comments From lluis at ximian.com  2005-05-18 12:56 -------
++Fixed in SVN (r44689). Thanks!
+
+
+From rodrigo.benenson at gmail.com  Thu May 19 00:29:35 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Thu, 19 May 2005 00:29:35 +0200
+Subject: [Chalks-devel] Chalks status and roadpath
+Message-ID: <ef5e725705051815293889f421@mail.gmail.com>
+
+Well I'm pretty happy the design cleanup and full rewrite of Chalks
+seems to have been a complete success !
+
+Actually I can say that we have reached the same features available in
+the previous alpha version, but this time code is much cleaner and
+structure still being visible. I'm confident that this time we got it
+right. We already had a first successful dummy test session and a
+windows compilation/buggy execution.
+
+It miss some elements before we get to beta. I'm writing this mail
+because I think I should be fine to make the point on what is working,
+what is not working and what are the priorities. Here is the list of
+things to do (in no special order),
+
+a - The concurrentedition has been translated and pass the base test.
+That is good enough for alpha but more  tests have to be write (clever
+ones, that search tricky situations)
+
+b - The network layer has been implemented in his first version. It is
+condemned to evolve to a more efficient use of bandwidth, but the
+remoting implementation is good enough for a proof of concept.
+Actually the network pass all his tests. All the type of messages are
+tested. Maybe some tests at start_collaborating level could be written
+(test authorization, authorization denial ?), but seems to be low
+priority (unless we discover that this area is bug prone...).
+
+c - ConcurrentEditableWidget is implemented and work pretty fine. The
+only feature I would like to add is tooltip over colored text to show
+"who wrote that".
+
+d- The Gui is implemented but the interface and interactions design
+should be validated/corrected by an usability consultor.
+
+e - For beta it would be fine to implement undo/redo (commonly used by
+persons).
+
+f - There is a minibug not yet resolved about the behaviour of the gui
+when the user press "up arrow" at the command entry. This button
+should go up in the commands history (implemented), but actually it
+also make loose the focus of the widget (focus go to the upper widget,
+the logs text).
+
+g - The preferences dialog is not implemented because I have nothing
+to put in. Hopefully there is no need to have one ;).
+
+h - The connection dialog is not yet ZeroConf enabled.
+
+i - Actually Chalks start immediately sharing the document.  This
+behaviour has be chosen because Chalks is made for collaborating, if
+the user open it is because that document will be shared. A menu have
+to be added to set the password and probably an icon to show that the
+document access is protected by password (stock_lock , stock_lock_open
+) or not (a click on the lock should allow the parent node to change
+the password for future connections). In this way by default the
+document is open, it can be protected before sensitive information is
+added for private documents. When opening a file, the password should
+be asked after the file is open but before the file is shared (to
+avoid, just in time attacks ?).
+
+j - We do not know how to make the "makefile" crossplatform. We would
+like also to extend it to automagically build the distribution
+packages (nis and source tar.gz). Maybe we should choose another, more
+powerful compilation system.
+
+k - the documentation have to be finished (wiki and help dialogs of
+the application)
+
+l - some cool swf videos have to be registered to, explain the usage of chalks
+
+m - quit in the application does not quit (long standing unacceptable
+bug) (only the second attempt close the application)
+
+n - sourceview has to be reinserted in the compilation. Makes more
+complicated the compilation, but enable syntax coloring and line
+numbers. A very important feature for many people (specially for us
+early adopters group)
+
+o - we should contact a Gtk#/Cocoa# community to ask a Mac
+collaborator, to help with compatibility of Chalks on Mac and/or the
+development of a Cocoa gui for Chalks.
+
+The list is not short, but anyway I will try to order it from higher
+priority to less urgency:
+
+1  - The quit bug 
+2  - The "arrow up" command entry bug
+3  - The crossplatform compilation system enhancement
+4  - ZeroConf support
+5  - Interface and interactions design validation
+6  - Preferences dialog (what we want to make customizable)
+7  - Undo/Redo implementation
+8  - Implement password user interface
+9  - Application and wiki documentation
+10- ConcurrentEditableWidget tooltips
+11- SourceView usage
+12- More automated tests for concurrentedition
+13- More automated tests for network layer
+14- MacOs support
+15- Promotional videos
+
+This is a proposal, a suggestion. I just thougth that writing it would
+make easier to see where we are and what have to be done. Also it
+would help to see if I'm forgetting something. I'm forgetting
+something ? Does the priorities does not seems adequate ?
+
+
+rodrigob.
+
+
+From rodrigo.benenson at gmail.com  Thu May 19 00:47:35 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Thu, 19 May 2005 00:47:35 +0200
+Subject: Fwd: [Chalks-devel] windows stacktrace when connecting
+In-Reply-To: <ef5e7257050518154553b3f568@mail.gmail.com>
+References: <35f9d9da050517194520fc6dfd@mail.gmail.com>
+	 <ef5e725705051800309f51c20@mail.gmail.com>
+	 <ef5e7257050518154553b3f568@mail.gmail.com>
+Message-ID: <ef5e725705051815471bd5037d@mail.gmail.com>
+
+I implemented this on Server side and got
+
+./test_network.exe
+Doing the Network tests setup
+Gui: set_site_id(124aa469-99ea-4c30-9ad8-5ebe33ceb250)
+Found available port 1080
+Chalks service aviable at:
+tcp://84.100.133.18:1080/node0
+
+Ce: Setting network interface using instance Chalks.Network.NetworkNode
+Gui: set_site_id(cab1593c-acef-4723-83ad-a66429b387b7)
+
+Unhandled Exception: System.NotSupportedException: Operation is not supported.
+in <0x0001d> System.Runtime.Remoting.Channels.ServerDispatchSinkProvider:set_Next
+(IServerChannelSinkProvider value)
+in <0x00061> System.Runtime.Remoting.Channels.ChannelServices:CreateServerChannelSinkChain
+(IServerChannelSinkProvider provider, IChannelReceiver channel)
+in <0x00156> System.Runtime.Remoting.Channels.Tcp.TcpServerChannel:Init
+(IServerChannelSinkProvider serverSinkProvider)
+in <0x0003b> System.Runtime.Remoting.Channels.Tcp.TcpServerChannel:.ctor
+(System.String name, Int32 port, IServerChannelSinkProvider
+serverSinkProvider)
+in <0x00107> Chalks.Network.NetworkNode:start_collaboration_service ()
+make: *** [test_network.exe] Erreur 1
+
+is this a mono "not yet implemented" error ? Could you check what
+happens on .Net 1.1 ? (look at Network.n:231)
+
+
+
+On 5/18/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> This seems to be the answer:
+>
+> http://www.glacialcomponents.com/ArticleDetail.aspx?articleID=SerializationException
+>
+> the same
+> http://www.gotdotnet.com/team/changeinfo/Backwards1.0to1.1/default.aspx#00000153
+>
+>
+> rodrigob.
+>
+> On 5/18/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> > Any idea why I'm getting a "security restriction" exception on Windows ?
+> > I'll try googling it later.
+> >
+> > Unhandled Exception: System.Runtime.Serialization.SerializationException: Becaus
+> > e of security restrictions, the type System.Runtime.Remoting.ObjRef cannot be ac
+> > cessed. ---> System.Security.SecurityException: Request failed.
+> >    at System.Security.SecurityRuntime.FrameDescSetHelper(FrameSecurityDescriptor
+> >  secDesc, PermissionSet demandSet, PermissionSet& alteredDemandSet)
+> >    at System.Runtime.Serialization.FormatterServices.nativeGetSafeUninitializedO
+> > bject(RuntimeType type)
+> >    at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+> > Type type)
+> >    --- End of inner exception stack trace ---
+> >
+> > Server stack trace:
+> >    at System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(
+> > Type type)
+> >    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ParseObject(Pa
+> > rseRecord pr)
+> >    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Parse(ParseRec
+> > ord pr)
+> >    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+> > thMapTyped(BinaryObjectWithMapTyped record)
+> >    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.ReadObjectWi
+> > thMapTyped(BinaryHeaderEnum binaryHeaderEnum)
+> >    at System.Runtime.Serialization.Formatters.Binary.__BinaryParser.Run()
+> >    at System.Runtime.Serialization.Formatters.Binary.ObjectReader.Deserialize(He
+> > aderHandler handler, __BinaryParser serParser, Boolean fCheck, IMethodCallMessag
+> > e methodCallMessage)
+> >    at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize
+> > (Stream serializationStream, HeaderHandler handler, Boolean fCheck, IMethodCallM
+> > essage methodCallMessage)
+> >    at System.Runtime.Remoting.Channels.CoreChannel.DeserializeBinaryRequestMessa
+> > ge(String objectUri, Stream inputStream, Boolean bStrictBinding, TypeFilterLevel
+> >  securityLevel)
+> >    at System.Runtime.Remoting.Channels.BinaryServerFormatterSink.ProcessMessage(
+> > IServerChannelSinkStack sinkStack, IMessage requestMsg, ITransportHeaders reques
+> > tHeaders, Stream requestStream, IMessage& responseMsg, ITransportHeaders& respon
+> > seHeaders, Stream& responseStream)
+> >
+> > Exception rethrown at [0]:
+> >    at Chalks.Network.NetworkNode.start_collaborating(String uri)
+> >    at Chalks.Gui.ChalksWindow.on_connect_menu_item_activate(Object _o, EventArgs
+> >  _args)
+> >    at GLib.Signal.voidObjectCallback(IntPtr handle, IntPtr gch)
+> >    at Gtk.Application.gtk_main()
+> >    at Gtk.Application.Run()
+> >    at Chalks.Gui.ChalksWindow..ctor()
+> >    at Chalks.Chalks.Main()
+> >
+> > C:\prj\chalks\src>
+> >
+> > --
+> > Ricardo Niederberger Cabral
+> > _______________________________________________
+> > Chalks-devel mailing list
+> > Chalks-devel at lists.berlios.de
+> > http://lists.berlios.de/mailman/listinfo/chalks-devel
+> >
+>
+
+
+From rodrigo.benenson at gmail.com  Fri May 20 15:58:27 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Fri, 20 May 2005 15:58:27 +0200
+Subject: [Chalks-devel] Fwd: Chalks artwork
+In-Reply-To: <ef5e725705051606336ef641f7@mail.gmail.com>
+References: <ef5e725705051606336ef641f7@mail.gmail.com>
+Message-ID: <ef5e725705052006587441011b@mail.gmail.com>
+
+Hi,
+we are a group of opensource enthusiast developing Chalks, an open
+source multiplatform realtime concurrent text editor.
+
+We pretend to create a simple and usable text editor that allow
+simultaneous edition of the text by multiple persons at the same time.
+This crossplatform tool would help people around the world to
+collaborate during the elaboration of documents, code, or simply
+convergence of ideas.
+
+Actually in alpha stage we are working to make this piece a world
+class software, contacting usability engineers and using the state of
+art techniques in software development and concurrent edition
+algorithms.
+
+At the actual point of the project I think it would be beneficious to
+enhance the visual identity of the product developing a minimal set of
+artworks, i.e. : logo and different size icons.
+
+I wrote this mail thus to ask your help in finding people capable and
+possibly interested in collaborating with us in the visual identity of
+the product.
+
+Thanks for your answer,
+Rodrigo Benenson
+http://chalks.berlios.de
+
+
+From rodrigo.benenson at gmail.com  Sat May 21 19:00:24 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sat, 21 May 2005 19:00:24 +0200
+Subject: [Chalks-devel] Chalks Gui
+Message-ID: <ef5e72570505211000183b5400@mail.gmail.com>
+
+Hi folks,
+work is going on, and there is one thing I still not viewing clear:
+does the gui is fine or not ?
+
+Kesava has not retrofitted us since his subscription on the
+openusability project. this is not a  good sign (kesava, are you there
+?).
+
+This topic touch various elements of the todo list so I would like to
+solve them as soon as possible.
+
+5  - Interface and interactions design validation
+6  - Preferences dialog (what we want to make customizable ?)
+8  - Implement password user interface
+10 - ConcurrentEditableWidget tooltips
+
+Essentially I have two questions whose answer is not clear to me:
+A) Which things should we let the user configure ?
+B) How we should associate the colors in the text to the users ?
+
+My answer for question A) is : "Nothing".
+Ultra simple programs does not need preferences.  If user lack of
+something, we should make it autoconfigured.
+
+Question B) is more difficult, I see three options:
+a) Coloring consistently the messages received is enough
+b) The user type the command \who to get an up-to-date list of the
+users, each name colored consistently
+c) There is always a section of the window that show a colored users
+list (this one I want to avoid it, knowing users colors is a not
+highly relevant for the user, however is the way Subethadedit and
+MoonEdit does it)
+d) When putting the mouse over colored text a popup appears to
+indicate the originator name's
+e) The user click over the "N users" section of the status bar and a
+secondary window appears with the list of the users. The user can
+switch from one window to the other to consult the users.
+
+I need opinions on these topic. Ricardo, could you give your votes ?
+
+My opinion is:
+a) + b) + d)
+(in that order of priority for implementation too)
+
+rodrigob.
+
+
+From rnc000 at gmail.com  Sun May 22 17:20:26 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Sun, 22 May 2005 12:20:26 -0300
+Subject: [Chalks-devel] Re: Chalks Gui
+In-Reply-To: <ef5e72570505211000183b5400@mail.gmail.com>
+References: <ef5e72570505211000183b5400@mail.gmail.com>
+Message-ID: <35f9d9da0505220820319f5489@mail.gmail.com>
+
+Hi,
+
+On 5/21/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+
+> Essentially I have two questions whose answer is not clear to me:
+> A) Which things should we let the user configure ?
+> B) How we should associate the colors in the text to the users ?
+> 
+> My answer for question A) is : "Nothing".
+> Ultra simple programs does not need preferences.  If user lack of
+> something, we should make it autoconfigured.
+
+I agree with your minimalistic approach to make the software easier to
+use and more robust, but I believe there are some important options
+that can't be autoconfigured, including:
+
+1) Edit widget font size: some people need larger fonts and some like
+a lot of text viewable at once, etc.
+2) Choosing whether or not the editor should replace Tabs with spaces
+(and how many). Keep in mind that we are working on a pure text
+editor, so our target users are those who want to work with pure text
+files, and for some of them these aspects are important.
+
+> Question B) is more difficult, I see three options:
+> a) Coloring consistently the messages received is enough
+> b) The user type the command \who to get an up-to-date list of the
+> users, each name colored consistently
+
+I suggest using "/who" instead of '\who', that is, with a
+forward-slash, to be consistent with IRC commands. But I believe these
+/xyz commands are only intended for power-users, so for every  /xyz
+command, there should be a menu or toolbar option.
+
+These commands would also be very useful for us during debugging.
+
+
+> c) There is always a section of the window that show a colored users
+> list (this one I want to avoid it, knowing users colors is a not
+> highly relevant for the user, however is the way Subethadedit and
+> MoonEdit does it)
+
+Yeah, I also agree we could leave that to a second release, but it
+would be fine to make this "user list" richer in terms of information.
+A good feature would be allowing users to edit a text near their entry
+on this user list, describing what they are currently working on or
+thinking about. So they don't need to explain what they are doing on
+the chat window and you don't have to scroll back the chat window to
+find out what user X was thinking about and what he is trying to edit
+on the shared text file.
+
+This feature would also be a flexible and simple substitute to "away"
+features. So you can change your "user list" extra description from
+"reviewing specification section" to something like "away for 5min.".
+
+> d) When putting the mouse over colored text a popup appears to
+> indicate the originator name's
+
+I guess this is not needed. In most cases, there will be an average of
+only 2 concurrent editors, so a simple panel somewhere on the GUI or
+as a menu showing which color is which user is fine. The user will
+verify it 3 times and after that he will memorize.
+
+> e) The user click over the "N users" section of the status bar and a
+> secondary window appears with the list of the users. The user can
+> switch from one window to the other to consult the users.
+
+Even though bringing user info after clicking on this status bar label
+seems logical, it may not seem intuitive. I believe we should let the
+user list on a very visible place, because people need to constantly
+know who's online or not.
+
+Summarizing my opinion:
+
+a) + b) + c)
+
+In this order of implementation.
+
+-- 
+Ricardo Niederberger Cabral
+
+
+From rnc000 at gmail.com  Sun May 22 19:19:42 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Sun, 22 May 2005 14:19:42 -0300
+Subject: [Chalks-devel] embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+In-Reply-To: <D0D5A0AA-D1F1-4AE5-B9E8-0EA866C3C8C9@porchdogsoft.com>
+References: <35f9d9da0505151805426decf6@mail.gmail.com>
+	 <D0D5A0AA-D1F1-4AE5-B9E8-0EA866C3C8C9@porchdogsoft.com>
+Message-ID: <35f9d9da05052210192dbf189c@mail.gmail.com>
+
+Scott,
+
+Thanks a lot for the fix and thanks for Howl. I just tried the latest
+CVS code and .NET bindings are working as expected.
+
+My interest on Howl comes from a Zeroconf feature I'm working for the
+Chalks project [1], which intends to be a crossplatform realtime
+concurrent text editing software. We aim to make Chalks really easy to
+use and cut down on dependencies, so embedding the mdnsResponder
+daemon inside our app would be desirable, so the end user doesn't have
+to bother about installing a Windows service, starting it, etc.
+
+My questions: is this a good idea ? Anyone tried it before ? Any thoughts ?
+
+[1] http://chalks.berlios.de/
+
+Thanks and best regards,
+-- 
+Ricardo Niederberger Cabral
+
+
+On 5/16/05, Scott Herscher <scott at porchdogsoft.com> wrote:
+> Hey there Ricardo.  I should have this error fixed and checked-in
+> later today.
+> 
+> Thanks,
+> 
+> Scott
+> 
+> On May 15, 2005, at 6:05 PM, Ricardo Niederberger Cabral wrote:
+> 
+> > Hi,
+> >
+> > I'm trying to build the howl.NET bindings project on MSVC 7.1.3088
+> > (.NET framework 1.1). I'm using a fresh CVS checkout of the howl
+> > module and I've managed to build and test all C libs and sample
+> > programs, but the .NET bindings project fails with the following
+> > console output:
+> >
+> > Microsoft (R) .NET Framework Strong Name Utility  Version 1.1.4322.573
+> > Copyright (C) Microsoft Corporation 1998-2002. All rights reserved.
+> > Key pair written to howl_NET.snk
+> > Compiling...
+> > discovery.cpp
+> > ../../include\discovery.NET\discovery.h(244) : error C2061: syntax
+> > error : identifier 'sw_discovery_publish_handler'
+> > ../../include\discovery.NET\discovery.h(253) : error C2061: syntax
+> > error : identifier 'sw_discovery_browse_handler'
+> > ../../include\discovery.NET\discovery.h(265) : error C2061: syntax
+> > error : identifier 'sw_discovery_resolve_handler'
+> > ../../include\discovery.NET\discovery.h(281) : error C2061: syntax
+> > error : identifier 'sw_discovery_publish_host_handler'
+> > discovery.cpp(271) : fatal error C1903: unable to recover from
+> > previous error(s); stopping compilation
+> >
+> > Where are the sw_discovery_*_handler symbols defined ? I couldn't find
+> > them anywhere on the CVS.
+> >
+> > Thanks and best regards,
+> > --
+> > Ricardo Niederberger Cabral
+
+
+From rnc000 at gmail.com  Sun May 22 21:59:20 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Sun, 22 May 2005 16:59:20 -0300
+Subject: [Chalks-devel] Fwd: [howl-users]embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+In-Reply-To: <905B799E-2528-4A15-979F-F40E0CBE937F@porchdogsoft.com>
+References: <35f9d9da0505151805426decf6@mail.gmail.com>
+	 <D0D5A0AA-D1F1-4AE5-B9E8-0EA866C3C8C9@porchdogsoft.com>
+	 <35f9d9da05052210192dbf189c@mail.gmail.com>
+	 <905B799E-2528-4A15-979F-F40E0CBE937F@porchdogsoft.com>
+Message-ID: <35f9d9da05052212591ab896fb@mail.gmail.com>
+
+---------- Forwarded message ----------
+From: Scott Herscher <scott at porchdogsoft.com>
+Date: May 22, 2005 4:40 PM
+Subject: Re: [howl-users]embedding mdnsResponder on .NET apps. (was:
+building howl.NET bindings)
+To: howl-users at lists.porchdogsoft.com
+
+
+Hey there Ricardo!  Glad to hear the .NET stuff is working for you.
+
+As for your questions...I do have a few thoughts on the matter.  I'd
+be a little hypocritical to discourage you from embedding the
+mDNSResponder daemon inside your app;  Spike, the shared clipboard
+app that I wrote, embeds mDNSResponder and uses the embedded one if a
+system service isn't running.  So I definitely understand the
+motivation to do that.  That being said...I think it's a bad
+idea.  :-)   My main reason for embedding is that I'm pretty
+unsophisticated when it comes to Windows installers, and I didn't
+know how to elegantly install Howl behind the scenes when Spike was
+installed.  So I decided to punt and embed mDNSResponder in Spike.
+I've since learned it's not.  Suffice it to say, the next version of
+Spike *won't* have an embedded mDNSResponder. :-)
+
+There are some definite concrete disadvantages to embedding...in
+those cases when an app crashes nothing can clean up after it.  Also,
+it's really a waste of resources to have multiple mDNSResponders
+running on the same machine.
+
+So hypocritical or not, I'd discourage embedding mDNSResponder and
+look at other possibilities if that's possible.  Let me know if I can
+be of any help in doing this...
+
+Take care,
+
+Scott
+
+On May 22, 2005, at 10:19 AM, Ricardo Niederberger Cabral wrote:
+
+> Scott,
+>
+> Thanks a lot for the fix and thanks for Howl. I just tried the latest
+> CVS code and .NET bindings are working as expected.
+>
+> My interest on Howl comes from a Zeroconf feature I'm working for the
+> Chalks project [1], which intends to be a crossplatform realtime
+> concurrent text editing software. We aim to make Chalks really easy to
+> use and cut down on dependencies, so embedding the mdnsResponder
+> daemon inside our app would be desirable, so the end user doesn't have
+> to bother about installing a Windows service, starting it, etc.
+>
+> My questions: is this a good idea ? Anyone tried it before ? Any
+> thoughts ?
+>
+> [1] http://chalks.berlios.de/
+>
+> Thanks and best regards,
+> --
+> Ricardo Niederberger Cabral
+>
+>
+> On 5/16/05, Scott Herscher <scott at porchdogsoft.com> wrote:
+>
+>> Hey there Ricardo.  I should have this error fixed and checked-in
+>> later today.
+>>
+>> Thanks,
+>>
+>> Scott
+>>
+>> On May 15, 2005, at 6:05 PM, Ricardo Niederberger Cabral wrote:
+>>
+>>
+>>> Hi,
+>>>
+>>> I'm trying to build the howl.NET bindings project on MSVC 7.1.3088
+>>> (.NET framework 1.1). I'm using a fresh CVS checkout of the howl
+>>> module and I've managed to build and test all C libs and sample
+>>> programs, but the .NET bindings project fails with the following
+>>> console output:
+>>>
+>>> Microsoft (R) .NET Framework Strong Name Utility  Version
+>>> 1.1.4322.573
+>>> Copyright (C) Microsoft Corporation 1998-2002. All rights reserved.
+>>> Key pair written to howl_NET.snk
+>>> Compiling...
+>>> discovery.cpp
+>>> ../../include\discovery.NET\discovery.h(244) : error C2061: syntax
+>>> error : identifier 'sw_discovery_publish_handler'
+>>> ../../include\discovery.NET\discovery.h(253) : error C2061: syntax
+>>> error : identifier 'sw_discovery_browse_handler'
+>>> ../../include\discovery.NET\discovery.h(265) : error C2061: syntax
+>>> error : identifier 'sw_discovery_resolve_handler'
+>>> ../../include\discovery.NET\discovery.h(281) : error C2061: syntax
+>>> error : identifier 'sw_discovery_publish_host_handler'
+>>> discovery.cpp(271) : fatal error C1903: unable to recover from
+>>> previous error(s); stopping compilation
+>>>
+>>> Where are the sw_discovery_*_handler symbols defined ? I couldn't
+>>> find
+>>> them anywhere on the CVS.
+>>>
+>>> Thanks and best regards,
+>>> --
+>>> Ricardo Niederberger Cabral
+>>>
+> _______________________________________________
+> howl-users mailing list
+> howl-users at lists.porchdogsoft.com
+> http://lists.porchdogsoft.com/mailman/listinfo/howl-users
+>
+
+_______________________________________________
+howl-users mailing list
+howl-users at lists.porchdogsoft.com
+http://lists.porchdogsoft.com/mailman/listinfo/howl-users
+
+
+-- 
+Ricardo Niederberger Cabral
+
+
+From rnc000 at gmail.com  Sun May 22 21:59:39 2005
+From: rnc000 at gmail.com (Ricardo Niederberger Cabral)
+Date: Sun, 22 May 2005 16:59:39 -0300
+Subject: [Chalks-devel] Fwd: [howl-users]embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+In-Reply-To: <EDCEE74D-F6DC-4F0A-98C8-4F6A4A707042@porchdogsoft.com>
+References: <35f9d9da0505151805426decf6@mail.gmail.com>
+	 <D0D5A0AA-D1F1-4AE5-B9E8-0EA866C3C8C9@porchdogsoft.com>
+	 <35f9d9da05052210192dbf189c@mail.gmail.com>
+	 <905B799E-2528-4A15-979F-F40E0CBE937F@porchdogsoft.com>
+	 <EDCEE74D-F6DC-4F0A-98C8-4F6A4A707042@porchdogsoft.com>
+Message-ID: <35f9d9da050522125920b08318@mail.gmail.com>
+
+---------- Forwarded message ----------
+From: Scott Herscher <scott at porchdogsoft.com>
+Date: May 22, 2005 4:48 PM
+Subject: Re: [howl-users]embedding mdnsResponder on .NET apps. (was:
+building howl.NET bindings)
+To: howl-users at lists.porchdogsoft.com
+
+
+:-)  Got cut off mid sentence...what that sentence should have said
+was "I've since learned it's not hard to do nested installs using
+merge modules."
+
+Scott
+
+
+On May 22, 2005, at 12:40 PM, Scott Herscher wrote:
+
+I've since learned it's not.   
+
+-- 
+Ricardo Niederberger Cabral
+
+
+From rodrigo.benenson at gmail.com  Sun May 22 23:54:11 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Sun, 22 May 2005 23:54:11 +0200
+Subject: [Chalks-devel] Re: Chalks Gui
+In-Reply-To: <35f9d9da0505220820319f5489@mail.gmail.com>
+References: <ef5e72570505211000183b5400@mail.gmail.com>
+	 <35f9d9da0505220820319f5489@mail.gmail.com>
+Message-ID: <ef5e72570505221454597a3d7f@mail.gmail.com>
+
+> 1) Edit widget font size: some people need larger fonts and some like
+> a lot of text viewable at once, etc.
+> 2) Choosing whether or not the editor should replace Tabs with spaces
+> (and how many). Keep in mind that we are working on a pure text
+> editor, so our target users are those who want to work with pure text
+> files, and for some of them these aspects are important.
+
+I agree, will be implemented.
+
+> Yeah, I also agree we could leave that to a second release, but it
+> would be fine to make this "user list" richer in terms of information.
+
+The users list should be a popup, an add/quit division or a resizable
+division (like the log section but vertical)  ?
+(I choose the last one) 
+
+> A good feature would be allowing users to edit a text near their entry
+> on this user list, describing what they are currently working on or
+> thinking about. So they don't need to explain what they are doing on
+> the chat window and you don't have to scroll back the chat window to
+> find out what user X was thinking about and what he is trying to edit
+> on the shared text file.
+> 
+> This feature would also be a flexible and simple substitute to "away"
+> features. So you can change your "user list" extra description from
+> "reviewing specification section" to something like "away for 5min.".
+
+This feature is trivially implementable. Simply we parse the received messages.
+Messages starting as "/setstatus blabla" are interpreted as special
+messages. Then we just need to add a simple interface  for non
+poweruser, that interface would then generate a message with the good
+format.
+
+
+rodrigob. 
+
+ 
+
+
+On 5/22/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> Hi,
+> 
+> On 5/21/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> 
+> > Essentially I have two questions whose answer is not clear to me:
+> > A) Which things should we let the user configure ?
+> > B) How we should associate the colors in the text to the users ?
+> >
+> > My answer for question A) is : "Nothing".
+> > Ultra simple programs does not need preferences.  If user lack of
+> > something, we should make it autoconfigured.
+> 
+> I agree with your minimalistic approach to make the software easier to
+> use and more robust, but I believe there are some important options
+> that can't be autoconfigured, including:
+> 
+> 1) Edit widget font size: some people need larger fonts and some like
+> a lot of text viewable at once, etc.
+> 2) Choosing whether or not the editor should replace Tabs with spaces
+> (and how many). Keep in mind that we are working on a pure text
+> editor, so our target users are those who want to work with pure text
+> files, and for some of them these aspects are important.
+> 
+> > Question B) is more difficult, I see three options:
+> > a) Coloring consistently the messages received is enough
+> > b) The user type the command \who to get an up-to-date list of the
+> > users, each name colored consistently
+> 
+> I suggest using "/who" instead of '\who', that is, with a
+> forward-slash, to be consistent with IRC commands. But I believe these
+> /xyz commands are only intended for power-users, so for every  /xyz
+> command, there should be a menu or toolbar option.
+> 
+> These commands would also be very useful for us during debugging.
+> 
+> 
+> > c) There is always a section of the window that show a colored users
+> > list (this one I want to avoid it, knowing users colors is a not
+> > highly relevant for the user, however is the way Subethadedit and
+> > MoonEdit does it)
+> 
+> Yeah, I also agree we could leave that to a second release, but it
+> would be fine to make this "user list" richer in terms of information.
+> A good feature would be allowing users to edit a text near their entry
+> on this user list, describing what they are currently working on or
+> thinking about. So they don't need to explain what they are doing on
+> the chat window and you don't have to scroll back the chat window to
+> find out what user X was thinking about and what he is trying to edit
+> on the shared text file.
+> 
+> This feature would also be a flexible and simple substitute to "away"
+> features. So you can change your "user list" extra description from
+> "reviewing specification section" to something like "away for 5min.".
+> 
+> > d) When putting the mouse over colored text a popup appears to
+> > indicate the originator name's
+> 
+> I guess this is not needed. In most cases, there will be an average of
+> only 2 concurrent editors, so a simple panel somewhere on the GUI or
+> as a menu showing which color is which user is fine. The user will
+> verify it 3 times and after that he will memorize.
+> 
+> > e) The user click over the "N users" section of the status bar and a
+> > secondary window appears with the list of the users. The user can
+> > switch from one window to the other to consult the users.
+> 
+> Even though bringing user info after clicking on this status bar label
+> seems logical, it may not seem intuitive. I believe we should let the
+> user list on a very visible place, because people need to constantly
+> know who's online or not.
+> 
+> Summarizing my opinion:
+> 
+> a) + b) + c)
+> 
+> In this order of implementation.
+> 
+> --
+> Ricardo Niederberger Cabral
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+
+
+From rodrigo.benenson at gmail.com  Mon May 23 00:11:15 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 23 May 2005 00:11:15 +0200
+Subject: [Chalks-devel] Fwd: [howl-users]embedding mdnsResponder on .NET apps. (was: building howl.NET bindings)
+In-Reply-To: <35f9d9da050522125920b08318@mail.gmail.com>
+References: <35f9d9da0505151805426decf6@mail.gmail.com>
+	 <D0D5A0AA-D1F1-4AE5-B9E8-0EA866C3C8C9@porchdogsoft.com>
+	 <35f9d9da05052210192dbf189c@mail.gmail.com>
+	 <905B799E-2528-4A15-979F-F40E0CBE937F@porchdogsoft.com>
+	 <EDCEE74D-F6DC-4F0A-98C8-4F6A4A707042@porchdogsoft.com>
+	 <35f9d9da050522125920b08318@mail.gmail.com>
+Message-ID: <ef5e725705052215116afe1b68@mail.gmail.com>
+
+cool to see progress in that front ! It seems to be the more painfull
+aspect after crosscompilation !
+
+Things are going very fine ! (beta at the end of the tunnel)
+
+My only worry actually is about the network module implementation.
+Design is ok, but Remoting is just not as cool as TwistedMatrix (what
+could be anyway...), will have to test and evaluate in practice. Maybe
+some Remoting gurus could give hints for optimizations and
+enhancements, by now I prefer to avoid premature optimizations.
+
+rodrigob.
+
+On 5/22/05, Ricardo Niederberger Cabral <rnc000 at gmail.com> wrote:
+> ---------- Forwarded message ----------
+> From: Scott Herscher <scott at porchdogsoft.com>
+> Date: May 22, 2005 4:48 PM
+> Subject: Re: [howl-users]embedding mdnsResponder on .NET apps. (was:
+> building howl.NET bindings)
+> To: howl-users at lists.porchdogsoft.com
+> 
+> 
+> :-)  Got cut off mid sentence...what that sentence should have said
+> was "I've since learned it's not hard to do nested installs using
+> merge modules."
+> 
+> Scott
+> 
+> 
+> On May 22, 2005, at 12:40 PM, Scott Herscher wrote:
+> 
+> I've since learned it's not.
+> 
+> --
+> Ricardo Niederberger Cabral
+> _______________________________________________
+> Chalks-devel mailing list
+> Chalks-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+
+
+From rodrigo.benenson at gmail.com  Mon May 30 01:14:56 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Mon, 30 May 2005 01:14:56 +0200
+Subject: [Chalks-devel] Chalks Gui II
+Message-ID: <ef5e725705052916145da1ed77@mail.gmail.com>
+
+Hi,
+still working on purification of Chalks.
+I have implemented the "set password" interface and found that there
+is a UI design issue. Up to now Kesava has not pronounced itself, so
+we will have to solve the issue using your criteria.
+
+The problem is what to do when chalks start with respect to authentication.
+Actually when Chalks starts a dialog appears to request a password to
+secure the actual document. If the users choice the "use as default"
+checkbutton future instances of Chalks will use a default password,
+that can be then changed using the menu "File->Set password".
+
+The problem is that when the user does not choice the "use a default
+password" option there is a "popup dialog" at each execution of
+Chalks, even when the user pretends to connect to another node, in
+which case setting up a password for his local document is futile.
+
+The objective is to make the software easy to use having the less
+number of clicks to get a working session.
+
+So I see three options:
+1- Let it as it now, not too bad. Most users will use a blank default
+password, paranoiacs will pay they price adding one dialog at each
+instance.
+
+2- Use the MoonEdit approach. At the start of a Chalks session the
+document is not shared until the user explicitly click "file->host".
+That event would trigger the password setting.  The user can also
+choice the "file->join" option to connect to a remote document
+
+3 - At the start of Chalks a popup appears to force the user to choice
+Host or Join. This reduce one click because it does not have to go to
+the "file->" menu. The user could also close the dialog and the
+document would be blank and not shared (as option 2).
+
+What do you think Ricardo ?
+Personally I'm more for option3, but I'm not convinced about which is
+the best choice. There are also other possibilities (eg: only ask the
+password when the first user connects to him) but none seems very
+intuitive or efficient.
+
+Also, should we give a visual feedback about the status of the
+document (hosting, joined, non connected), how ? (does knowing the
+number of users is enough/correct/useful ?)
+
+rodrigob.
+
+
+From rodrigo.benenson at gmail.com  Tue May 31 16:36:32 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Tue, 31 May 2005 16:36:32 +0200
+Subject: [Chalks-devel] Re: chalks
+In-Reply-To: <200505311427.j4VERU5l017353@unicorn.berlios.de>
+References: <200505311427.j4VERU5l017353@unicorn.berlios.de>
+Message-ID: <ef5e725705053107363fec814a@mail.gmail.com>
+
+Thanks for the feedback, I think we just found our beta testers group ;p.
+
+Responding to the comments on the wiki, the collaborative algorithm is
+already implemented (port of a previous working version in python,
+wrote by our self too).
+
+However that block is only a little part of the global system, GUI is
+tricky and network layer too.
+
+I think in two months we should have a beta that your community could
+start to play with.
+
+We lack on Interface Design wisdom and Beautiful Graphics (logos,
+icons), if anyone is interested please read our mailing list historic
+and respond to some of the call for opinions/participation.
+
+https://lists.berlios.de/pipermail/chalks-devel/
+
+
+rodrigob.
+
+On 5/31/05, Mattis Manzel <mattis_ at gmx.de> wrote:
+> Hi Rodrigo,
+> 
+> Just wrote Dr. Niederberger already.
+> 
+> We are very ( in words v e r y ) interested in Chalks.
+> 
+> see down on
+> 
+> http://www.emacswiki.org/cw/MoonEdit
+> 
+> I'm exited :)
+> 
+> Feel most welcome on cw (community-wiki), please.
+> 
+> mattis
+>
+
+
+From rodrigo.benenson at gmail.com  Tue May 31 16:39:33 2005
+From: rodrigo.benenson at gmail.com (rodrigo benenson)
+Date: Tue, 31 May 2005 16:39:33 +0200
+Subject: [Chalks-devel] Re: chalks
+In-Reply-To: <ef5e725705053107363fec814a@mail.gmail.com>
+References: <200505311427.j4VERU5l017353@unicorn.berlios.de>
+	 <ef5e725705053107363fec814a@mail.gmail.com>
+Message-ID: <ef5e725705053107392d93c51d@mail.gmail.com>
+
+ahhh, with respect to the protocol we already had a discussion about
+that on the mailing list with the MateEdit creator.
+
+Our approach allow to make the ConcurrentEdition aviable for any .Net
+application, but it will be difficult to try to work only at protocol
+compatibility.
+
+Check our mailing list for that too,
+rodrigob.
+
+On 5/31/05, rodrigo benenson <rodrigo.benenson at gmail.com> wrote:
+> Thanks for the feedback, I think we just found our beta testers group ;p.
+> 
+> Responding to the comments on the wiki, the collaborative algorithm is
+> already implemented (port of a previous working version in python,
+> wrote by our self too).
+> 
+> However that block is only a little part of the global system, GUI is
+> tricky and network layer too.
+> 
+> I think in two months we should have a beta that your community could
+> start to play with.
+> 
+> We lack on Interface Design wisdom and Beautiful Graphics (logos,
+> icons), if anyone is interested please read our mailing list historic
+> and respond to some of the call for opinions/participation.
+> 
+> https://lists.berlios.de/pipermail/chalks-devel/
+> 
+> 
+> rodrigob.
+> 
+> On 5/31/05, Mattis Manzel <mattis_ at gmx.de> wrote:
+> > Hi Rodrigo,
+> >
+> > Just wrote Dr. Niederberger already.
+> >
+> > We are very ( in words v e r y ) interested in Chalks.
+> >
+> > see down on
+> >
+> > http://www.emacswiki.org/cw/MoonEdit
+> >
+> > I'm exited :)
+> >
+> > Feel most welcome on cw (community-wiki), please.
+> >
+> > mattis
+> >
+>
+
+

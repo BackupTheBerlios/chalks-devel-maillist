@@ -1,0 +1,110 @@
+From rdrb at 123.cl  Tue Aug 31 04:26:47 2004
+From: rdrb at 123.cl (=?ISO-8859-15?Q?Rita_D=EDaz_y/o_Rodrigo_Benenson?=)
+Date: Mon, 30 Aug 2004 22:26:47 -0400
+Subject: [Chalks-devel] Re: DesignProposal
+In-Reply-To: <opsdkqibvjjpk7wx@rncathlon.domain.invalid>
+References: <413106B0.8010005@123.cl>
+ <opsdkqibvjjpk7wx@rncathlon.domain.invalid>
+Message-ID: <4133E1E7.7060004@123.cl>
+
+
+Ricardo Niederberger Cabral a ?crit :
+
+> On Sat, 28 Aug 2004 18:26:56 -0400, Rita D?az y/o Rodrigo Benenson  
+> <rdrb at 123.cl> wrote:
+>
+>> Just finished to wrote the first proposal.
+>> http://ryalias.freezope.org/Chalks/DesignProposal
+>>
+>> I will be waiting your comments.
+>> rodrigob.
+>>
+>
+> Regarding gui layout
+> ====================
+>
+> - I believe the chat frame should be horizontaly splitted in 2 
+> columns,  showing a list of current known users on the righthand side, 
+> reflecting  their colors, status, etc
+>
+In the sake of simplicity I had omited that possibility, implementing in 
+exchange a "who" command for in "advanced chat usage". I think writing 
+"help" in the chat bar should print out the implemented commands.
+
+> Regarding tkinter
+> =================
+> pros:
+> - stable api
+>
+> cons:
+> - low mindshare among other programmers, wxPython seems to be the  
+> mainstream python gui programming toolkit nowadays
+> - increasingly few projects using it and as such there is less people  
+> reporting bugs, etc. (development is not too active lately)
+>
+> But anyway I believe we should keep on using tkinter for the first 
+> release  and see how things play along. Provided we honour our intent 
+> of keeping  GUI code clearly separated from concurrent/networking 
+> code, we should be  safe.
+>
+I agree, Tkinter is ugly, but simple. Definitelly GUI code has to be 
+separated from the rest to allow futures gui changes.
+
+
+> Regarding tree topology
+> =======================
+>
+> Append to this paragraph:
+> """
+> When an site receive and operation it apply it locally and spread it 
+> to  all the other known sites. As the topology is an acyclic graph, no 
+> special  precautions has to be taken (to avoid repited reception).
+> """
+>
+> something like: "Except a rule of never broadcasting change 
+> operations  back to the node that sent it in the first place"
+>
+> I need to study how the history buffer works better before commenting 
+> on  those issues.
+>
+
+That is what I tried to say writing "spread it to  all the Other known 
+sites"
+
+> development in general
+> ======================
+>
+> I CC'd you an email from an acquaintance I have from irc.freenode.net 
+> as  he seemed interested on Chalks development and could be a 
+> potencial  contributor.
+>
+> As I mentioned on that email, I believe we should start using  
+> chalks-devel[1] mailing list for discussing chalks related things 
+> that  could be interesting to others
+>
+> [1] https://lists.berlios.de/mailman/listinfo/chalks-devel
+>
+> Best regards and sorry for the slow reply and shortage of comments. 
+> I'm  having a terrible week. I will make better comments by 
+> thursday/friday.
+>
+> See you,
+
+
+Cool, name ? url ?  msn ? (asktav did not get google results)
+
+I'm happy now to have written all the text in the wiki, adding some 
+screenshots, to get easier to catch the ideas.
+
+I will try to get some time in between here to december (asap) to solve 
+dummy issues in the code. (as for example the actual error in the 
+conection).
+
+I would like we agree in the desired behaviour when someone disconnect 
+himself (in the topology topic), this is the only point missing to get a 
+smooth cool global design.
+
+rodrigob.
+
+
+

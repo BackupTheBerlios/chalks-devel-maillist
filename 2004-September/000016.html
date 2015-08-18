@@ -1,0 +1,2704 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Fwd: [Chalks-commits] r47 - in trunk: . src
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2004-September/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Fwd%3A%20%5BChalks-commits%5D%20r47%20-%20in%20trunk%3A%20.%20src&In-Reply-To=%3Cef5e7257040912225726cc8863%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000015.html">
+   <LINK REL="Next"  HREF="000017.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Fwd: [Chalks-commits] r47 - in trunk: . src</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Fwd%3A%20%5BChalks-commits%5D%20r47%20-%20in%20trunk%3A%20.%20src&In-Reply-To=%3Cef5e7257040912225726cc8863%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Fwd: [Chalks-commits] r47 - in trunk: . src">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Mon Sep 13 07:57:54 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000015.html">[Chalks-devel] code problems
+</A></li>
+        <LI>Next message: <A HREF="000017.html">[Chalks-devel] About the Chat problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#16">[ date ]</a>
+              <a href="thread.html#16">[ thread ]</a>
+              <a href="subject.html#16">[ subject ]</a>
+              <a href="author.html#16">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&quot;If you want you can try to get it work, will help.&quot;
+I mean the Chat system.
+
+rodrigob.
+
+
+---------- Forwarded message ----------
+From: Rodrigo Benenson D&#65533;az at BerliOS &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo_b at sheep.berlios.de</A>&gt;
+Date: Mon, 13 Sep 2004 07:54:43 +0200
+Subject: [Chalks-commits] r47 - in trunk: . src
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">chalks-commits at lists.berlios.de</A>
+
+Author: rodrigo_b
+Date: 2004-09-13 07:54:38 +0200 (Mon, 13 Sep 2004)
+New Revision: 47
+
+Modified:
+   trunk/Chalks.leo
+   trunk/src/Chalks.py
+   trunk/src/Rendezvous.py
+   trunk/src/Test_Chalks.py
+   trunk/src/Test_ChalksServerMonitor.py
+Log:
+Lots of minor edits.
+Enhanced the connect to dialog.
+Added some todos.
+Worked on the Chat. Almost working but finally got a mess with
+Perspectives, pb.Referenceable and callRemote. Put some comments in
+the todos, need to sleep (i'm not able to think anymore). Will take
+back a look after Thursday.
+
+Would be fine to document the Connections schemas (blblablb...Avatar
+pass Mind that is keeped as a list of perspective that are accessed by
+parent to send info to childrens...blalblb). I forget easily this kind
+of things.
+
+If you want you can try to get it work, will help.
+
+Modified: trunk/Chalks.leo
+===================================================================
+--- trunk/Chalks.leo    2004-09-11 18:07:27 UTC (rev 46)
++++ trunk/Chalks.leo    2004-09-13 05:54:38 UTC (rev 47)
+@@ -1,8 +1,8 @@
+ &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+ &lt;leo_file&gt;
+ &lt;leo_header file_format=&quot;2&quot; tnodes=&quot;0&quot; max_tnode_index=&quot;2930&quot;
+clone_windows=&quot;0&quot;/&gt;
+-&lt;globals body_outline_ratio=&quot;0.429006085193&quot;&gt;
+-       &lt;global_window_position top=&quot;32&quot; left=&quot;4&quot; height=&quot;986&quot; width=&quot;1280&quot;/&gt;
++&lt;globals body_outline_ratio=&quot;0.564885496183&quot;&gt;
++       &lt;global_window_position top=&quot;10&quot; left=&quot;10&quot; height=&quot;524&quot; width=&quot;800&quot;/&gt;
+        &lt;global_log_window_position top=&quot;0&quot; left=&quot;0&quot; height=&quot;0&quot; width=&quot;0&quot;/&gt;
+ &lt;/globals&gt;
+ &lt;preferences&gt;
+@@ -1686,16 +1686,20 @@
+ &lt;v t=&quot;rodrigob.20040826215836&quot;&gt;&lt;vh&gt;Old LeoN todo list (to purge)&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040125223416&quot; a=&quot;E&quot;&gt;&lt;vh&gt;HOOK PROBLEM&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+-&lt;v t=&quot;niederberger.20040825222327.1&quot; a=&quot;M&quot;&gt;&lt;vh&gt;High&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;niederberger.20040825222327.1&quot; a=&quot;MTV&quot;&gt;&lt;vh&gt;High&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;niederberger.20040825222327.2&quot;&gt;&lt;vh&gt;Medium&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;niederberger.20040825222327.3&quot;&gt;&lt;vh&gt;Low&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+-&lt;v t=&quot;rodrigob.20040125160038&quot;&gt;&lt;vh&gt;Code perspectives&lt;/vh&gt;
+-&lt;v t=&quot;rodrigob.20040129141624&quot; a=&quot;M&quot;&gt;&lt;vh&gt;network&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040125160038&quot; a=&quot;E&quot;&gt;&lt;vh&gt;Code perspectives&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040129141624&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;network&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040125154815.1&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;class ChalksNode&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040125154815.2&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;connect to/disconnect
+from parent node&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040909060311&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;start collaborating&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040912225813&quot; a=&quot;E&quot;&gt;&lt;vh&gt;add/del sites&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040912225813.1&quot;&gt;&lt;vh&gt;add site&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040912225813.2&quot;&gt;&lt;vh&gt;del site&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040125154815.3&quot;&gt;&lt;vh&gt;edit content&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040125154815.4&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;set text&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040125154815.5&quot;&gt;&lt;vh&gt;insert text&lt;/vh&gt;&lt;/v&gt;
+@@ -1728,7 +1732,7 @@
+ &lt;/v&gt;
+ &lt;/v&gt;
+ &lt;/v&gt;
+-&lt;v t=&quot;rodrigob.20040125194534&quot; a=&quot;M&quot;&gt;&lt;vh&gt;class ChalksPerspective&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040125194534&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;class ChalksAvatar&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040129150513&quot;&gt;&lt;vh&gt;logout&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040126020641&quot; a=&quot;M&quot;&gt;&lt;vh&gt;collaborate in/out&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040127190845&quot; a=&quot;E&quot;&gt;&lt;vh&gt;bi directional methods&lt;/vh&gt;
+@@ -1736,10 +1740,10 @@
+ &lt;v t=&quot;rodrigob.20040127182541&quot;&gt;&lt;vh&gt;insert/delete text&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+ &lt;/v&gt;
+-&lt;v t=&quot;rodrigob.20040121155420&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;ConcurrentEditableNode&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040121155420&quot; a=&quot;M&quot;&gt;&lt;vh&gt;ConcurrentEditableNode&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040128013418&quot; a=&quot;E&quot;&gt;&lt;vh&gt;__init__&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040128011816&quot;&gt;&lt;vh&gt;receive operation&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t=&quot;rodrigob.20040128011809&quot;&gt;&lt;vh&gt;add/del site&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040128011809&quot; a=&quot;E&quot;&gt;&lt;vh&gt;add/del site&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040129165804&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;add site&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040130122927&quot;&gt;&lt;vh&gt;&lt;&lt; expand the vectors and
+matrices &gt;&gt;&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+@@ -1759,11 +1763,11 @@
+ &lt;v t=&quot;rodrigob.20040128011939&quot;&gt;&lt;vh&gt;send operation&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040130225148.1&quot; a=&quot;M&quot;&gt;&lt;vh&gt;get_state&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t=&quot;rodrigob.20040128012459&quot; a=&quot;M&quot;&gt;&lt;vh&gt;collect_garbage&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040128012459&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;collect_garbage&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040128012627&quot;&gt;&lt;vh&gt;generate operations&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040909033320&quot;&gt;&lt;vh&gt;set text&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+-&lt;v t=&quot;rodrigob.121403173614.1509&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;ConcurrentEditable&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.121403173614.1509&quot; a=&quot;M&quot;&gt;&lt;vh&gt;ConcurrentEditable&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.121403173614.1510&quot;&gt;&lt;vh&gt;receive operation&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.121403173614.1511&quot;&gt;&lt;vh&gt;apply&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.121403173614.1512&quot;&gt;&lt;vh&gt;execute&lt;/vh&gt;
+@@ -1785,17 +1789,118 @@
+ &lt;v t=&quot;rodrigob.20040125200531&quot; a=&quot;M&quot;&gt;&lt;vh&gt;dummy checker&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+ &lt;/v&gt;
+-&lt;v t=&quot;rodrigob.20040831112258&quot;&gt;&lt;vh&gt;gui&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t=&quot;rodrigob.20040831112258.1&quot;&gt;&lt;vh&gt;concurrent edition&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040831112258&quot; a=&quot;E&quot;&gt;&lt;vh&gt;gui&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040121151612&quot; a=&quot;E&quot;&gt;&lt;vh&gt;body (construct the gui)&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040122173046&quot; a=&quot;E&quot;&gt;&lt;vh&gt;&lt;&lt; create frames &gt;&gt;&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040123123802.1&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;&lt;&lt; create the
+splitter &gt;&gt;&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040123123829&quot;&gt;&lt;vh&gt;&lt;&lt; configure &gt;&gt;&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040123130224.1&quot;&gt;&lt;vh&gt;&lt;&lt; place &gt;&gt;&lt;/vh&gt;&lt;/v&gt;
+ &lt;/v&gt;
+-&lt;v t=&quot;rodrigob.20040119132914&quot; a=&quot;EM&quot;
++&lt;v t=&quot;rodrigob.20040125153909&quot;&gt;&lt;vh&gt;&lt;&lt; create the log widget
+&gt;&gt;<i>&lt;/vh&gt;&lt;/v&gt;
+</I>+&lt;v t=&quot;rodrigob.20040125153909.1&quot;&gt;&lt;vh&gt;&lt;&lt; create the text widget
+&gt;&gt;<i>&lt;/vh&gt;&lt;/v&gt;
+</I>+&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040122173046.1&quot;&gt;&lt;vh&gt;&lt;&lt; install the menu
+&gt;&gt;<i>&lt;/vh&gt;&lt;/v&gt;
+</I>+&lt;v t=&quot;rodrigob.20040122173046.3&quot;&gt;&lt;vh&gt;&lt;&lt; install the status bar
+&gt;&gt;<i>&lt;/vh&gt;&lt;/v&gt;
+</I>+&lt;v t=&quot;rodrigob.20040122173046.2&quot;&gt;&lt;vh&gt;&lt;&lt; install the chat bar
+&gt;&gt;<i>&lt;/vh&gt;&lt;/v&gt;
+</I>+&lt;v t=&quot;rodrigob.20040125210836&quot; a=&quot;E&quot;&gt;&lt;vh&gt;helpers&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040122182446.1&quot;&gt;&lt;vh&gt;class Redirect&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040123142018&quot;&gt;&lt;vh&gt;ask yes no or cancel&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040123124005&quot; a=&quot;E&quot;&gt;&lt;vh&gt;gui commands/events&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040124184444&quot;&gt;&lt;vh&gt;text widget commands&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040125154636&quot;&gt;&lt;vh&gt;onTextKey&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040125192325&quot;&gt;&lt;vh&gt;get text selection&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040125154657&quot;&gt;&lt;vh&gt;idle_text_key (hook caller of
+ClientNode.fill_body) (LeoN one)&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040125145031&quot;&gt;&lt;vh&gt;Cut/Copy/Paste&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040123130224&quot;&gt;&lt;vh&gt;split bar commands&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040121150952.2&quot;&gt;&lt;vh&gt;resizePanesToRatio&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040121150952.7&quot; a=&quot;E&quot;&gt;&lt;vh&gt;onDragSplitBar&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040121150952.6&quot;&gt;&lt;vh&gt;divideSplitter&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040122175312&quot; a=&quot;E&quot;&gt;&lt;vh&gt;menu commands&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040123133928&quot; a=&quot;M&quot;&gt;&lt;vh&gt;open&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040123140212&quot;&gt;&lt;vh&gt;save&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040125211222&quot;&gt;&lt;vh&gt;save text&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040123134358&quot; a=&quot;E&quot;&gt;&lt;vh&gt;connect to&lt;/vh&gt;
++&lt;v t=&quot;niederberger.20040911130819&quot;&gt;&lt;vh&gt;&lt;&lt; server list callback
+&gt;&gt;<i>&lt;/vh&gt;&lt;/v&gt;
+</I>+&lt;v t=&quot;rodrigob.20040125213003&quot; a=&quot;M&quot;&gt;&lt;vh&gt;&lt;&lt; connect to callback
+&gt;&gt;<i>&lt;/vh&gt;&lt;/v&gt;
+</I>+&lt;v t=&quot;rodrigob.20040125213003.1&quot;&gt;&lt;vh&gt;&lt;&lt; validation callback
+&gt;&gt;<i>&lt;/vh&gt;&lt;/v&gt;
+</I>+&lt;v t=&quot;niederberger.20040911120126&quot;&gt;&lt;vh&gt;&lt;&lt; server monitor
+callback &gt;&gt;&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040121153312&quot; a=&quot;E&quot;&gt;&lt;vh&gt;chat bar commands&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040912221032&quot; a=&quot;E&quot;&gt;&lt;vh&gt;enable/disable Chat&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040124160427&quot; a=&quot;E&quot;&gt;&lt;vh&gt;status bar commands&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040121153834.4&quot;&gt;&lt;vh&gt;updateStatusRowCol&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040123123802&quot; a=&quot;EM&quot;&gt;&lt;vh&gt;help command&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040123132311.1&quot; a=&quot;E&quot;&gt;&lt;vh&gt;&lt;&lt; chalks help &gt;&gt;&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040126020116&quot;&gt;&lt;vh&gt;network graph (about Server,
+Client, Children, Parent, and Trees)&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040122173128&quot; a=&quot;M&quot;&gt;&lt;vh&gt;online_homepage&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040123133012&quot;&gt;&lt;vh&gt;log&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040123134959&quot;&gt;&lt;vh&gt;log_error&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040128005315&quot;&gt;&lt;vh&gt;exception&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040124165851&quot;&gt;&lt;vh&gt;set_status&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040831112258.1&quot;&gt;&lt;vh&gt;concurrent edition&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.121403173614.1509&quot;&gt;&lt;vh&gt;ConcurrentEditable&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.121403173614.1510&quot;&gt;&lt;vh&gt;receive operation&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1511&quot;&gt;&lt;vh&gt;apply&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1512&quot;&gt;&lt;vh&gt;execute&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.121403173614.1513&quot;&gt;&lt;vh&gt;insert_text&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1514&quot;&gt;&lt;vh&gt;delete_text&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1515&quot;&gt;&lt;vh&gt;undo&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1516&quot; a=&quot;E&quot;&gt;&lt;vh&gt;collect_garbage&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040121161315&quot; a=&quot;E&quot;&gt;&lt;vh&gt;update SVT&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1517&quot;&gt;&lt;vh&gt;generate operations&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1547&quot;&gt;&lt;vh&gt;Tests (ConcurrentEditable)&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.121403173614.1548&quot;&gt;&lt;vh&gt;TestConcurrentEditable1&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1549&quot;&gt;&lt;vh&gt;TestConcurrentEditable2&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1550&quot;&gt;&lt;vh&gt;TestConcurrentEditableServer&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040121155542&quot;&gt;&lt;vh&gt;TestConcurrentEditableNode&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040128013509&quot;&gt;&lt;vh&gt;TestConcurrentEditable1&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040128013523&quot;&gt;&lt;vh&gt;TestConcurrentEditableServer&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040119132914&quot; a=&quot;E&quot;
+ marks=&quot;rodrigob.20040119152542,rodrigob.20040123131236,rodrigob.20040125150558,rodrigob.20040125153141,rodrigob.20040125200531,rodrigob.20040123131236.1,rodrigob.20040129131141,rodrigob.20040125204408,rodrigob.20040123123802.1,rodrigob.20040123133928,rodrigob.20040125213003,rodrigob.20040123123802,rodrigob.20040122173128,rodrigob.20040125154815.1,rodrigob.20040125154815.2,rodrigob.20040909060311,rodrigob.20040125154815.4,rodrigob.20040125154815.6,rodrigob.20040127185444,rodrigob.20040126020544,rodrigob.20040127203753,rodrigob.20040125194534,rodrigob.20040126020641,&quot;
+-expanded=&quot;rodrigob.20040119152542,rodrigob.20040123131236,rodrigob.20040123133012,rodrigob.20040121151612,rodrigob.20040122173046,rodrigob.20040123123802.1,rodrigob.20040125210836,rodrigob.20040123124005,rodrigob.20040121150952.7,rodrigob.20040123134358,rodrigob.20040123132311.1,rodrigob.20040125154815.1,rodrigob.20040125154815.2,rodrigob.20040125154815.9,rodrigob.20040125154815.14,rodrigob.20040127182438,rodrigob.20040127182530,rodrigob.20040126020544,rodrigob.20040125194534,rodrigob.20040127190845,&quot;&gt;&lt;vh&gt;@thin
+Chalks.py&lt;/vh&gt;&lt;/v&gt;
+-&lt;v t=&quot;rodrigob.20040125173910&quot;&gt;&lt;vh&gt;@thin Test_Chalks.py&lt;/vh&gt;&lt;/v&gt;
++expanded=&quot;rodrigob.20040119152542,rodrigob.20040123131236,rodrigob.20040125153141,rodrigob.20040121151612,rodrigob.20040122173046,rodrigob.20040123123802.1,rodrigob.20040125210836,rodrigob.20040123124005,rodrigob.20040121150952.7,rodrigob.20040122175312,rodrigob.20040123134358,rodrigob.20040121153312,rodrigob.20040124160427,rodrigob.20040123123802,rodrigob.20040123132311.1,rodrigob.20040125154815.1,rodrigob.20040125154815.2,rodrigob.20040912225813,rodrigob.20040125154815.9,rodrigob.20040125154815.14,rodrigob.20040127182438,rodrigob.20040127182530,rodrigob.20040126020544,rodrigob.20040125194534,rodrigob.20040127190845,&quot;&gt;&lt;vh&gt;@thin
+Chalks.py&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040125151012&quot;&gt;&lt;vh&gt;@thin Chalks.xhtml&lt;/vh&gt;&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.121403173614.1502&quot;
+ marks=&quot;rodrigob.121403173614.1509,rodrigob.121403173614.1532,rodrigob.121403173614.1533,rodrigob.121403173614.1535,rodrigob.121403173614.1536,rodrigob.121403173614.1544,rodrigob.20040121155420,rodrigob.20040129165804,rodrigob.20040129165804.1,rodrigob.20040130224144,rodrigob.20040130225148,rodrigob.20040130225208,rodrigob.20040130225148.1,rodrigob.20040128012459,&quot;
+-expanded=&quot;rodrigob.121403173614.1503,rodrigob.121403173614.1508,rodrigob.121403173614.1516,rodrigob.121403173614.1530,rodrigob.121403173614.1531,rodrigob.121403173614.1537,rodrigob.121403173614.1540,rodrigob.121403173614.1541,rodrigob.20040121154800,rodrigob.20040121155420,rodrigob.20040129165804,rodrigob.20040129165804.1,rodrigob.20040128011921.1,rodrigob.20040130225148,&quot;&gt;&lt;vh&gt;@thin
+ConcurrentEditable.py&lt;/vh&gt;&lt;/v&gt;
++expanded=&quot;rodrigob.121403173614.1503,rodrigob.121403173614.1508,rodrigob.121403173614.1516,rodrigob.121403173614.1530,rodrigob.121403173614.1531,rodrigob.121403173614.1537,rodrigob.121403173614.1540,rodrigob.121403173614.1541,rodrigob.20040121154800,rodrigob.20040121155420,rodrigob.20040128011809,rodrigob.20040129165804,rodrigob.20040129165804.1,rodrigob.20040128011921.1,rodrigob.20040130225148,&quot;&gt;&lt;vh&gt;@thin
+ConcurrentEditable.py&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040912220039&quot;
++marks=&quot;rodrigob.20040912220039.14,rodrigob.20040912220039.15,rodrigob.20040912220039.16,rodrigob.20040912220039.17,rodrigob.20040912220039.18,rodrigob.20040912220039.19,rodrigob.20040912220039.21,rodrigob.20040912220039.22,rodrigob.20040912220039.23,rodrigob.20040912220039.25,rodrigob.20040912220039.26,rodrigob.20040912220039.27,rodrigob.20040912220039.28,rodrigob.20040912220039.29,rodrigob.20040912220039.30,rodrigob.20040912220039.31,rodrigob.20040912220039.32,rodrigob.20040912220039.33,rodrigob.20040912220039.34,rodrigob.20040912220039.35,rodrigob.20040912220039.37,rodrigob.20040912220039.38,rodrigob.20040912220039.39,rodrigob.20040912220039.40,rodrigob.20040912220039.42,rodrigob.20040912220039.43,rodrigob.20040912220039.44,rodrigob.20040912220039.45,rodrigob.20040912220039.47,rodrigob.20040912220039.48,rodrigob.20040912220039.49,rodrigob.20040912220039.50,rodrigob.20040912220039.52,rodrigob.20040912220039.53,rodrigob.20040912220039.54,rodrigob.20040912220039.55,rodrigob.!
+ 20040912220039.57,rodrigob.20040912220039.58,rodrigob.20040912220039.59,rodrigob.20040912220039.60,rodrigob.20040912220039.62,rodrigob.20040912220039.63,rodrigob.20040912220039.64,rodrigob.20040912220039.65,rodrigob.20040912220039.66,rodrigob.20040912220039.67,rodrigob.20040912220039.68,rodrigob.20040912220039.69,rodrigob.20040912220039.70,rodrigob.20040912220039.71,rodrigob.20040912220039.72,rodrigob.20040912220039.73,rodrigob.20040912220039.75,rodrigob.20040912220039.76,rodrigob.20040912220039.77,rodrigob.20040912220039.78,rodrigob.20040912220039.79,rodrigob.20040912220039.80,rodrigob.20040912220039.81,rodrigob.20040912220039.82,rodrigob.20040912220039.83,rodrigob.20040912220039.84,rodrigob.20040912220039.85,rodrigob.20040912220039.86,rodrigob.20040912220039.87,rodrigob.20040912220039.88,rodrigob.20040912220039.89,rodrigob.20040912220039.90,rodrigob.20040912220039.92,rodrigob.20040912220039.93,rodrigob.20040912220039.94,rodrigob.20040912220039.95,rodrigob.20040912220039.9!
+ 6,rodrigob.20040912220039.97,rodrigob.20040912220039.98,rodrig!
+ ob.20040
+912220039.100,rodrigob.20040912220039.101,rodrigob.20040912220039.102,rodrigob.20040912220039.103,rodrigob.20040912220039.104,rodrigob.20040912220039.105,rodrigob.20040912220039.107,rodrigob.20040912220039.108,rodrigob.20040912220039.110,rodrigob.20040912220039.111,rodrigob.20040912220039.113,rodrigob.20040912220039.114,rodrigob.20040912220039.115,rodrigob.20040912220039.116,rodrigob.20040912220039.118,rodrigob.20040912220039.119,rodrigob.20040912220039.120,rodrigob.20040912220039.121,rodrigob.20040912220039.122,rodrigob.20040912220039.123,rodrigob.20040912220039.124,rodrigob.20040912220039.125,rodrigob.20040912220039.126,rodrigob.20040912220039.127,rodrigob.20040912220039.128,rodrigob.20040912220039.129,rodrigob.20040912220039.130,rodrigob.20040912220039.131,rodrigob.20040912220039.132,rodrigob.20040912220039.133,rodrigob.20040912220039.134,rodrigob.20040912220039.136,rodrigob.20040912220039.137,rodrigob.20040912220039.138,rodrigob.20040912220039.139,rodrigob.20040912220039!
+ .140,rodrigob.20040912220039.141,rodrigob.20040912220039.142,rodrigob.20040912220039.143,rodrigob.20040912220039.144,rodrigob.20040912220039.145,rodrigob.20040912220039.146,rodrigob.20040912220039.147,rodrigob.20040912220039.148,rodrigob.20040912220039.149,rodrigob.20040912220039.150,rodrigob.20040912220039.151,rodrigob.20040912220039.152,rodrigob.20040912220039.153,rodrigob.20040912220039.154,&quot;
++expanded=&quot;rodrigob.20040912220039.13,&quot;&gt;&lt;vh&gt;@thin Rendezvous.py&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040912211519&quot; a=&quot;E&quot;&gt;&lt;vh&gt;Tests&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040125173910&quot;&gt;&lt;vh&gt;@thin Test_Chalks.py&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040912211426&quot;
++expanded=&quot;rodrigob.20040912211426.2,&quot;&gt;&lt;vh&gt;@thin
+Test_ChalksServerMonitor.py&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1547&quot;&gt;&lt;vh&gt;Tests (ConcurrentEditable)&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.121403173614.1548&quot;&gt;&lt;vh&gt;TestConcurrentEditable1&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1549&quot;&gt;&lt;vh&gt;TestConcurrentEditable2&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.121403173614.1550&quot;&gt;&lt;vh&gt;TestConcurrentEditableServer&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040121155542&quot;&gt;&lt;vh&gt;TestConcurrentEditableNode&lt;/vh&gt;
++&lt;v t=&quot;rodrigob.20040128013509&quot;&gt;&lt;vh&gt;TestConcurrentEditable1&lt;/vh&gt;&lt;/v&gt;
++&lt;v t=&quot;rodrigob.20040128013523&quot;&gt;&lt;vh&gt;TestConcurrentEditableServer&lt;/vh&gt;&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
++&lt;/v&gt;
+ &lt;v t=&quot;rodrigob.20040129132740&quot;&gt;&lt;vh&gt;docs&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040129130513.1&quot;&gt;&lt;vh&gt;Unicode utils...&lt;/vh&gt;
+ &lt;v t=&quot;rodrigob.20040129130513.2&quot;&gt;&lt;vh&gt;isUnicode&lt;/vh&gt;&lt;/v&gt;
+@@ -3197,19 +3302,33 @@
+ &lt;t tx=&quot;niederberger.20040825222327&quot;&gt;@language plain
+ This node contains reminders and all things left to do in general,
+grouped by priority.
+ Currently they may be related to coding, researching, packaging,
+everything.&lt;/t&gt;
+-&lt;t tx=&quot;niederberger.20040825222327.1&quot;&gt;- Chalks.py&quot;, line 1494, in
+start_collaborating
++&lt;t tx=&quot;niederberger.20040825222327.1&quot;&gt;- I'm tired there is a problem
+in the management of the perspective. The Children perspective is not
+simetric to the parent perspective.
++Childrens call parents's remote_send_message but parents call
+children's perspective_send_message.
++Arrrgghhh got a mess with Perspectives, Pb.Referenceable and
+callRemote, need to sleep.
++
++
++- Get chat working
++
++
++- Why does site show the insertion point index and the other one does
+not ? (left of the chat bar)
++
++- Work on concurrenteditablenode (make consistent use of the new
+site_id system)
++
++- Chalks.py&quot;, line 1494, in start_collaborating
+     self.receive_operation(Operation(**t_dict))        # instanciate
+and receive
+  ConcurrentEditable.py&quot;, line 1880, in receive_operation
+     assert type(timestamp) is dict or in_op.get(&quot;source_site&quot;) ==
+self.site_index, &quot;In ConcurrentEditableNode the transmited time stamps
+are expected to be dictionaries that map &lt;known_site_id&gt; =&gt;
+&lt;num_of_operations_we_know_he_has_created&gt; OR to be a local
+state vector timestamp&quot;
+ exceptions.AssertionError: In ConcurrentEditableNode the transmited
+time stamps are expected to be dictionaries that map
+&lt;known_site_id&gt; =&gt;
+&lt;num_of_operations_we_know_he_has_created&gt; OR to be a local
+state vector timestamp
+
++  &lt;/t&gt;
++&lt;t tx=&quot;niederberger.20040825222327.2&quot;&gt;- how to obtain the ip of a
+zeroconf service ?
++
+ - we should add to rendezvous published data which filename we are
+serving, and unregister our server and register it again with the new
+filename when a new file is opened
+   currently it registers only once at startup and unregisters on app shutdown.
+   But before all that, implement unRegisterServer() method on
+ChalksServerMonitor
+-  &lt;/t&gt;
+-&lt;t tx=&quot;niederberger.20040825222327.2&quot;&gt;&lt;/t&gt;
+-&lt;t tx=&quot;niederberger.20040825222327.3&quot;&gt;&lt;/t&gt;
++&lt;/t&gt;
++&lt;t tx=&quot;niederberger.20040825222327.3&quot;&gt;- Implement a LiveEvil nevow
+web front end to the chat sessions, will be so cool.&lt;/t&gt;
+ &lt;t tx=&quot;niederberger.20040906222819&quot;&gt;Components of Chalks are Python,
+Twisted, ConcurrentEditable and Tkinter.
+
+ &gt;&gt; improve it later and actually give a general view of how
+parts fit together &lt;&lt;
+@@ -3275,6 +3394,41 @@
+
+ components.registerAdapter(ChalksModel, Chalks, interfaces.IModel)
+ &lt;/t&gt;
++&lt;t tx=&quot;niederberger.20040911120126&quot;&gt;def server_monitor_callback(servers):
++    &quot;&quot;&quot;
++                                'address':     info.getAddress(),
++                              'identifier':  info.getName(),
++                              'port':
++    &quot;&quot;&quot;
++    self.server_listbox.delete(0, END)  # remove all items
++    self.cur_server_list = servers # set internal dict of current known servers
++    # add all servers
++    for server in servers.values():
++        svr_string = server['identifier'] # + ' at ' + str(server['address'])
++        print svr_string
++        self.server_listbox.insert(END, svr_string)&lt;/t&gt;
++&lt;t tx=&quot;niederberger.20040911130819&quot;&gt;def onServerListClick(event=None):
++    assert self.server_listbox.curselection(), 'error on event, there
+should be a selected index'
++
++    # aargh, Tkinter is disgusting:
++    # 1) curselection() returns STRINGS instead of ints when
+referring to indexes
++    # 2) curselection() only returns something after you click TWICE
+on the list box. After that, it starts working as expected
++    # 3) how do I set an Entry widget text ??? Do I really have to
+change a lot of code in order to make it use a Tkinter &quot;textvariable&quot;
+(StringVar) ?
++    # 4) Listbox has no scrollbar, we have to set it up manually with:
++    &quot;&quot;&quot;
++    frame = Frame(master)
++    scrollbar = Scrollbar(frame, orient=VERTICAL)
++    listbox = Listbox(frame, yscrollcommand=scrollbar.set)
++    scrollbar.config(command=listbox.yview)
++    scrollbar.pack(side=RIGHT, fill=Y)
++    listbox.pack(side=LEFT, fill=BOTH, expand=1)
++    &quot;&quot;&quot;
++
++    server = self.cur_server_list[self.cur_server_list.keys()[int(self.server_listbox.curselection()[0])]]
++    print server # server info is here, now we need to populate entry
+widgets with this info
++
++    port_entry.delete(0, END); port_entry.insert(END, str(server['port']))
++    &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.010104175231&quot;&gt;&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.010104211709&quot;&gt;&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.010104212717&quot;&gt;no real requirement right now, but
+issues we should think about:
+@@ -27941,6 +28095,359 @@
+
+     return self.gen_op(type, pos, data, **kws)
+ &lt;/t&gt;
++&lt;t tx=&quot;rodrigob.121403173614.1547&quot;&gt;@
++The unit tests for concurrent editions.
+<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">+ at c</A>
++
++
++def get_test_suite():
++    &quot;&quot;&quot;
++    run the tests
++    &quot;&quot;&quot;
++
++    global dbg
++    dbg = 0
++
++    import unittest
++    TestSuite = unittest.TestSuite()
++    TestSuite.addTest(unittest.FunctionTestCase(TestConcurrentEditable1))
++    TestSuite.addTest(unittest.FunctionTestCase(TestConcurrentEditable2))
++    TestSuite.addTest(unittest.FunctionTestCase(TestConcurrentEditableServer))
++
++    return TestSuite
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.121403173614.1548&quot;&gt;
++def TestConcurrentEditable1():
++    &quot;&quot;&quot;
++    The test case that we gonna use for debugging is the same case
+presented at &quot;A generic operation transformation scheme for
+consistency maintenance in real-time cooperative editing systems&quot;, Fig
+1; wich suggest an interesing scenario.
++    Here the operatations are:
++        - O1 Insert 0 &quot;ABC&quot;
++        - O2 Insert O &quot;BCD&quot;
++        - O3 Delete 1 2
++        - O4 Insert 2 &quot;c&quot;
++    So the final result should be &quot;ABCcD&quot; in the three sites.
++
++    Site 0: (generate O1) O1 O2 O4 O3
++    Site 1: (gen O2) O2 O1 (gen O3) O3 O4
++    Site 2: O2 (gen 04) 03 01
++
++    The event sequence is:
++        S0(O1);S1(O2);S2O2;S1O1;S0O2;S2(O4);S0O4;S1(03);S2O3;S0O3;S1O4;S2O1.
++
++    It also test the garbage collector as indicated in the figure 3
+of sun98achieving.pdf, page 20.
++    &quot;&quot;&quot;
++
++    print &quot;-&quot;*15
++    print &quot;Read docstring of TestConcurrentEditable1 for more info
+about this test.\n&quot;
++
++    # Create three site instances
++    num_sites = 3
++    site0 = ConcurrentEditable(0, num_sites) # site_index, num_of_sites
++    site1 = ConcurrentEditable(1, num_sites)
++    site2 = ConcurrentEditable(2, num_sites)
++
++    # Apply the operations in each site (following the order of the picture)
++
++    O1 = site0.gen_op(&quot;Insert&quot;, 0, u&quot;ABC&quot;, dbg_name=&quot;O1&quot;)  # generate
+and apply locally the operation
++    O2 = site1.gen_Op(&quot;Insert&quot;, u&quot;BCD&quot;, 0, dbg_name=&quot;O2&quot;) # test the alias
++    site2.receive_op(O2)
++    site1.receive_op(O1)
++    site0.receive_op(O2)
++    O4 = site2.gen_op(&quot;Insert&quot;, 2, u&quot;c&quot;, dbg_name=&quot;O4&quot;)
++    site0.receive_op(O4)
++    #print &quot;\ntest blocked...&quot;; return # please erase this line
++    O3 = site1.gen_op(&quot;Delete&quot;, 1, 2, dbg_name=&quot;O3&quot;)
++    site2.receive_op(O3)
++    site0.receive_op(O3)
++    site1.receive_op(O4)
++    site2.receive_op(O1)
++
++
++    if dbg&gt;=4:
++        for t_op in [ O1, O2, O3, O4]:
++            print t_op
++
++    if 1:
++        # this messages are the same of figure 3. sun98achieving.pdf, page 20.
++        site1.update_SVT(0, site0.state_vector) # message to put to
+date the other sites
++        site2.update_SVT(0, site0.state_vector)
++
++        site0.collect_garbage()
++        site1.collect_garbage()
++        site2.collect_garbage() # at site2 two operations should be deleted
++
++
++
++    if dbg&gt;=0:
++        print &quot;\nFinal HBs&quot;
++        for t_site in [site0, site1, site2]:
++            print &quot;Site %s;%s;MSV
+%s;\nHB\n\t%s\n&quot;%(t_site.site_index, t_site.state_vector,
+t_site.minimum_state_vector, &quot;\n\t&quot;.join([str(x) for x in t_site.HB]))
++
++    # Show the final result at each site (expecting &quot;ABCC'D&quot;)
++
++    res_text = lambda x: &quot;OK.&quot;*x or &quot;FAILED.&quot;*(not x)
++
++    print &quot;\nFinal results:&quot;
++
++    success = 1
++    for t_site in [site0, site1, site2]:
++        t_res = (t_site.get_text() == u&quot;ABCcD&quot; and not
+t_site.delayed_operations)
++        success = success and t_res
++        print &quot;Site %s;%s; '%s'; delayed_ops: %s;
+%s&quot;%(t_site.site_index, t_site.state_vector, t_site.get_text(),
+t_site.delayed_operations, res_text(t_res))
++
++
++    if success:
++        print &quot;\nTest successfull.&quot;
++    else:
++        print &quot;\nTest FAILED. Expecting the same result at the three
+sites: 'ABCcD', and no delayed operations left in the buffer.&quot;
++
++
++    return success
++
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.121403173614.1549&quot;&gt;
++def TestConcurrentEditable2():
++    &quot;&quot;&quot;
++    Second test is similar to Test1 but with other operations. Try to
+test other code areas (i.e. Lost Information cases)
++
++    The test case that we gonna use for debugging is the same case
+presented at &quot;A generic operation transformation scheme for
+consistency maintenance in real-time cooperative editing systems&quot;, Fig
+1; wich suggest an interesing scenario.
++    Here the operatations are:
++        - O1 Insert 0 &quot;ABC&quot;
++        - O2 Insert O &quot;BCD&quot;
++        - O3 Insert 5 &quot;c&quot;
++        - O4 Delete 0 3
++    So the final result should be ABCc in the three sites.
++
++    Site 0: (generate O1) O1 O2 O4 O3
++    Site 1: (gen O2) O2 O1 (gen O3) O3 O4
++    Site 2: O2 (gen 04) 03 01
++
++    The event sequence is:
++        S0(O1);S1(O2);S2O2;S1O1;S0O2;S2(O4);S0O4;S1(03);S2O3;S0O3;S1O4;S2O1.
++
++    It also test the garbage collector as indicated in the figure 3
+of sun98achieving.pdf, page 20.
++    &quot;&quot;&quot;
++
++    print &quot;-&quot;*15
++    print &quot;Read docstring of TestConcurrentEditable2 for more info
+about this test.\n&quot;
++
++    # Create three site instances
++    num_sites = 3
++    site0 = ConcurrentEditable(0, num_sites) # site_index, num_of_sites
++    site1 = ConcurrentEditable(1, num_sites)
++    site2 = ConcurrentEditable(2, num_sites)
++
++    # Apply the operations in each site (following the order of the picture)
++
++    O1 = site0.gen_op(&quot;Insert&quot;, 0, u&quot;ABC&quot;, dbg_name=&quot;O1&quot;)  # generate
+and apply locally the operation
++    O2 = site1.gen_Op(&quot;Insert&quot;, u&quot;BCD&quot;, 0, dbg_name=&quot;O2&quot;) # test alias
++    site2.receive_op(O2)
++    site1.receive_op(O1)
++    site0.receive_op(O2)
++    O4 = site2.gen_op(&quot;Delete&quot;, 0, 3, dbg_name=&quot;O3&quot;)
++    site0.receive_op(O4)
++    #print &quot;\ntest blocked...&quot;; return # please erase this line
++    O3 = site1.gen_op(&quot;Insert&quot;, 5, u&quot;c&quot;, dbg_name=&quot;O4&quot;)
++    site2.receive_op(O3)
++    site0.receive_op(O3)
++    site1.receive_op(O4)
++    site2.receive_op(O1)
++
++    if 1:
++        # this messages are the same of figure 3. sun98achieving.pdf, page 20.
++        site1.update_SVT(0, site0.state_vector) # message to put to
+date the other sites
++        site2.update_SVT(0, site0.state_vector)
++
++        site0.collect_garbage()
++        site1.collect_garbage()
++        site2.collect_garbage()
++
++    if dbg&gt;=4:
++        for t_op in [ O1, O2, O3, O4]:
++            print t_op
++
++    if dbg&gt;=0:
++        print &quot;\nFinal HBs&quot;
++        for t_site in [site0, site1, site2]:
++            print &quot;Site %s;%s;MSV
+%s;\nHB\n\t%s\n&quot;%(t_site.site_index, t_site.state_vector,
+t_site.minimum_state_vector, &quot;\n\t&quot;.join([str(x) for x in t_site.HB]))
++
++
++    # Show the final result at each site (expecting &quot;ABCC'D&quot;)
++
++    res_text = lambda x: &quot;OK.&quot;*x or &quot;FAILED.&quot;*(not x)
++
++    print &quot;\nFinal results:&quot;
++
++    success = 1
++    for t_site in [site0, site1, site2]:
++        t_res = (t_site.get_text() == u&quot;ABCc&quot; and not
+t_site.delayed_operations)
++        success = success and t_res
++        print &quot;Site %s;%s; '%s'; delayed_ops: %s;
+%s&quot;%(t_site.site_index, t_site.state_vector, t_site.get_text(),
+t_site.delayed_operations, res_text(t_res))
++
++
++    if success:
++        print &quot;\nTest successfull.&quot;
++    else:
++        print &quot;\nTest FAILED. Expecting the same result at the three
+sites: 'ABCc', and no delayed operations left in the buffer.&quot;
++
++
++    return success
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.121403173614.1550&quot;&gt;def TestConcurrentEditableServer():
++    &quot;&quot;&quot;
++    Run almost exactly the same case of TestConcurrentEditable1 but
+using a Star network; with one central server and three clients
+connecting to it.
++    &quot;&quot;&quot;
++
++    #global dbg
++    #dbg = 0 #1 # ;P
++
++    # when dbg==1 this is a __very__ verbose test, but it allow a
+good tracking of every event.
++
++    print &quot;-&quot;*15
++    print &quot;Read docstring of TestConcurrentEditableServer for more
+info about this test.\n&quot;
++
++    # creates server
++    server = ConcurrentEditableServer()
++
++    # connect site 0 and 1
++    site0 = ConcurrentEditableClient(server)
++    site1 = ConcurrentEditableClient(server)
++
++    global sent_test_operations;       sent_test_operations = [] #
+used for delaying the transmissions in the test
++
++    # start editions
++    # Apply the operations in each site (following the order of the picture)
++    O1 = site0.gen_op(&quot;Insert&quot;, 0, u&quot;ABC&quot;, dbg_name=&quot;O1&quot;,
+gen_site=&quot;0&quot;) # generate and apply locally the operation
++    O2 = site1.gen_Op(&quot;Insert&quot;, u&quot;BCD&quot;, 0, dbg_name=&quot;O2&quot;,
+gen_site=&quot;1&quot;) # test the alias
++
++    # O*_toS* is an operation that was sent by the server to the
+client. This object is delayed to simulate delays in the transmissions
+lines.
++    # the order of reception of commands is similar of the
+TestConcurrentEditable1
++    server.receive_op(O2);
++    if dbg&gt;=1: print &quot;sent_test_operations %s\n&quot;%sent_test_operations
++    [O2_toS0] = sent_test_operations; sent_test_operations = []
++    server.receive_operation(O1);
++    if dbg&gt;=1: print &quot;sent_test_operations %s\n&quot;%sent_test_operations
++    [O1_toS1] = sent_test_operations; sent_test_operations = []
++
++    # connect site 2 (to test connection during sessions)
++    site2 = ConcurrentEditableClient()
++    site2.connect_to_server(server)
++
++    if dbg&gt;=1:
++        print
++        print &quot;Server; %s; '%s'; HB %s&quot;%(server.state_vector,
+server.get_text(), server.HB )
++        print &quot;Site 0; %s; '%s'; HB %s&quot;%( site0.state_vector, 
+site0.get_text(),  site0.HB )
++        print &quot;Site 1; %s; '%s'; HB %s&quot;%( site1.state_vector, 
+site1.get_text(),  site1.HB )
++        print &quot;Site 2; %s; '%s'; HB %s&quot;%( site2.state_vector, 
+site2.get_text(),  site2.HB )
++        print
++
++    sent_test_operations = []
++
++    # continue editions
++    site1.receive_op(O1_toS1) # receive delayed operations sent by the server
++    site0.receive_op(O2_toS0)
++    O4 = site2.gen_op(&quot;Insert&quot;, 2, u&quot;c&quot;, dbg_name=&quot;O4&quot;, gen_site=&quot;2&quot;)
++    server.receive_op(O4); O4_toS0, O4_toS1 = sent_test_operations;
++    if dbg&gt;=1: print &quot;sent_test_operations %s\n&quot;%sent_test_operations
++    sent_test_operations = []
++
++
++    # test disconnection and site_index reusage (for reconnetion connection)
++    if dbg&gt;=1:
++        print &quot;\nDisconnectiong S2&quot;
++
++    server.del_client(site2)
++    if dbg&gt;=1: print &quot;\nReconnection S2&quot;
++    site2 = ConcurrentEditableClient()
++    site2.connect_to_server(server)
++    if dbg&gt;=1:
++        print &quot;Site2 after reconnecting&quot;
++        print &quot;Site 2; %s; '%s'; HB %s&quot;%( site2.state_vector, 
+site2.get_text(),  site2.HB )
++        print
++
++    site0.receive_op(O4_toS0)
++    O3 = site1.gen_op(&quot;Delete&quot;, 1, 2, dbg_name=&quot;O3&quot;, gen_site=&quot;1&quot;)
++    server.receive_op(O3);
++    if dbg&gt;=1: print &quot;sent_test_operations %s\n&quot;%sent_test_operations
++    O3_toS0, O3_toS2 = sent_test_operations; sent_test_operations = []
++    site2.receive_op(O3_toS2)
++    site0.receive_op(O3_toS0)
++    site1.receive_op(O4_toS1)
++
++    # Original sequence------------------
++    #O1 = site0.gen_op(&quot;Insert&quot;, 0, u&quot;ABC&quot;, dbg_name=&quot;O1&quot;)  #
+generate and apply locally the operation
++    #O2 = site1.gen_Op(&quot;Insert&quot;, u&quot;BCD&quot;, 0, dbg_name=&quot;O2&quot;) # test alias
++    #site2.receive_op(O2)
++    #site1.receive_op(O1)
++    #site0.receive_op(O2)
++    #O4 = site2.gen_op(&quot;Delete&quot;, 0, 3, dbg_name=&quot;O3&quot;)
++    #site0.receive_op(O4)
++    #print &quot;\ntest blocked...&quot;; return # please erase this line
++    #O3 = site1.gen_op(&quot;Insert&quot;, 5, u&quot;c&quot;, dbg_name=&quot;O4&quot;)
++    #site2.receive_op(O3)
++    #site0.receive_op(O3)
++    #site1.receive_op(O4)
++    #site2.receive_op(O1)
++    # ------------------
++
++    if dbg&gt;=1:
++        print
++        print &quot;Server; %s; '%s'; HB %s&quot;%(server.state_vector,
+server.get_text(), server.HB )
++        print &quot;Site 0; %s; '%s'; HB %s&quot;%( site0.state_vector, 
+site0.get_text(),  site0.HB )
++        print &quot;Site 1; %s; '%s'; HB %s&quot;%( site1.state_vector, 
+site1.get_text(),  site1.HB )
++        print &quot;Site 2; %s; '%s'; HB %s&quot;%( site2.state_vector, 
+site2.get_text(),  site2.HB )
++        print
++
++
++    if dbg&gt;=1:
++        print &quot;\nDirty HBs&quot;
++        for t_site in [server, site0, site1, site2]:
++            print &quot;Site %s;%s;HB %s; delayed_ops
+%s&quot;%(t_site.site_index, t_site.state_vector, t_site.HB,
+t_site.delayed_operations)
++        print
++
++    if 1:
++        # this messages are the same of figure 3. sun98achieving.pdf, page 20.
++        site1.update_SVT(0, site0.state_vector) # message to put to
+date the other sites
++        site2.update_SVT(0, site0.state_vector)
++        if dbg&gt;=1: print &quot;Manually collecting the garbage in all sites&quot;
++        server.collect_garbage()
++        site0.collect_garbage()
++        site1.collect_garbage()
++        site2.collect_garbage()
++
++    # --------
++    # disconnect
++    if dbg&gt;=1: print &quot;Disconnecting the three sites.&quot;
++    server.del_client(site0)
++    server.del_client(site1)
++    server.del_client(site2)
++    # --------------
++
++    if dbg&gt;=0:
++        print &quot;\nFinal HBs&quot;
++        for t_site in [site0, site1, site2]:
++            print &quot;Site %s;%s;MSV
+%s;\nHB\n\t%s\n&quot;%(t_site.site_index, t_site.state_vector,
+t_site.minimum_state_vector, &quot;\n\t&quot;.join([str(x) for x in t_site.HB]))
++
++    # Show the final result at each site (expecting &quot;ABCC'D&quot;)
++
++    res_text = lambda x: &quot;OK.&quot;*x or &quot;FAILED.&quot;*(not x)
++
++    print &quot;\nFinal results:&quot;
++
++    success = 1
++    for t_site in [server, site0, site1, site2]:
++        t_res = (t_site.get_text() == u&quot;AcBCD&quot; and not
+t_site.delayed_operations)
++        success = success and t_res
++        print &quot;Site %s;%s; '%s'; delayed_ops: %s;
+%s&quot;%(t_site.site_index, t_site.state_vector, t_site.get_text(),
+t_site.delayed_operations, res_text(t_res))
++
++
++    if success:
++        print &quot;\nTest successfull.&quot;
++    else:
++        print &quot;\nTest FAILED. Expecting the same result at the three
+sites: 'AcBCD', and no delayed operations left in the buffer.&quot;
++
++
++    return success&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.122203065507&quot;&gt;25/12/2003
+ if file clonning is safe double message should be avoied
+
+@@ -28794,6 +29301,152 @@
+ I suspect the problem is due that Ctrl+V (paste) is not define in the
+Find panel.
+
+ RodrigoB.&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040121150952.2&quot;&gt;def resizePanesToRatio(self,ratio):
++    self.divideSplitter(self.splitVerticalFlag, ratio)
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040121150952.6&quot;&gt;# Divides the main or secondary
+splitter, using the key invariant.
++def divideSplitter (self, verticalFlag, frac):
++    self.divideAnySplitter(frac, verticalFlag, self.split_bar,
+self.splitPane1, self.splitPane2)
++    self.ratio = frac # Ratio of body pane to tree pane.
++
++# This is the general-purpose placer for splitters.
++# It is the only general-purpose splitter code in Leo.
++
++def divideAnySplitter (self, frac, verticalFlag, bar, pane1, pane2):
++
++    if verticalFlag:
++        # Panes arranged vertically; horizontal splitter bar
++        bar.place(rely=frac)
++        pane1.place(relheight=frac)
++        pane2.place(relheight=1-frac)
++    else:
++        # Panes arranged horizontally; vertical splitter bar
++        bar.place(relx=frac)
++        pane1.place(relwidth=frac)
++        pane2.place(relwidth=1-frac)&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040121150952.7&quot;&gt;def onDragSplitBar (self, event):
++    self.onDragSplitterBar(event,self.splitVerticalFlag)
++
++def onDragSplitterBar (self, event, verticalFlag):
++
++    # x and y are the coordinates of the cursor relative to the bar,
+not the main window.
++    bar = event.widget
++    x = event.x
++    y = event.y
++    top = bar.winfo_toplevel()
++
++    if verticalFlag:
++        # Panes arranged vertically; horizontal splitter bar
++        wRoot  = top.winfo_rooty()
++        barRoot = bar.winfo_rooty()
++        wMax   = top.winfo_height()
++        offset = float(barRoot) + y - wRoot
++    else:
++        # Panes arranged horizontally; vertical splitter bar
++        wRoot  = top.winfo_rootx()
++        barRoot = bar.winfo_rootx()
++        wMax   = top.winfo_width()
++        offset = float(barRoot) + x - wRoot
++
++    # Adjust the pixels, not the frac.
++    if offset &lt; 3: offset = 3
++    if offset &gt; wMax - 2: offset = wMax - 2
++    # Redraw the splitter as the drag is occuring.
++    frac = float(offset) / wMax
++    # trace(`frac`)
++    self.divideSplitter(verticalFlag, frac)
++
++
++    # check if the chat bar has dissapeared or appeared, to
+sincronise with the status_bar
++    if self.chat_bar.winfo_height() &lt; 15 or offset &lt; 5:
++        self.status_bar.pack(fill=X, pady=1)
++        #t_text = self.text_widget.get(&quot;end - 1 line&quot;, &quot;end&quot;)
++        t_text = &quot;this is the status bar&quot;
++        #print t_text
++        self.set_status(t_text)
++    else:
++        self.status_bar.forget()
++
++    &lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040121151612&quot;&gt;def body(self, base_frame):
++    &quot;&quot;&quot;
++    build the body of the dialog window
++    &quot;&quot;&quot;
++
++    # base_frame
++    self.root = root = base_frame
++
++    &lt;&lt; create frames &gt;&gt;
++    &lt;&lt; install the menu &gt;&gt;
++    &lt;&lt; install the status bar &gt;&gt;
++    &lt;&lt; install the chat bar &gt;&gt;
++
++    self.Redirect(self)
++
++    root.title(&quot;Chalks&quot;)
++    root.protocol('WM_DELETE_WINDOW', self.quit) # not a good idea
+because already overwritten, has to intercept finishQuit
++
++    self.text_widget.focus_set() # put the input focus at the text widget
++
++    return&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040121153312&quot;&gt;def onChattextEntry(self, event):
++    &quot;&quot;&quot;
++    Obtain the last line in the text widget.
++    Put the cursor at the end of the widget.
++    Send the message.
++
++    The event callback is called *before* that the key modify the text widget.
++    &quot;&quot;&quot;
++
++    text = event.widget
++
++    txt = text.get(&quot;insert linestart&quot;, &quot;insert lineend&quot;)  # extract
+the actual line
++    #self.log(&quot;Try of txt : '%s'&quot;%(txt), color=&quot;yellow&quot;)
++
++    # ensure that the cursor is on the last line, and that there is
+only one blank line at the end (new entry...)
++    text.mark_set(&quot;insert&quot;, &quot;end&quot;)
++    if text.get(&quot;insert - 1 chars&quot;) == '\n':
++        text.delete(&quot;insert - 1 chars&quot;)
++
++
++    if txt[0] == '/': # manage commands
++        if txt.startswith(&quot;/presence&quot;):
++            t_list = txt.split(' ')
++            if len(t_list) &gt;= 2:
++                status = ' '.join(t_list[1:])
++                self.perspective.callRemote(&quot;set_presence&quot;, status)
++            else:
++                self.log(&quot;Set your status online (dummy demo command
+by the moment).\ Example: '/presence happy coding'&quot;, color=&quot;gray&quot;)
++
++        elif txt.startswith(&quot;/help&quot;):
++            self.log(&quot;Actual defined commands
+are:\n'/help','/presence', (sorry, nothing else by now)&quot;,
+color=&quot;gray&quot;)
++
++        else:
++            cmd = txt.split(' ')[0]
++            self.log_error(&quot;Unknown command '%s'; message not
+sent.\nUse '/help' to get some guidance.&quot;%(cmd))
++    else:
++        t_from = self.node.nickname
++        t_to = None # to everyone
++        self.node.remote_send_message(t_from, t_to, txt, self.node)
++
++    return
++
++
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040121153834.4&quot;&gt;def updateStatusRowCol (self):
++
++    row, col = tuple(map(int, self.text_widget.index(INSERT).split(&quot;.&quot;)))
++
++    if self.node:
++        t_string = &quot;(row %3i, col %3i) (HB %3i, DOps %3i)&quot; % (row,
+col, len(self.node.HB), len(self.node.delayed_operations))
++    else:
++        t_string = &quot;(row %3i, col %3i)&quot; % (row, col)
++
++    self.rowcol_stringvar.set( t_string )
++
++    self.status_bar.after(150, self.updateStatusRowCol)     #
+Reschedule this routine 150 ms. later.
++
++&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040121154249&quot;&gt;@nocolor
+
+ @encoding utf-8
+@@ -28848,6 +29501,259 @@
+     return
+
+ &lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040122173046&quot;&gt;#f = Frame(root,bd=0,relief=&quot;flat&quot;)
++#f.pack(expand=1,fill=&quot;both&quot;,pady=1)
++#pane1 = Frame(f)
++#pane2 = Frame(f)
++#bar =   Frame(f,bd=2,relief=&quot;raised&quot;,bg=&quot;LightSteelBlue2&quot;)
++
++self.splitVerticalFlag = 1 # self.splitVerticalFlag tells the
+alignment of the splitter
++verticalFlag = 1
++&lt;&lt; create the splitter &gt;&gt;
++self.split_bar, self.splitPane1, self.splitPane2 = bar, pane1, pane2
++self.resizePanesToRatio(1.0/4)
++
++
++# create the body and the chat frames
++from ScrolledText import ScrolledText
++&lt;&lt; create the log  widget &gt;&gt;
++&lt;&lt; create the text widget &gt;&gt;
++
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040122173046.1&quot;&gt;
++self.menu_bar = Menu(root,)
++
++# File, Save, Open, Connect to; Help, about, help, online homepage
++
++file_menu = Menu(self.menu_bar,)
++
++file_menu.add_command(label=&quot;Connect to&quot;, underline=0,
+accelerator=&quot;Ctrl+T&quot;, command= self.onConnectTo)
++file_menu.add_separator()
++file_menu.add_command(label=&quot;Open&quot;, underline=0,
+accelerator=&quot;Ctrl+O&quot;,command= self.onOpen)
++file_menu.add_command(label=&quot;Save&quot;, underline=0,
+accelerator=&quot;Ctrl+S&quot;, command= self.onSave)
++file_menu.add_separator()
++file_menu.add_command(label=&quot;Quit&quot;, underline=0, 
+accelerator=&quot;Ctrl+Q&quot;, command= self.quit)
++
++self.menu_bar.add_cascade(label = &quot;File&quot;, underline=0, menu= file_menu)
++
++self.menu_bar.add_command(label=&quot;Help&quot;, underline=0, command= self.onHelp)
++@
++help_menu = Menu(self.menu_bar,)
++help_menu.add_command(label=&quot;About&quot;, command= lambda _: None)
++help_menu.add_command(label=&quot;Help&quot;, command= lambda _: None)
++help_menu.add_command(label=&quot;Online homepage&quot;, command= self.online_homepage)
++
++self.menu_bar.add_cascade(label = &quot;Help&quot;, menu= help_menu)
+<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">+ at c</A>
++
++root.config(menu=self.menu_bar)
++
++
++# install the shortcuts
++root.bind(&quot;&lt;Control-t&gt;&quot;, self.onConnectTo)
++root.bind(&quot;&lt;Control-o&gt;&quot;, self.onOpen)
++root.bind(&quot;&lt;Control-s&gt;&quot;, self.onSave)
++root.bind(&quot;&lt;Control-q&gt;&quot;, self.quit)
++root.bind(&quot;&lt;Control-H&gt;&quot;, self.onHelp)
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040122173046.2&quot;&gt;@
++Create the chat_bar widget that is a posteriori inserted or extirped
+from the log panel.
++The chat bar allow smart text entry
+<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">+ at c</A>
++
++parent = pane1
++self.chat_bar = chat_bar = Frame( parent, borderwidth=1,relief=SUNKEN)
++
++self.rowcol_label = Label(chat_bar,
+textvariable=self.rowcol_stringvar, anchor=W)
++self.rowcol_label.pack(side=LEFT, padx=1)
++
++# the entry is a text widget of fixed heigth 1. The '\n' keystroke is
+related to a function call. then users can send lines, and have an
+history.
++
++log = self.log_widget
++self.chat_text_entry = text = Text(chat_bar, height=1, background =
+log[&quot;background&quot;], font = log[&quot;font&quot;])
++text.pack(side=RIGHT, fill=BOTH, expand=1)
++text.bind(&quot;&lt;Return&gt;&quot;, self.onChattextEntry )
++
++text.insert(END, &quot; The chat bar is disabled until someone connects to
+you or you connect to someone.&quot;)
++text[&quot;state&quot;] = DISABLED
++
++chat_bar.pack(fill=BOTH)&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040122173046.3&quot;&gt;@others
++
++self.status_bar = Frame(pane2, bd=2)
++
++self.rowcol_stringvar = StringVar()
++self.rowcol_label = Label(self.status_bar,
+textvariable=self.rowcol_stringvar, anchor=W)
++self.rowcol_label.pack(side=LEFT, padx=1)
++
++bg = self.status_bar.cget(&quot;background&quot;)
++self.status_text = Text(self.status_bar, height=1, state=DISABLED,
+bg=bg, relief=GROOVE)
++self.status_text.pack(side=LEFT, fill=X,expand=1)
++
++# Register an idle-time handler to update the row and column indicators.
++self.status_bar.after_idle(self.updateStatusRowCol)
++
++
++#self.status_bar.pack(fill=X, pady=1) # the status bar is pack at
+onDragSplitBar&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040122173128&quot;&gt;
++def online_homepage(self, event=1):
++
++    import webbrowser
++
++    url = &quot;<A HREF="http://chalks.berlios.de">http://chalks.berlios.de</A>&quot;
++
++    try:
++        webbrowser.open_new(url)
++    except:
++        print &quot;not found: &quot; + url
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040122175312&quot;&gt;&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040122182446.1&quot;&gt;class Redirect:
++    &quot;&quot;&quot;
++    act a proxy for a file
++    When instanciated will redirect the stdout and stdout over the log_widget.
++    &quot;&quot;&quot;
++
++    # To redirect stdout a class only needs to implement a
+write(self,s) method.
++    def __init__ (self, app):
++
++        assert hasattr(app, &quot;log_widget&quot;), &quot;require to have already
+build the gui in order to install the redirection&quot;
++
++        self.redirecting = None
++        self.app = app
++        self.app.log_widget.tag_config(&quot;stdout&quot;, foreground=&quot;gray45&quot;)
++
++        self.redirect() # redirect stderr and stdout to the log panel
++
++    def isRedirected (self):
++        return self.redirecting
++
++    def flush(self, *args):
++        return # 6/14/03:  For LeoN: just for compatibility.
++
++    def redirect (self):
++        import sys
++        if not self.redirecting:
++            sys.stdout, sys.stderr, self.redirecting = self, self, 1
++
++    def undirect (self,stdout=1):
++        import sys
++        sys.stdout, sys.stderr, self.redirecting = sys.__stdout__,
+sys.__stderr__, None
++
++    def write(self,s):
++        if self.redirecting:
++            if self.app.log_widget:
++                if not s.isspace(): # if it has some readable content
++                    self.app.log(&quot;&lt;local&gt; %s&quot; % s , tag= &quot;stdout&quot;)
++                else:
++                    self.app.log(s)
++
++            sys.__stdout__.write(s) # anyway write out (to see the
+crash errors)
++        else: print s # Typically will not happen.
++
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123123802&quot;&gt;# help is defined at the class level;
+to avoid leo identation problems
++&lt;&lt; chalks help &gt;&gt; # define 'help' (at the class level)
++
++def onHelp(self, event=None):
++    &quot;&quot;&quot;
++    Show main help screen
++    &quot;&quot;&quot;
++
++    from ScrolledText import ScrolledText
++    top = Toplevel(self.root)
++    top.title(&quot;Help&quot;)
++    t = ScrolledText(top, wrap=WORD, padx=50); t.pack(expand=1, fill=BOTH)
++
++    # add apropos
++    t.insert(END, &quot;\nChalks &quot; + self.version + &quot;\nLicensed under the
+GNU GPL\nCopyright 2004, Chalks Development Team&quot;)
++    link_text = &quot; Project homepage&quot;
++    t.insert(END, link_text)
++    t.tag_config(&quot;hyperlink&quot;, underline=1, foreground=&quot;blue3&quot;)
++    t.tag_bind(&quot;hyperlink&quot;, &quot;&lt;Button&gt;&quot;, self.online_homepage)
++    t.tag_add(&quot;hyperlink&quot;,&quot;end - %i chars&quot; % (len(link_text) + 1),
+&quot;end - 1 char&quot;)
++
++    t.insert(END, &quot;\n&quot;)
++    t.insert(END, self.help) # insert the content
++    t.config(state=DISABLED)
++    Button(top, text=&quot;Close&quot;, command= top.destroy, default=ACTIVE).pack()
++    top.protocol(&quot;WM_DELETE_WINDOW&quot;, top.destroy)
++
++    self.root.wait_window(top) # show
++
++    return
++
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123123802.1&quot;&gt;# Create a splitter window and
+panes into which the caller packs widgets.
++# Returns (f, bar, pane1, pane2)
++
++parent = root
++
++# require parent, verticalFlag
++
++# set up icon only on win32 (need to research how this is done on *NIX)
++import sys
++if sys.platform == 'win32':
++    root.iconbitmap(bitmap=&quot;chalks.ico&quot;)  # set application icon
++
++# Create the frames.
++f = Frame(parent,bd=0,relief=&quot;flat&quot;,width=640,height=480) # without
+forcing width/height, the frame starts up with a really small
+dimension on win32 (almost iconic)
++f.pack(expand=1,fill=&quot;both&quot;,pady=1)
++pane1 = Frame(f)
++pane2 = Frame(f)
++bar =   Frame(f,bd=2,relief=&quot;raised&quot;,bg=&quot;LightSteelBlue2&quot;)
++
++# Configure and place the frames.
++
++&lt;&lt; configure &gt;&gt;
++&lt;&lt; place &gt;&gt;
++
++#return f, bar, pane1, pane2
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123123829&quot;&gt;#bar, verticalFlag
++
++
++w = 7
++relief = &quot;groove&quot;
++color = &quot;LightSteelBlue2&quot;
++
++try:
++    if verticalFlag:
++        # Panes arranged vertically; horizontal splitter bar
++        bar.configure(relief=relief,height=w,bg=color,cursor=&quot;sb_v_double_arrow&quot;)
++    else:
++        # Panes arranged horizontally; vertical splitter bar
++        bar.configure(relief=relief,width=w,bg=color,cursor=&quot;sb_h_double_arrow&quot;)
++except: # Could be a user error. Use all defaults
++    self.log(&quot;exception in user configuration for splitbar&quot;)
++
++    if verticalFlag:
++        # Panes arranged vertically; horizontal splitter bar
++        bar.configure(height=7,cursor=&quot;sb_v_double_arrow&quot;)
++    else:
++        # Panes arranged horizontally; vertical splitter bar
++        bar.configure(width=7,cursor=&quot;sb_h_double_arrow&quot;)
++
++
++# bind the bar
++bar.bind(&quot;&lt;B1-Motion&gt;&quot;, self.onDragSplitBar)
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123124005&quot;&gt;&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123130224&quot;&gt;&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123130224.1&quot;&gt;#bar,pane1,pane2,verticalFlag
++
++if verticalFlag:
++    # Panes arranged vertically; horizontal splitter bar
++    pane1.place(relx=0.5, rely =   0, anchor=&quot;n&quot;, relwidth=1.0, relheight=0.5)
++    pane2.place(relx=0.5, rely = 1.0, anchor=&quot;s&quot;, relwidth=1.0, relheight=0.5)
++    bar.place  (relx=0.5, rely = 0.5, anchor=&quot;c&quot;, relwidth=1.0)
++else:
++    # Panes arranged horizontally; vertical splitter bar
++    # adj gives tree pane more room when tiling vertically.
++    adj = (verticalFlag != self.splitVerticalFlag and 0.65) or 0.5
++    pane1.place(rely=0.5, relx =   0, anchor=&quot;w&quot;, relheight=1.0, relwidth=adj)
++    pane2.place(rely=0.5, relx = 1.0, anchor=&quot;e&quot;, relheight=1.0,
+relwidth=1.0-adj)
++    bar.place  (rely=0.5, relx = adj, anchor=&quot;c&quot;, relheight=1.0)&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040123132311.1&quot;&gt;@color
+ @language python
+ # this is the documentation that will be seen by the end user, give a
+description of the panel and it's usage
+@@ -28862,6 +29768,320 @@
+ &quot;&quot;&quot;
+
+ &lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123133012&quot;&gt;def log(self, text, tag=None, color=None):
++    &quot;&quot;&quot;
++    log some text in the log panel
++    &quot;&quot;&quot;
++    assert hasattr(self, &quot;log_widget&quot;)
++    assert hasattr(self, &quot;status_text&quot;)
++
++    if tag:   assert type(tag)   is str
++    if color: assert type(color) is str
++
++    self.log_widget.config(state=NORMAL)
++
++    if color:
++        self.log_widget.tag_config(color, foreground=color) # create
+or config a tag to have the same name that the color string
++        tag = color
++
++    if tag:
++        t_index = self.log_widget.index(INSERT)
++        self.log_widget.insert(END, text)
++        self.log_widget.tag_add(tag, t_index, END)
++    else:
++        self.log_widget.insert(END, text)
++
++    self.log_widget.config(state=DISABLED)
++
++    self.log_widget.yview(END) # makes sure the bottom is visible
++
++    # we also keep the last message in the status bar
++    self.set_status(text)
++
++    return
++
++
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123133928&quot;&gt;def onOpen(self, event=None):
++    &quot;&quot;&quot;
++    &quot;&quot;&quot;
++
++    from tkFileDialog import askopenfile
++
++    t_file = askopenfile(mode=&quot;rw&quot;) # return the opened file
++
++    if not t_file:
++        self.log_error(&quot;Did not select a file to open.&quot;)
++
++    else:
++        pass
++        # check if we have to save the current content
++        if self.is_dirty(): # if file is dirty
++            if self.filename:
++                message = &quot;File \&quot;%s\&quot; contains changes not yet saved
+to disk.\nDo you want to save the file before opening a new one ?&quot; %
+self.filename
++            else:
++                message = &quot;The text has not been saved. Save before
+opening a new one ?&quot;
++
++            ret = self.askYesNoCancel(&quot;Save before opening&quot;, message)
+# ret 1, 0 or -1 for cancel
++
++            if ret == 1:
++                # save the file
++                ret = self.onSave()
++                if not ret: # did not save
++                    return # do not open
++
++            elif ret == -1:
++                print &quot;Open cancelled&quot;
++                return
++
++        # confirm disconnection desire (of ourself, and from everyone
+already connected to us)
++        if self.node.connected:
++            from tkMessageBox import askokcancel
++            ret = askokcancel(&quot;Confirm disconnection&quot;,
++                              &quot;You are connected to a remote server.
+Opening another file will close this connection. Proceed ?&quot;)
++
++            if not ret:
++                print &quot;Open cancelled&quot;
++                return
++
++            # disconnect ourself first
++            self.node.disconnect_from_server()
++
++        # open the file content
++        base_text = None
++        try:
++            base_text = t_file.read()
++        except IOError:
++            print 'i/o error opening file %s, aborting' % t_file
++
++        if not base_text:
++            from tkMessageBox import showerror
++            showerror('Error', 'Input/output error opening file %s,
+aborting.' % t_file)
++            return
++
++        # create a new ChalksNode instance
++        self.node = ChalksNode(self, base_text)
++
++        # update the window
++
++    return
++
++
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123134358&quot;&gt;def onConnectTo(self, event=None):
++    &quot;&quot;&quot;
++    Open the connect to dialog
++    &quot;&quot;&quot;
++    top = Toplevel(self.root)
++    top.title(&quot;Connect to ...&quot;)
++
++    #|-|-|
++    ttt_frame = LabelFrame(top, text=&quot;Available servers&quot;, padx=5, pady=5)
++    self.server_listbox = Listbox(ttt_frame, width=46)
++    self.server_listbox.grid(row=0, column=0, pady=5)
++
++    t_text = Label(ttt_frame, text=&quot;Select a server and enter a
+nickname to connect&quot;)
++    t_text.grid(row=1, column=0)
++
++    #|-|-|
++    t_frame = LabelFrame(top, text=&quot;Enter remote server info&quot;, padx=5, pady=5)
++
++    t_text = Label(t_frame, text=&quot;Address:&quot;)
++    t_text.grid(row=0, column=0, pady=5)
++
++    address_entry = t_entry = Entry(t_frame, width=16, background=&quot;white&quot;)
++    t_entry.grid(row=0, column=1, sticky=W)
++    t_entry.insert(END, &quot;127.0.0.1&quot;)
++
++    t_text = Label(t_frame, text=&quot;e.g. : 181.0.24.5&quot;)
++    t_text.grid(row=1, column=0, columnspan=2, sticky=E)
++
++    t_text = Label(t_frame, text=&quot;  Port:&quot;)
++    t_text.grid(row=0, column=2)
++
++    port_entry = t_entry = Entry(t_frame, width=5,  background=&quot;white&quot;)
++    t_entry.grid(row=0, column=3, sticky=W)
++    t_entry.insert(END, &quot;8787&quot;)
++
++    t_text = Label(t_frame, text=&quot;e.g. : 4321&quot;)
++    t_text.grid(row=1, column=2, columnspan=2, sticky=E)
++
++    #-|-|-
++    tt_frame = LabelFrame(top, text=&quot;Identify yourself&quot;, padx=5, pady=5)
++
++    t_text = Label(tt_frame, text=&quot;Nickname:&quot;)
++    t_text.grid(row=2, column=0)
++
++    nickname_entry = t_entry = Entry(tt_frame, width=8, background=&quot;white&quot;)
++    t_entry.grid(row=2, column=1, sticky=W)
++    # guess the username
++    from os import getenv
++    t_username = str(getenv(&quot;username&quot;))
++    t_entry.insert(END, t_username)
++
++    # see binding below...
++
++    t_text = Label(tt_frame, text=&quot;e.g. : mike&quot;)
++    t_text.grid(row=3, column=0, columnspan=2, sticky=E)
++
++    #-|-|-
++    ttt_frame.pack(ipadx = 5)
++    t_frame.pack(ipadx = 5)
++    tt_frame.pack(ipadx = 5)
++    #|-|-|
++
++    t_frame = Frame(top)
++
++    button_close = Button(t_frame, text=&quot;Close&quot;, command= top.destroy)
++    button_close.pack(side=RIGHT, padx=10)
++
++    &lt;&lt; server list callback &gt;&gt;
++    self.server_listbox.bind(&quot;&lt;Button-1&gt;&quot;, onServerListClick)
++
++    &lt;&lt; connect to callback &gt;&gt;
++
++    button_connect_to = Button(t_frame, text=&quot;Connect to&quot;,
+command=connect_to_callback, state=DISABLED, default=ACTIVE)
++    button_connect_to.pack(side=RIGHT, padx=10)
++
++    top.bind(&quot;&lt;Return&gt;&quot;, lambda e: button_connect_to[&quot;state&quot;]
+== NORMAL and connect_to_callback() ) # call the command if the button
+is enabled
++
++    &lt;&lt; validation callback&gt;&gt;
++
++    button_connect_to.after(200, validation_callback) # start ciclic
+calls each 200 ms
++
++    t_frame.pack()
++
++
++    top.protocol(&quot;WM_DELETE_WINDOW&quot;, top.destroy)
++
++    &lt;&lt; server monitor callback &gt;&gt;
++
++    # register callback with serverMonitor object
++    self.server_monitor.addCallbackListener(server_monitor_callback)
++    # populate it for the first time
++    server_monitor_callback(self.server_monitor.getServers())
++
++    self.root.wait_window(top) # show
++
++    # unregister callback with serverMonitor object
++    self.server_monitor.removeCallbackListener(server_monitor_callback)
++
++    return
++    &lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123134959&quot;&gt;def log_error(self, text):
++    &quot;&quot;&quot;
++    log an error
++    &quot;&quot;&quot;
++    return self.log(&quot;&lt;error&gt; %s&quot; % text, tag=&quot;error&quot;)
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123140212&quot;&gt;def onSave(self, event=None):
++    &quot;&quot;&quot;
++    Return true if saved, False else.
++    &quot;&quot;&quot;
++
++    if self.file:
++        # simply save the content
++        self.save_text() # save the content
++
++        self.log(&quot;saved: %s&quot; % self.filename)
++        ret = 1
++    else:
++        # ask for a filename
++        from tkFileDialog import asksaveasfile
++
++        t_file = asksaveasfile(mode=&quot;rw&quot;) # return the file instance
++
++        if not t_file:
++            self.log_error(&quot;You did not selected a file to save as.&quot;)
++            ret = 0
++        else:
++
++            # save the content
++            self.save_text()
++
++            from os.path import basename
++            self.filename = basename(t_file.name)
++            self.log(&quot;saved: %s&quot; % self.filename)
++            self.root.title(&quot;Chalks - %s&quot; % self.filename)
++            ret = 1
++
++    return ret
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040123142018&quot;&gt;def askYesNoCancel(self, title, message):
++    &quot;&quot;&quot;
++    helper method to ask yes, no cancel
++    &quot;&quot;&quot;
++
++    import tkMessageBox
++
++    ret = tkMessageBox._show(title=title, message=message,
+icon=tkMessageBox.QUESTION, type=tkMessageBox.YESNOCANCEL)
++    # will return .YES, .NO or .CANCEL
++    #dic = {tkMessageBox.YES:1, tkMessageBox.NO:0, tkMessageBox.CANCEL:-1}
++    #print &quot;yes no cancel :&quot;, ret, type(ret) # just for debugging
++    #return dic[ret] # did not work for cancel
++
++    if   ret == tkMessageBox.YES: return  1
++    elif ret == tkMessageBox.NO : return  0
++    else:                         return -1&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040124160427&quot;&gt;&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040124165851&quot;&gt;def set_status(self, text):
++    &quot;&quot;&quot;
++    set the text of the status bar
++    &quot;&quot;&quot;
++
++    t_widget = self.status_text
++    t_widget.config(state=NORMAL)
++    t_widget.delete(&quot;1.0&quot;, END)
++    t_widget.insert(END, text)
++    t_widget.config(state=DISABLED)
++
++    return
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040124184444&quot;&gt;@
++Hooks related to the text widget
+<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">+ at c</A>
++
++@
++Text Key Handlers
++
++The &lt;Key&gt; event generates the event before the text text is
+changed(!), so we register an idle-event handler to do the work later.
++
++1/17/02: Rather than trying to figure out whether the control or alt
+keys are down, we always schedule the idle_handler.  The idle_handler
+sees if any change has, in fact, been made to the text text, and sets
+the changed and dirty bits only if so.  This is the clean and safe
+way.
++
++2/19/02: We must distinguish between commands like &quot;Find, Then
+Change&quot;, that call onTextChanged, and commands like &quot;Cut&quot; and &quot;Paste&quot;
+that call onTextWillChange.  The former commands have already changed
+the text text, and that change must be captured immediately.  The
+latter commands have not changed the text, and that change may only be
+captured at idle time.
+<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">+ at c</A>
++
+<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">+ at others</A>&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125145031&quot;&gt;def onCut (self,event=None):
++    &quot;&quot;&quot;The handler for the virtual Cut event.&quot;&quot;&quot;
++    self.onTextWillChange(&quot;Cut&quot;)
++
++def OnCutFromMenu (self):
++    &quot;&quot;&quot;
++    called from the menu
++    &quot;&quot;&quot;
++    self.root.event_generate(virtual_event_name(&quot;Cut&quot;))
++
++
++
++def onCopy (self,event=None):
++
++    # Copy never changes dirty bits or syntax coloring.
++    return
++
++def OnCopyFromMenu (self):
++
++    self.root.event_generate(virtual_event_name(&quot;Copy&quot;))
++
++
++def onPaste (self,event=None):
++
++    self.onTextWillChange(v,&quot;Paste&quot;)
++
++def onPasteFromMenu (self):
++
++    self.root.event_generate(virtual_event_name(&quot;Paste&quot;))
++&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040125153141&quot;&gt;# install the collaboration service
+
+ self.node = ChalksNode(self) # ChalksNode takes care of the rest
+@@ -28892,22 +30112,96 @@
+     self.log_error(&quot;This is a fatal error&quot;)
+     self.text_widget[&quot;state&quot;] = DISABLED # I said fatal error...
+     &lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125153909&quot;&gt;self.log_widget  =
+ScrolledText(pane1, background=&quot;white&quot;, state=DISABLED)
++self.log_widget[&quot;height&quot;] = 1
++self.log_widget.pack(fill=BOTH, expand=1)
++self.log_widget.tag_config(&quot;error&quot;, foreground=&quot;red&quot;)
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125153909.1&quot;&gt;self.text_widget = text_widget =
+ScrolledText(pane2, background=&quot;white&quot;, height=0)
++text_widget.pack(fill=BOTH, expand=1)
++
++# Event handlers...
++#text_widget.bind(&quot;&lt;Button-1&gt;&quot;, self.onTextClick)
++#text_widget.bind(&quot;&lt;Button-3&gt;&quot;, self.onTextRClick)
++#text_widget.bind(&quot;&lt;Double-Button-1&gt;&quot;, self.onTextDoubleClick)
++text_widget.bind(&quot;&lt;Key&gt;&quot;, self.onTextKey)
++
++# Returns &lt; &lt; s &gt; &gt;
++def virtual_event_name(s):
++    return ( &quot;&lt;&lt;&quot; + s +
++           &quot;&gt;&gt;&quot;) # must be on a separate line.
++
++# Gui-dependent commands...
++text_widget.bind(virtual_event_name(&quot;Cut&quot;), self.onCut)
++text_widget.bind(virtual_event_name(&quot;Copy&quot;), self.onCopy)
++text_widget.bind(virtual_event_name(&quot;Paste&quot;), self.onPaste)&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125154636&quot;&gt;def onTextKey (self,event):
++    &quot;&quot;&quot;
++    Handle any key press event in the text pane.
++    This method is called before the key operation is efectued.
++    We recolect all the pertinent status data and use it in posterior
+processing.
++    &quot;&quot;&quot;
++
++    # required data
++    d = {}
++    d[&quot;undoType&quot;] = &quot;Typing&quot;
++    d[&quot;ch&quot;] = event.char
++    d[&quot;keycode&quot;] = event.keycode
++    d[&quot;oldSel&quot;]  = self.get_text_selection()
++    d[&quot;oldText&quot;] = self.text_widget.get(&quot;1.0&quot;, END)
++
++
++    # obtain some important tags positions
++
++    tags_ranges = {}
++    #tag_names = self.text_widget.tag_names()
++    tag_names = [&quot;to_send&quot;] # we are only interesed on the to_send ranges
++
++    for t_name in tag_names:
++        if 0:
++            # normally there are only  two or fours tags at the same time
++            # so we convert them directly
++            tags = []
++            for start, stop in self.text_widget.tag_ranges(t_name) :
++                pos = (self.text_widget.get(&quot;1.0&quot;, start))
++                lenght = (self.text_widget.get(start, stop))
++                tags.append((pos, length))
++        else:
++            tags = self.text_widget.tag_ranges(t_name)
++
++        tags_ranges[t_name] = tags
++
++    d[&quot;oldTagsRanges&quot;] = tags_ranges
++
++
++    #self.log(&quot;tag names %s tags_tanges
+%s&quot;%(self.text_widget.tag_names(), tags_ranges), color=&quot;orange&quot;)
++
++    self.text_widget.after_idle(self.idle_text_key, d)
++
++    return
++
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125154657&quot;&gt;def idle_text_key (self, data):
++    &quot;&quot;&quot;
++    Update the text pane at idle time.
++    &quot;&quot;&quot;
++
++    self.node.fill_body(data) # parse the events over the text widget
++
++    return &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040125154815.1&quot;&gt;from ConcurrentEditable import
+ConcurrentEditableNode
+ from ConcurrentEditable import ConcurrentEditable # needed by
+remote_delete_text()
+
+ class ChalksNode(ConcurrentEditableNode, pb.Referenceable):
+     &quot;&quot;&quot;
+-    &lt;&lt;&lt; EDIT THIS CONTENT !!
+-    Specialized to manage the Tk widget and to be in a Tree like network.
++    This is the local instance that take care of the collaborative
+edition and the network layers.
++    This is the core object under the GUI.
+
+-    The client side of the selected node.
+-    This is a dynamic component.
++    A Chalks node is part of a tree network, it can have one parent
+and N childrens.
++    A node connect once to his parent and can receive N childrens connections.
+
+-    This class is instanciated when the user start to collaborate in a node.
+-    It manage all the ConcurrentEdition Logic.
+-    This is the class that concentrate the LeoN interaction with the
+panel body. The implementation is dependent of the Gui system.
++    All messages that arrive to a node has to be repeated to the other nodes.
+     This is the class that generate all the operations to be sent to
+the server, and it the the one that process the received operations.
+-    As this is a child class, most of the ConcurrentEditable logic is
+not here but in the parents. This class overwrite and extend his
+parent with Gui dependents methods.
+     &quot;&quot;&quot;
+
+     def __init__(self, Chalks_instance, text=&quot;&quot;):
+@@ -28921,10 +30215,15 @@
+         self.chalks_instance  = Chalks_instance # stores a reference
+to the gui object
+
+         self.nickname = None
+-        self.id = None # id is an unique internet identifier
++        self.site_id = None # site_id is an unique internet identifier
+         self.connected = 0              # initially we are not
+connected to anyone
+
+-        for t_name in [&quot;log&quot;, &quot;log_error&quot;, &quot;exception&quot;, &quot;encoding&quot;]:
+# attach some attributes and methods
++        # perspectives of the adjacent nodes in the network
++        self.parent_perspective = None
++        self.childrens_perspectives = []
++
++        # attach some attributes and methods
++        for t_name in [&quot;log&quot;, &quot;log_error&quot;, &quot;exception&quot;, &quot;encoding&quot;]:
+             setattr(self, t_name, getattr(Chalks_instance, t_name))
+         self.log = lambda text, *args, **kws:
+Chalks_instance.log(&quot;\n%s&quot; % text) # dummy trick
+
+@@ -28937,6 +30236,9 @@
+         if text:
+             self.set_text(text)
+
++        return
++
++
+     def log(self, text, tag=None, color=None):
+         &quot;&quot;&quot;
+         right now it will just forward log message to GUI object
+@@ -28950,18 +30252,13 @@
+         self.chalks_instance.log_error(text)
+
+     @others
+-
+-
+-
+-
+-
+-
+-
+ &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040125154815.2&quot;&gt;def connect_to_parent(self,
+address, port, nickname=&quot;No name&quot;):
+     &quot;&quot;&quot;
+-    Connect as a children to another node
++    Connect as a children to a parent node
+     &quot;&quot;&quot;
++    print &quot;Requesting a connection to '<A HREF="chalks://%s:%s">chalks://%s:%s</A>' as '%s',
+please wait...&quot; % (address, port, nickname)
++
+     assert isinstance(port, int), 'port must be integer'
+     self.nickname = nickname
+
+@@ -28978,11 +30275,11 @@
+
+     self.parent_perspective = parent_perspective
+
+-    # we obtain us id
++    # we obtain us site_id
+     t_address = self.parent_perspective.broker.transport.getHost()
+-    self.id = hash(&quot;%s:%i&quot; % (t_address.host, t_address.port))
++    self.site_id = hash(&quot;%s:%i&quot; % (t_address.host, t_address.port))
+
+-    deferred = self.parent_perspective.callRemote(&quot;collaborate_in&quot;, self.id)
++    deferred = self.parent_perspective.callRemote(&quot;collaborate_in&quot;,
+self.site_id)
+     deferred.addCallback(self.start_collaborating).addErrback(self.exception)
+
+     return
+@@ -29019,6 +30316,7 @@
+
++
+ &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040125154815.3&quot;&gt;@
+ This methods edit the client node text, presenting the gui results.
+@@ -29635,8 +30933,23 @@
+ For more information about the code read the
+&quot;LeoN.leo/Docs/developers docs/Code explanation&quot; node.
+ @c
+ @color&lt;/t&gt;
+-&lt;t tx=&quot;rodrigob.20040125194534&quot;&gt;class ChalksPerspective(pb.Avatar):
++&lt;t tx=&quot;rodrigob.20040125192325&quot;&gt;def get_text_selection (self):
+     &quot;&quot;&quot;
++    Return a tuple representing the selected range of body text.
++    Return a tuple giving the insertion point if no range of text is selected.
++    &quot;&quot;&quot;
++
++    text_widget = self.text_widget
++    sel = text_widget.tag_ranges(&quot;sel&quot;)
++
++    if len(sel) == 2:
++        return sel
++    else:
++        # Return the insertion point if there is no selected text.
++        insert = text_widget.index(&quot;insert&quot;)
++        return insert,insert&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125194534&quot;&gt;class ChalksAvatar(pb.Avatar):
++    &quot;&quot;&quot;
+     &lt;&lt;&lt;&lt;&lt;&lt;&lt; ADD CONTENT HERE
+     what other users (childrens) can do here (at the parent).
+     The avatar instance is created when the user connects to the
+local node, and it defines what he can do here.
+@@ -29654,16 +30967,13 @@
+
+         self.mind = mind # store it for later use # mind is a
+perspective of the client that is connecting to use
+         self.avatarId = avatarId
+-        self.nickname = avatarId
++        self.nickname = self.mind.nickname = avatarId
+
+         assert mind, ChalksError(&quot;Chalks strictly require references
+to the client connecting.&quot;)
+
+         #pb.Avatar.__init__(self, avatarId, mind) # pb.Avatar has no
+__init__ method.
++        return
+
+-
+-
+-
+-
+     @others&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040125200531&quot;&gt;class DummyChecker:
+     &quot;&quot;&quot;
+@@ -29685,7 +30995,7 @@
+ &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040125200531.1&quot;&gt;class ChalksRealm:
+     &quot;&quot;&quot;
+-    Provide access to a ChalksPerspective
++    Provide access to a ChalksAvatar
+     &quot;&quot;&quot;
+     __implements__ = portal.IRealm
+
+@@ -29693,15 +31003,90 @@
+         self.chalks_instance = Chalks_instance
+     def requestAvatar(self, avatarId, mind, *interfaces):
+         if pb.IPerspective in interfaces:
+-            avatar = ChalksPerspective(avatarId, mind, self.chalks_instance)
++            avatar = ChalksAvatar(avatarId, mind, self.chalks_instance)
+             return pb.IPerspective, avatar, avatar.logout
+         else:
+             raise NotImplementedError(&quot;no interface&quot;)
+
+ &lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125210836&quot;&gt;@
++this code is at the class Chalks level
+<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">+ at c</A>&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125211222&quot;&gt;
++def save_text(self,):
++    &quot;&quot;&quot;
++    Effectivelly flush the text to the local file.
++    &quot;&quot;&quot;
++
++    assert hasattr(self, &quot;file&quot;), &quot;No open file to save in&quot;
++
++    self.file.seek(0) # go back to the start
++    text= self.text_widget.get(&quot;1.0&quot;, END)
++    self.file.write(text)
++    self.file.truncate() # mark the end of the file
++    # we are done
++
++    self.saved_version_hash = hash(text) # used to check later changes
++    return
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125213003&quot;&gt;def connect_to_callback(event=None):
++    &quot;&quot;&quot;
++    what happens when the &quot;Connect to&quot; button is pressed
++    &quot;&quot;&quot;
++    # if required, request a save as
++    if self.is_dirty():
++        if self.filename:
++            message = &quot;File \&quot;%s\&quot; contains changes not yet
+saved.\nOnce connected, a new text will be downloaded.\nDo you want to
+save the current file before connecting ?&quot; % self.filename
++        else:
++            message = &quot;The text has not been saved.\nOnce connected,
+a new text will be downloaded.\nSave before connecting ?&quot;
++
++        ret = self.askYesNoCancel(&quot;Save and connect to ...&quot;, message)
+# ret 1, 0 or -1 for cancel
++
++        if ret == 1:
++            # save the file
++            ret = self.onSave()
++            if not ret: # did not saved
++                return # do not quit
++
++        elif ret == -1:
++            print &quot;you canceled the connection process&quot;
++            return
++
++    port     = int(port_entry.get()) # connect_to_parent now expects
+an int as the port
++    address  = address_entry.get()
++    nickname = nickname_entry.get()
++
++    top.destroy()
++    # start the connection
++    self.node.connect_to_parent(address, port, nickname)
++    return
++&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040125213003.1&quot;&gt;def validation_callback(event=None):
++    &quot;&quot;&quot; simple callback that check every 200 ms if the filled data is valid&quot;&quot;&quot;
++
++    port    = port_entry.get()
++    address =  address_entry.get()
++
++    if address:
++        title = &quot;Connect to %s:%s&quot; % (address, port)
++    else:
++        title = &quot;Connect to ...&quot;
++    top.title(title)
++
++    condition =  address and port.isdigit() and
+len(nickname_entry.get()) &gt; 3
++
++    if condition:
++        button_connect_to.config(state=NORMAL)
++    else:
++        button_connect_to.config(state=DISABLED)
++
++    button_connect_to.after(200, validation_callback) # call each 200 ms
++
++    return
++&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040125220331&quot;&gt;def perspective_get_actual_users_list(self, ):
+     &quot;&quot;&quot;
+-    Return the dictonary of map node.id -&gt; user_nickname
++    Return the dictonary of map node.site_id -&gt; user_nickname
+     &quot;&quot;&quot;
+     return self.node.perspective_get_actual_users_list(who=self)
+
+@@ -29713,11 +31098,13 @@
+     return self.node.remote_set_presence(state, who=self)
+
+-def perspective_send_message(self, to, txt):
++def perspective_send_message(self, from_, to, txt, received_from):
+     &quot;&quot;&quot;
+     Send a message to
+     &quot;&quot;&quot;
+-    return self.node.remote_send_message(to, txt, who=self)
++
++    assert received_from == self # this paremeter exist just to solve
+a simmetry issue
++    return self.node.remote_send_message(from_, to, txt, self)
+     &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040125223416&quot;&gt;@
+ what if text is inserted while a char as typed but not yet marked by
+the &quot;after_idle&quot;. That would cause a 'one char' fatal error !!!
+@@ -29772,19 +31159,17 @@
+
+     return&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040126020641&quot;&gt;# Allow external users to start collaborating
+-
+-
+-def perspective_collaborate_in(self, id):
++def perspective_collaborate_in(self, site_id):
+     &quot;&quot;&quot;
+     Start collaborating with the node
+     proceeds with site registration and returns the necessary data to
+configure the client (children)
+-    the id is a unique identifier of the client (child) process
++    the site_id is a unique identifier of the client (child) process
+     &quot;&quot;&quot;
++
++    self.site_id = self.mind.site_id = site_id
+
+-    self.id = id
++    self.node.add_site(self.mind) # we register us perspective in the parent
+
+-    self.node.add_site(id) # we register us in the parent
+-
+     # we obtain and return the required data to start the session in the child
+     t_state = self.node.get_state(); t_state = list(t_state);
+     # Convert HB Operation objects to diccionaries
+@@ -29800,14 +31185,12 @@
+     # logout of the Collaborative Node
+     self.node.del_client(self)
+
+-    self.site_index = None
++    self.site_id = None
+
+     return
+
+-
+
+-
+ &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040127182438&quot;&gt;@
+ The ChalksNode is a referenceable object that is passed at
+connection, define what us 'parent' (the node to which we connected)
+can do on the local node.
+@@ -29816,7 +31199,7 @@
+ &lt;&lt;&lt; EXPLAIN HERE
+
+ this methods are common to both children-&gt;parent calls and
+parent-&gt;childrens calls.
+-So we use only this implementation. The ChalksPerspective equivalent
+methods, call this one.
++So we use only this implementation. The ChalksAvatar equivalent
+methods, call this one.
+ @c
+
+@@ -29833,22 +31216,25 @@
+     return self.node.remote_delete_text(startpos, length, timestamp, who=self)
+
+ &lt;/t&gt;
+-&lt;t tx=&quot;rodrigob.20040127184605&quot;&gt;def remote_send_message(self, txt, who=None):
++&lt;t tx=&quot;rodrigob.20040127184605&quot;&gt;def remote_send_message(self, from_,
+to, txt, received_from):
+     &quot;&quot;&quot;
++    from: string, nickname of the emitter
++    to: string, nickname of the receiver
++    txt: the message
++    received_from: perspective that give to us the message
++
+     A remote node send a message to us
+     we repeat it to every known node except from the one that gived
+the message to us
+-
+-    (this method is used to manage both parent and children remote
+calls (childrens access to an avatar that call this method))
++    if to is None, the message will be spread to all, else it will be
+sent only to the users named like to
+     &quot;&quot;&quot;
+-
+-    if not who:
+-        who = self.parent
+
+-    self.log(&quot;&lt;%s&gt; %s&quot; %(who.nickname, txt) )
++    if (not to) or (to == self.nickname):
++        self.log(&quot;&lt;%s&gt; %s&quot; %(from_, txt) )
+
+-    for t_perspective in self.users.values():  # self.users doesn't
+exist, so chat won't work until all this code is fixed.
+-        if who != t_perspective:
+-            t_perspective.callRemote(&quot;post_message&quot;, self.name,
+txt).addErrback(lambda _, name: self.log_error(&quot;Could not send a
+message to user %s&quot;), t_perspective.nickname)
++    perspectives = self.childrens_perspectives + [self.parent_perspective]
++    for t_perspective in perspectives:
++        if t_perspective and received_from!= t_perspective:
++            t_perspective.callRemote(&quot;send_message&quot;, from_, to, txt,
+self).addErrback(lambda _, name: self.log_error(&quot;Could not send the
+message from user %s to user %s&quot;), from_, to)
+     return
+ &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040127184605.1&quot;&gt;def remote_set_presence(self, state):
+@@ -29866,7 +31252,7 @@
+ &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040127185444&quot;&gt;def remote_get_users_list(self, ):
+     &quot;&quot;&quot;
+-    Return the dictonary of map node.id -&gt; user_nickname
++    Return the dictonary of map node.site_id -&gt; user_nickname
+     &quot;&quot;&quot;
+
+     return {}  #&lt;&lt;&lt;&lt; implement
+@@ -29875,11 +31261,29 @@
+ &lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040127190845&quot;&gt;@
+ this methods are common to both children-&gt;parent calls and
+parent-&gt;childrens calls.
+-So we use only one implementation. ChalksPerspective calls ChalksNode
+implementation.
++So we use only one implementation. ChalksAvatar calls ChalksNode
+implementation.
+ @c&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040127203753&quot;&gt;def check_sites(self,):
+     # &lt;&lt;&lt;&lt; what is this method supposed to do ?
+     pass&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040128005315&quot;&gt;def exception(self, error):
++    &quot;&quot;&quot;
++    manage the exceptions
++    'error' should be a Failure (or subclass) holding the MyError exception,
++    error.{type , getErrorMessage, __class__, getBriefTraceback, getTraceback}
++    &quot;&quot;&quot;
++
++    #error.trap(ChalksError) # to manage silently that exceptions
++    #raise error # raise the remote error, short error message (brief
+traceback)
++
++    # &quot;&lt;Error!&gt; Got a remote Exception\n&lt;%s&gt;&lt;%s&gt; %s &quot;
++    self.log_error( &quot;&lt;Error!&gt;&lt;%s&gt;\n%s&quot;%(error.type,
+error.getErrorMessage()) )
++    self.log_error( &quot;&lt;Debug&gt; %s&quot;% error.getTraceback()) # only
+for debugging
++    return
++
++
++
++&lt;/t&gt;
+ &lt;t tx=&quot;rodrigob.20040128011809&quot;&gt;@
+ what happen when a new node appear in the network
+ or when we are notified that a node quited it
+@@ -31340,7 +32744,7 @@
+     self.text_widget.mark_set(&quot;insert&quot;, insert_index) # try to keep
+the insert mark at the same place
+
+     t_address = self.parent_perspective.broker.transport.getPeer()
+-    self.log(&quot;Connected to '%s:%i' as site '%s' (num_of_sites
+%s)&quot;%(t_address.host, t_address.port, self.id, num_of_sites))
++    self.log(&quot;Connected to '%s:%i' as site '%s' (num_of_sites
+%s)&quot;%(t_address.host, t_address.port, self.site_id, num_of_sites))
+
+     self.log(&quot;HB after the connection %s&quot;% self.HB, color=&quot;yellow&quot;) #
+just for debugging
+     self.log(&quot;delayed_operations after the connection %s&quot;%
+self.delayed_operations, color=&quot;yellow&quot;) # just for debugging
+@@ -31352,5 +32756,58 @@
+     self.connected = 1 # indicate the success
+     return
+     &lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040912211519&quot;&gt;&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040912221032&quot;&gt;def enableChat(self):
++    &quot;&quot;&quot;
++    enables chat text entry widget
++    &quot;&quot;&quot;
++    self.chat_text_entry[&quot;state&quot;] = NORMAL
++    self.chat_text_entry.delete('1.0', END);
++    #self.chat_text_entry.insert(END, &quot;Enter chat text here&quot;);
++    print &quot;Chat bar now enabled&quot;
++    return
++
++def disableChat(self):
++    &quot;&quot;&quot;
++    disable chat text entry widget
++    &quot;&quot;&quot;
++    self.chat_text_entry.delete('1.0', END);
++    self.chat_text_entry.insert(END, &quot;The chat bar is disabled until
+someone connects to you or you connect to someone.&quot;);
++    self.chat_text_entry[&quot;state&quot;] = DISABLED
++    print &quot;Chat bar now disabled&quot;
++
++    return&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040912225813&quot;&gt;@
++Register/Unregister childrens in the session&lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040912225813.1&quot;&gt;def add_site(self, site_perspective):
++    &quot;&quot;&quot;
++    Add a new children to the local node
++    &quot;&quot;&quot;
++
++    if not self.connected:
++        self.connected = 1
++        # upon connection we need to enable the chat system
++        self.chalks_instance.enableChat()
++
++    print &quot;User %s %s is starting to collaborate&quot; %
+(site_perspective.nickname, site_perspective)
++    self.childrens_perspectives.append(site_perspective)
++    ConcurrentEditableNode.add_site(self, site_perspective.site_id)
++
++    return
++    &lt;/t&gt;
++&lt;t tx=&quot;rodrigob.20040912225813.2&quot;&gt;def del_site(self, site_perspective):
++    &quot;&quot;&quot;
++    Delete a children from the local node
++    &quot;&quot;&quot;
++
++    print &quot;User %s %s is quiting&quot; % (site_perspective.nickname,
+site_perspective.mind)
++    self.childrens_perspectives.remove(site_perspective)
++    ConcurrentEditableNode.add_site(self, site_perspective.site_id)
++
++    if not self.childrens_perspectives and not self.parent_perspective:
++        self.connected = 0
++        self.chalks_instance.disableChat()
++    return
++    &lt;/t&gt;
+ &lt;/tnodes&gt;
+ &lt;/leo_file&gt;
+
+Modified: trunk/src/Chalks.py
+===================================================================
+--- trunk/src/Chalks.py 2004-09-11 18:07:27 UTC (rev 46)
++++ trunk/src/Chalks.py 2004-09-13 05:54:38 UTC (rev 47)
+@@ -70,11 +70,15 @@
+ from twisted.internet import reactor
+ from twisted.python import components
+
+-# Woven imports  # THIS IS CURRENTLY DISABLED
+-&quot;&quot;&quot;
+-from twisted.web.woven import page, interfaces, model
+-from twisted.web import server
+-&quot;&quot;&quot;
++
++#@+at
++#@nonl
++# # THIS IS CURRENTLY DISABLED
++# # Woven imports
++# from twisted.web.woven import page, interfaces, model
++# from twisted.web import server
++#@-at
++#@@c
+
+ # Twisted Applications imports
+ from twisted.application import service, internet
+@@ -159,27 +163,28 @@
+         #@+node:rodrigob.20040125150558:&lt;&lt; install the web service &gt;&gt;
+         # install the web service
+         #NOTE: this is currently disabled
+-        &quot;&quot;&quot;
+-        if 0 and web_service:
+-
+-            site = server.Site(utf8Page(interfaces.IModel(self),
+templateFile=&quot;Chalks.xhtml&quot;, templateDirectory=&quot;./&quot;))
+-
+-            web_portno = pb.portno + 1
+-            for port in xrange(web_portno, web_portno+10):
+-                try:
+-                    web_service = reactor.listenTCP(port, site)
+#internet.TCPServer(port, site).setParentApp(app)
+-                except: # failed
+-                    continue
+-                else: # got it
+-                    print &quot;Starting web service at <A HREF="http://localhost:%i">http://localhost:%i</A>&quot; % port
+-                    #print &quot;%s %s&quot; % (web_service, dir(web_service))
+-                    self.web_service = web_service
+-                    break # stop creating web services
+-
+-            else: # the range failed
+-                self.log_error(&quot;Could not find an available port in
+the range %s to provide webpublishing of the text contents.&quot; %
+[web_portno, web_portno+10])
+-
+-        &quot;&quot;&quot;
++        #@+at
++        # if 0 and web_service:
++        #     site = server.Site(utf8Page(interfaces.IModel(self),
++        # templateFile=&quot;Chalks.xhtml&quot;, templateDirectory=&quot;./&quot;))
++        #     web_portno = pb.portno + 1
++        #     for port in xrange(web_portno, web_portno+10):
++        #         try:
++        #             web_service = reactor.listenTCP(port, site)
++        # #internet.TCPServer(port, site).setParentApp(app)
++        #         except: # failed
++        #             continue
++        #         else: # got it
++        #             print &quot;Starting web service at <A HREF="http://localhost:%i">http://localhost:%i</A>&quot; %
++        # port
++        #             #print &quot;%s %s&quot; % (web_service, dir(web_service))
++        #             self.web_service = web_service
++        #             break # stop creating web services
++        #     else: # the range failed
++        #         self.log_error(&quot;Could not find an available port in the
++        # range %s to provide webpublishing of the text contents.&quot; %
++        # [web_portno, web_portno+10])
++        #@-at
+         #@nonl
+         #@-node:rodrigob.20040125150558:&lt;&lt; install the web service &gt;&gt;
+         #@nl
+@@ -194,7 +199,7 @@
+         #@+node:rodrigob.20040125200531.1:Chalks realm
+         class ChalksRealm:
+             &quot;&quot;&quot;
+-            Provide access to a ChalksPerspective
++            Provide access to a ChalksAvatar
+             &quot;&quot;&quot;
+             __implements__ = portal.IRealm
+
+@@ -202,7 +207,7 @@
+                 self.chalks_instance = Chalks_instance
+             def requestAvatar(self, avatarId, mind, *interfaces):
+                 if pb.IPerspective in interfaces:
+-                    avatar = ChalksPerspective(avatarId, mind,
+self.chalks_instance)
++                    avatar = ChalksAvatar(avatarId, mind, self.chalks_instance)
+                     return pb.IPerspective, avatar, avatar.logout
+                 else:
+                     raise NotImplementedError(&quot;no interface&quot;)
+@@ -257,12 +262,12 @@
+         #@nl
+         #@    &lt;&lt; guess local ip address &gt;&gt;
+         #@+node:niederberger.20040826214344:&lt;&lt; guess local ip address &gt;&gt;
+-        &quot;&quot;&quot;this method relies on an external perl script hosted on
+any cgi-bin environment to guess the correct external ip address.
+-        This is definitely not needed for NAT'd nodes.
+-        &quot;&quot;&quot;
+-        #### To force an ip and speed up start up:
+-        #self.opts['ip'] = &quot;200.165.227.174&quot;
+-        #return
++        #@+at
++        # this method relies on an external perl script hosted on any cgi-bin
++        # environment to guess the correct external ip address.
++        # This is definitely not needed for NAT'd nodes.
++        #@-at
++        #@@c
+
+         self.log(&quot;Guessing your IP address...\n&quot;)
+
+@@ -270,10 +275,10 @@
+         t_adr = &quot;<A HREF="http://imgseek.sourceforge.net/cgi-bin/getMyAddress.pl">http://imgseek.sourceforge.net/cgi-bin/getMyAddress.pl</A>&quot;
+
+         def ip_callback(value):
+-            self.log(&quot;Your external IP address is '%s'\n&quot;%value)
++            print &quot;Your external IP address is '%s'&quot;%value
+
+         def ip_errback(error):
+-            self.log(&quot;Unable to determine IP address. Setting to
+'%s'\n&quot; % t_onError)
++            print &quot;Unable to determine IP address. Setting to '%s'&quot; % t_onError
+
+         from twisted.web.client import getPage
+         getPage(t_adr).addCallbacks( callback=ip_callback, errback=ip_errback )
+@@ -296,18 +301,19 @@
+             self.server_address = socket.gethostbyname(socket.gethostname())
+
+             # now advertise
+-            user_name = socket.gethostname() # this should use some
+OS specific way for determining current user name.
+-                                             # For Win32 systems,
+that would demand installing/including python win32 extensions
+(win32api module)
+-                                             #
+<A HREF="http://starship.python.net/crew/mhammond/win32/Downloads.html">http://starship.python.net/crew/mhammond/win32/Downloads.html</A> and code
+snippet from
+-                                             #
+<A HREF="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/265858">http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/265858</A>
+-                                             # On *NIX I guess this
+could be determined from a system environment variable
++            from os import getenv
++            user_name = str(getenv(&quot;username&quot;)) +'@'+ socket.gethostname()
++            # this should use some OS specific way for determining
+current user name.
++            # For Win32 systems, that would demand
+installing/including python win32 extensions (win32api module)
++            # <A HREF="http://starship.python.net/crew/mhammond/win32/Downloads.html">http://starship.python.net/crew/mhammond/win32/Downloads.html</A>
+and code snippet from
++            # <A HREF="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/265858">http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/265858</A>
++            # On *NIX I guess this could be determined from a system
+environment variable
+
+             # the service name should be &quot;&lt;file name&gt; at &lt;machine
+name&gt;&quot;, but at this point we have no file name, so just name it
+something random
+             import random
+             service_name = user_name + ' Chalks server ' +
+str(random.randint(1,100000))
+
+             self.server_monitor.registerService(service_name,
+self.server_address, self.server_port, user_name)
+-
+         #@-node:niederberger.20040911111958:&lt;&lt; advertise local server &gt;&gt;
+         #@nl
+
+@@ -433,7 +439,7 @@
+         #&lt;&lt;&lt;&lt;&lt; finish
+         raise NotImplementedError
+
+-       for (encoding,src) in (
++        for (encoding,src) in (
+             (&quot;utf-8&quot;,&quot;default&quot;)
+             (self.config.tkEncoding,&quot;config&quot;),
+             #(locale.getdefaultlocale()[1],&quot;locale&quot;),
+@@ -923,9 +929,9 @@
+
+     #@+node:rodrigob.20040125192325:get text selection
+     def get_text_selection (self):
+-       &quot;&quot;&quot;
++        &quot;&quot;&quot;
+         Return a tuple representing the selected range of body text.
+-       Return a tuple giving the insertion point if no range of text
+is selected.
++        Return a tuple giving the insertion point if no range of text
+is selected.
+         &quot;&quot;&quot;
+
+         text_widget = self.text_widget
+@@ -1194,7 +1200,7 @@
+         self.server_listbox = Listbox(ttt_frame, width=46)
+         self.server_listbox.grid(row=0, column=0, pady=5)
+
+-        t_text = Label(ttt_frame, text=&quot;Double click a server to connect&quot;)
++        t_text = Label(ttt_frame, text=&quot;Select a server and enter a
+nickname to connect&quot;)
+         t_text.grid(row=1, column=0)
+
+         #|-|-|
+@@ -1205,7 +1211,8 @@
+
+         address_entry = t_entry = Entry(t_frame, width=16, background=&quot;white&quot;)
+         t_entry.grid(row=0, column=1, sticky=W)
+-
++        t_entry.insert(END, &quot;127.0.0.1&quot;)
++
+         t_text = Label(t_frame, text=&quot;e.g. : 181.0.24.5&quot;)
+         t_text.grid(row=1, column=0, columnspan=2, sticky=E)
+
+@@ -1213,8 +1220,8 @@
+         t_text.grid(row=0, column=2)
+
+         port_entry = t_entry = Entry(t_frame, width=5,  background=&quot;white&quot;)
++        t_entry.grid(row=0, column=3, sticky=W)
+         t_entry.insert(END, &quot;8787&quot;)
+-        t_entry.grid(row=0, column=3, sticky=W)
+
+         t_text = Label(t_frame, text=&quot;e.g. : 4321&quot;)
+         t_text.grid(row=1, column=2, columnspan=2, sticky=E)
+@@ -1224,9 +1231,14 @@
+
+         t_text = Label(tt_frame, text=&quot;Nickname:&quot;)
+         t_text.grid(row=2, column=0)
+-
++
+         nickname_entry = t_entry = Entry(tt_frame, width=8, background=&quot;white&quot;)
+         t_entry.grid(row=2, column=1, sticky=W)
++        # guess the username
++        from os import getenv
++        t_username = str(getenv(&quot;username&quot;))
++        t_entry.insert(END, t_username)
++
+         # see binding below...
+
+         t_text = Label(tt_frame, text=&quot;e.g. : mike&quot;)
+@@ -1264,6 +1276,10 @@
+
+             server =
+self.cur_server_list[self.cur_server_list.keys()[int(self.server_listbox.curselection()[0])]]
+             print server # server info is here, now we need to
+populate entry widgets with this info
++
++            port_entry.delete(0, END); port_entry.insert(END,
+str(server['port']))
++
++        #@nonl
+         #@-node:niederberger.20040911130819:&lt;&lt; server list callback &gt;&gt;
+         #@nl
+         self.server_listbox.bind(&quot;&lt;Button-1&gt;&quot;, onServerListClick)
+@@ -1297,8 +1313,7 @@
+             address  = address_entry.get()
+             nickname = nickname_entry.get()
+
+-            top.destroy()
+-            print &quot;Requesting a connection to '<A HREF="chalks://%s:%s">chalks://%s:%s</A>' as
+'%s', please wait...&quot; % (address, port, nickname)
++            top.destroy()
+             # start the connection
+             self.node.connect_to_parent(address, port, nickname)
+             return
+@@ -1415,17 +1430,36 @@
+                 cmd = txt.split(' ')[0]
+                 self.log_error(&quot;Unknown command '%s'; message not
+sent.\nUse '/help' to get some guidance.&quot;%(cmd))
+         else:
+-            #self.node.parent_perspective.callRemote(&quot;send_message&quot;,
+txt).addErrback(self.exception)
+-            self.node.remote_send_message(txt, self.node)
++            t_from = self.node.nickname
++            t_to = None # to everyone
++            self.node.remote_send_message(t_from, t_to, txt, self.node)
+
+         return
+
++
++    #@+node:rodrigob.20040912221032:enable/disable Chat
+     def enableChat(self):
+         &quot;&quot;&quot;
+         enables chat text entry widget
+         &quot;&quot;&quot;
+         self.chat_text_entry[&quot;state&quot;] = NORMAL
++        self.chat_text_entry.delete('1.0', END);
++        #self.chat_text_entry.insert(END, &quot;Enter chat text here&quot;);
++        print &quot;Chat bar now enabled&quot;
++        return
+
++    def disableChat(self):
++        &quot;&quot;&quot;
++        disable chat text entry widget
++        &quot;&quot;&quot;
++        self.chat_text_entry.delete('1.0', END);
++        self.chat_text_entry.insert(END, &quot;The chat bar is disabled
+until someone connects to you or you connect to someone.&quot;);
++        self.chat_text_entry[&quot;state&quot;] = DISABLED
++        print &quot;Chat bar now disabled&quot;
++
++        return
++    #@nonl
++    #@-node:rodrigob.20040912221032:enable/disable Chat
+     #@-node:rodrigob.20040121153312:chat bar commands
+     #@+node:rodrigob.20040124160427:status bar commands
+     #@+node:rodrigob.20040121153834.4:updateStatusRowCol
+@@ -1528,17 +1562,14 @@
+
+ class ChalksNode(ConcurrentEditableNode, pb.Referenceable):
+     &quot;&quot;&quot;
+-    &lt;&lt;&lt; EDIT THIS CONTENT !!
+-    Specialized to manage the Tk widget and to be in a Tree like network.
++    This is the local instance that take care of the collaborative
+edition and the network layers.
++    This is the core object under the GUI.
+
+-    The client side of the selected node.
+-    This is a dynamic component.
++    A Chalks node is part of a tree network, it can have one parent
+and N childrens.
++    A node connect once to his parent and can receive N childrens connections.
+
+-    This class is instanciated when the user start to collaborate in a node.
+-    It manage all the ConcurrentEdition Logic.
+-    This is the class that concentrate the LeoN interaction with the
+panel body. The implementation is dependent of the Gui system.
++    All messages that arrive to a node has to be repeated to the other nodes.
+     This is the class that generate all the operations to be sent to
+the server, and it the the one that process the received operations.
+-    As this is a child class, most of the ConcurrentEditable logic is
+not here but in the parents. This class overwrite and extend his
+parent with Gui dependents methods.
+     &quot;&quot;&quot;
+
+     def __init__(self, Chalks_instance, text=&quot;&quot;):
+@@ -1552,10 +1583,15 @@
+         self.chalks_instance  = Chalks_instance # stores a reference
+to the gui object
+
+         self.nickname = None
+-        self.id = None # id is an unique internet identifier
++        self.site_id = None # site_id is an unique internet identifier
+         self.connected = 0              # initially we are not
+connected to anyone
+
+-        for t_name in [&quot;log&quot;, &quot;log_error&quot;, &quot;exception&quot;, &quot;encoding&quot;]:
+# attach some attributes and methods
++        # perspectives of the adjacent nodes in the network
++        self.parent_perspective = None
++        self.childrens_perspectives = []
++
++        # attach some attributes and methods
++        for t_name in [&quot;log&quot;, &quot;log_error&quot;, &quot;exception&quot;, &quot;encoding&quot;]:
+             setattr(self, t_name, getattr(Chalks_instance, t_name))
+         self.log = lambda text, *args, **kws:
+Chalks_instance.log(&quot;\n%s&quot; % text) # dummy trick
+
+@@ -1568,6 +1604,9 @@
+         if text:
+             self.set_text(text)
+
++        return
++
++
+     def log(self, text, tag=None, color=None):
+         &quot;&quot;&quot;
+         right now it will just forward log message to GUI object
+@@ -1584,8 +1623,10 @@
+     #@+node:rodrigob.20040125154815.2:connect to/disconnect from parent node
+     def connect_to_parent(self, address, port, nickname=&quot;No name&quot;):
+         &quot;&quot;&quot;
+-        Connect as a children to another node
++        Connect as a children to a parent node
+         &quot;&quot;&quot;
++        print &quot;Requesting a connection to '<A HREF="chalks://%s:%s">chalks://%s:%s</A>' as '%s',
+please wait...&quot; % (address, port, nickname)
++
+         assert isinstance(port, int), 'port must be integer'
+         self.nickname = nickname
+
+@@ -1602,11 +1643,11 @@
+
+         self.parent_perspective = parent_perspective
+
+-        # we obtain us id
++        # we obtain us site_id
+         t_address = self.parent_perspective.broker.transport.getHost()
+-        self.id = hash(&quot;%s:%i&quot; % (t_address.host, t_address.port))
++        self.site_id = hash(&quot;%s:%i&quot; % (t_address.host, t_address.port))
+
+-        deferred =
+self.parent_perspective.callRemote(&quot;collaborate_in&quot;, self.id)
++        deferred =
+self.parent_perspective.callRemote(&quot;collaborate_in&quot;, self.site_id)
+         deferred.addCallback(self.start_collaborating).addErrback(self.exception)
+
+         return
+@@ -1655,7 +1696,7 @@
+         self.text_widget.mark_set(&quot;insert&quot;, insert_index) # try to
+keep the insert mark at the same place
+
+         t_address = self.parent_perspective.broker.transport.getPeer()
+-        self.log(&quot;Connected to '%s:%i' as site '%s' (num_of_sites
+%s)&quot;%(t_address.host, t_address.port, self.id, num_of_sites))
++        self.log(&quot;Connected to '%s:%i' as site '%s' (num_of_sites
+%s)&quot;%(t_address.host, t_address.port, self.site_id, num_of_sites))
+
+         self.log(&quot;HB after the connection %s&quot;% self.HB,
+color=&quot;yellow&quot;) # just for debugging
+         self.log(&quot;delayed_operations after the connection %s&quot;%
+self.delayed_operations, color=&quot;yellow&quot;) # just for debugging
+@@ -1700,7 +1741,50 @@
+
++
+     #@-node:rodrigob.20040125154815.2:connect to/disconnect from parent node
++    #@+node:rodrigob.20040912225813:add/del sites
++    #@+at
++    # Register/Unregister childrens in the session
++    #@-at
++    #@nonl
++    #@+node:rodrigob.20040912225813.1:add site
++    def add_site(self, site_perspective):
++        &quot;&quot;&quot;
++        Add a new children to the local node
++        &quot;&quot;&quot;
++
++        if not self.connected:
++            self.connected = 1
++            # upon connection we need to enable the chat system
++            self.chalks_instance.enableChat()
++
++        print &quot;User %s %s is starting to collaborate&quot; %
+(site_perspective.nickname, site_perspective)
++        self.childrens_perspectives.append(site_perspective)
++        ConcurrentEditableNode.add_site(self, site_perspective.site_id)
++
++        return
++
++    #@nonl
++    #@-node:rodrigob.20040912225813.1:add site
++    #@+node:rodrigob.20040912225813.2:del site
++    def del_site(self, site_perspective):
++        &quot;&quot;&quot;
++        Delete a children from the local node
++        &quot;&quot;&quot;
++
++        print &quot;User %s %s is quiting&quot; % (site_perspective.nickname,
+site_perspective.mind)
++        self.childrens_perspectives.remove(site_perspective)
++        ConcurrentEditableNode.add_site(self, site_perspective.site_id)
++
++        if not self.childrens_perspectives and not self.parent_perspective:
++            self.connected = 0
++            self.chalks_instance.disableChat()
++        return
++
++    #@nonl
++    #@-node:rodrigob.20040912225813.2:del site
++    #@...
+
+  [Message clipped]
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000015.html">[Chalks-devel] code problems
+</A></li>
+	<LI>Next message: <A HREF="000017.html">[Chalks-devel] About the Chat problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#16">[ date ]</a>
+              <a href="thread.html#16">[ thread ]</a>
+              <a href="subject.html#16">[ subject ]</a>
+              <a href="author.html#16">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705051004146335779%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000037.html">
+   <LINK REL="Next"  HREF="000036.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks</H1>
+    <B>rodrigo benenson</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks&In-Reply-To=%3Cef5e725705051004146335779%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: Chalks">rodrigo.benenson at gmail.com
+       </A><BR>
+    <I>Tue May 10 13:14:08 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000037.html">[Chalks-devel] Re: Chalks
+</A></li>
+        <LI>Next message: <A HREF="000036.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#38">[ date ]</a>
+              <a href="thread.html#38">[ thread ]</a>
+              <a href="subject.html#38">[ subject ]</a>
+              <a href="author.html#38">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>KParts seems to be not technically compatible with .Net technology.
+
+XML-RPC interface is almost trivial with .Net, and could be
+implemented without too many suffering if required.
+
+Qt is only a Gui. We have choosen .Net because it provide solutions
+for all the topics (file manipulation, networking, security, etc...),
+including gui. Gtk# was choosen only because it seems to be a well
+supported all-platform free Gui.
+
+rodrigob.
+
+
+On 5/10/05, Andreas Ramm &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">psychobrain at gmx.net</A>&gt; wrote:
+&gt;<i> Ricardo Niederberger Cabral wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I agree with Rodrigo on all points.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; In my opinion the &quot;language agnostic module interconnection system&quot; we
+</I>&gt;<i> &gt; are  looking for already exists and is the CLR.
+</I>&gt;<i> &gt; I believe we can be safe in the long run by having a &quot;concurrent
+</I>&gt;<i> &gt; collaboration library&quot; (CCL), composed of the &quot;Ce&quot; and &quot;Network&quot;
+</I>&gt;<i> &gt; modules  (from [1]) implemented on any CLR compliant language (that
+</I>&gt;<i> &gt; is, Nemerle,  which I *still* need to learn).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I say we are &quot;safe&quot; in only worrying about having CLR modules right
+</I>&gt;<i> &gt; now  because it's just a matter of time before all efforts on making
+</I>&gt;<i> &gt; Qt  bindings to .NET world (there is a Qt# initiative. I'm not sure if
+</I>&gt;<i> &gt; Qt 4  already does that) mature and becomes useful, so Qt based apps
+</I>&gt;<i> &gt; could  easily implement a GUI module which makes use of the Ce and N
+</I>&gt;<i> &gt; modules from  CCL.
+</I>&gt;<i> 
+</I>&gt;<i> The same could be said the other way around. Just that Qt4.0 will be
+</I>&gt;<i> fully GPL for all platforms while .Net will rely on Mono to work on
+</I>&gt;<i> anything but Windows. And personally I'm not really happy about that.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'm not sure if exposing an XML-RPC/DCOP/KParts/SOAP/... interface on
+</I>&gt;<i> &gt; CCL  and making sure it's usable from other KDE/Gnome apps on this
+</I>&gt;<i> &gt; early stage  of development would be worth all the trouble, specially
+</I>&gt;<i> &gt; since Rodrigo is  the only one really working on Chalks right now and
+</I>&gt;<i> &gt; on the near future. So  by the time Chalks and the CCL underneath it
+</I>&gt;<i> &gt; matures, we may have more  progress on integrating Qt, Gtk and Mono
+</I>&gt;<i> &gt; components.
+</I>&gt;<i> 
+</I>&gt;<i> Integrating KParts will be fairly easy for MateEdit being a KDE program,
+</I>&gt;<i> but I agree for Chalks other priorities might be more important.
+</I>&gt;<i> 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; [1]
+</I>&gt;<i> &gt; <A HREF="http://svn.berlios.de/viewcvs/*checkout*/chalks/trunk/doc/schemas/chalks.dia">http://svn.berlios.de/viewcvs/*checkout*/chalks/trunk/doc/schemas/chalks.dia</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000037.html">[Chalks-devel] Re: Chalks
+</A></li>
+	<LI>Next message: <A HREF="000036.html">[Chalks-devel] Re: Chalks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#38">[ date ]</a>
+              <a href="thread.html#38">[ thread ]</a>
+              <a href="subject.html#38">[ subject ]</a>
+              <a href="author.html#38">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Chalks-devel] Re: Chalks Gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/chalks-devel/2005-May/index.html" >
+   <LINK REL="made" HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks%20Gui&In-Reply-To=%3C35f9d9da0505220820319f5489%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000066.html">
+   <LINK REL="Next"  HREF="000071.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Chalks-devel] Re: Chalks Gui</H1>
+    <B>Ricardo Niederberger Cabral</B> 
+    <A HREF="mailto:chalks-devel%40lists.berlios.de?Subject=Re%3A%20%5BChalks-devel%5D%20Re%3A%20Chalks%20Gui&In-Reply-To=%3C35f9d9da0505220820319f5489%40mail.gmail.com%3E"
+       TITLE="[Chalks-devel] Re: Chalks Gui">rnc000 at gmail.com
+       </A><BR>
+    <I>Sun May 22 17:20:26 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000066.html">[Chalks-devel] Chalks Gui
+</A></li>
+        <LI>Next message: <A HREF="000071.html">[Chalks-devel] Re: Chalks Gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On 5/21/05, rodrigo benenson &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/chalks-devel">rodrigo.benenson at gmail.com</A>&gt; wrote:
+
+&gt;<i> Essentially I have two questions whose answer is not clear to me:
+</I>&gt;<i> A) Which things should we let the user configure ?
+</I>&gt;<i> B) How we should associate the colors in the text to the users ?
+</I>&gt;<i> 
+</I>&gt;<i> My answer for question A) is : &quot;Nothing&quot;.
+</I>&gt;<i> Ultra simple programs does not need preferences.  If user lack of
+</I>&gt;<i> something, we should make it autoconfigured.
+</I>
+I agree with your minimalistic approach to make the software easier to
+use and more robust, but I believe there are some important options
+that can't be autoconfigured, including:
+
+1) Edit widget font size: some people need larger fonts and some like
+a lot of text viewable at once, etc.
+2) Choosing whether or not the editor should replace Tabs with spaces
+(and how many). Keep in mind that we are working on a pure text
+editor, so our target users are those who want to work with pure text
+files, and for some of them these aspects are important.
+
+&gt;<i> Question B) is more difficult, I see three options:
+</I>&gt;<i> a) Coloring consistently the messages received is enough
+</I>&gt;<i> b) The user type the command \who to get an up-to-date list of the
+</I>&gt;<i> users, each name colored consistently
+</I>
+I suggest using &quot;/who&quot; instead of '\who', that is, with a
+forward-slash, to be consistent with IRC commands. But I believe these
+/xyz commands are only intended for power-users, so for every  /xyz
+command, there should be a menu or toolbar option.
+
+These commands would also be very useful for us during debugging.
+
+
+&gt;<i> c) There is always a section of the window that show a colored users
+</I>&gt;<i> list (this one I want to avoid it, knowing users colors is a not
+</I>&gt;<i> highly relevant for the user, however is the way Subethadedit and
+</I>&gt;<i> MoonEdit does it)
+</I>
+Yeah, I also agree we could leave that to a second release, but it
+would be fine to make this &quot;user list&quot; richer in terms of information.
+A good feature would be allowing users to edit a text near their entry
+on this user list, describing what they are currently working on or
+thinking about. So they don't need to explain what they are doing on
+the chat window and you don't have to scroll back the chat window to
+find out what user X was thinking about and what he is trying to edit
+on the shared text file.
+
+This feature would also be a flexible and simple substitute to &quot;away&quot;
+features. So you can change your &quot;user list&quot; extra description from
+&quot;reviewing specification section&quot; to something like &quot;away for 5min.&quot;.
+
+&gt;<i> d) When putting the mouse over colored text a popup appears to
+</I>&gt;<i> indicate the originator name's
+</I>
+I guess this is not needed. In most cases, there will be an average of
+only 2 concurrent editors, so a simple panel somewhere on the GUI or
+as a menu showing which color is which user is fine. The user will
+verify it 3 times and after that he will memorize.
+
+&gt;<i> e) The user click over the &quot;N users&quot; section of the status bar and a
+</I>&gt;<i> secondary window appears with the list of the users. The user can
+</I>&gt;<i> switch from one window to the other to consult the users.
+</I>
+Even though bringing user info after clicking on this status bar label
+seems logical, it may not seem intuitive. I believe we should let the
+user list on a very visible place, because people need to constantly
+know who's online or not.
+
+Summarizing my opinion:
+
+a) + b) + c)
+
+In this order of implementation.
+
+-- 
+Ricardo Niederberger Cabral
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000066.html">[Chalks-devel] Chalks Gui
+</A></li>
+	<LI>Next message: <A HREF="000071.html">[Chalks-devel] Re: Chalks Gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/chalks-devel">More information about the Chalks-devel
+mailing list</a><br>
+</body></html>
